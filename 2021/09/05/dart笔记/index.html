@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>dart笔记 | MUFans&#39;s Blog | 学无止境，不忘初心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="dart">
+    <meta name="description" content="final&#x2F;const常量声明，const表示编译期常量,final运行时常量。 import导入关键字 1import &#39;dart:marth&#39; as math   内置数据类型数字类型int 取值范围-2^53 ~2^53 ,double为64位双精度浮点类型。数字类型都是num的子类型。 列表用List或者[]表示 12List list &#x3D; [1,2,3];var list2&#x3D; [1,2,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="dart笔记">
+<meta property="og:url" content="https://mufans.github.io/2021/09/05/dart%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="MUFans&#39;s Blog">
+<meta property="og:description" content="final&#x2F;const常量声明，const表示编译期常量,final运行时常量。 import导入关键字 1import &#39;dart:marth&#39; as math   内置数据类型数字类型int 取值范围-2^53 ~2^53 ,double为64位双精度浮点类型。数字类型都是num的子类型。 列表用List或者[]表示 12List list &#x3D; [1,2,3];var list2&#x3D; [1,2,">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-09-04T16:07:48.000Z">
+<meta property="article:modified_time" content="2021-09-04T16:07:48.087Z">
+<meta property="article:author" content="MUFans">
+<meta property="article:tag" content="dart">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="MUFans&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpeg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">MUFans</h5>
+          <a href="mailto:294045132@qq.com" title="294045132@qq.com" class="mail">294045132@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/mufans" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">dart笔记</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">dart笔记</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2021-09-04T16:07:48.000Z" itemprop="datePublished" class="page-time">
+  2021-09-05
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Flutter/">Flutter</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#final-const"><span class="post-toc-number">1.</span> <span class="post-toc-text">final&#x2F;const</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#import"><span class="post-toc-number">2.</span> <span class="post-toc-text">import</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#内置数据类型"><span class="post-toc-number">3.</span> <span class="post-toc-text">内置数据类型</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#逻辑语句与操作符"><span class="post-toc-number">4.</span> <span class="post-toc-text">逻辑语句与操作符</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#var-和-dynamic"><span class="post-toc-number">5.</span> <span class="post-toc-text">var 和 dynamic</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#函数方法"><span class="post-toc-number">6.</span> <span class="post-toc-text">函数方法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#类、接口继承"><span class="post-toc-number">7.</span> <span class="post-toc-text">类、接口继承</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#构造函数"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">构造函数</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#接口"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">接口</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#继承"><span class="post-toc-number">7.3.</span> <span class="post-toc-text">继承</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Mixin-混入模式"><span class="post-toc-number">8.</span> <span class="post-toc-text">Mixin(混入模式)</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-dart笔记"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">dart笔记</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2021-09-05 00:07:48" datetime="2021-09-04T16:07:48.000Z"  itemprop="datePublished">2021-09-05</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Flutter/">Flutter</a></li></ul>
+
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h4 id="final-const"><a href="#final-const" class="headerlink" title="final/const"></a>final/const</h4><p>常量声明，const表示编译期常量,final运行时常量。</p>
+<h4 id="import"><a href="#import" class="headerlink" title="import"></a>import</h4><p>导入关键字</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'dart:marth'</span> <span class="keyword">as</span> math</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="内置数据类型"><a href="#内置数据类型" class="headerlink" title="内置数据类型"></a>内置数据类型</h4><p>数字类型<br>int 取值范围-2^53 ~2^53 ,double为64位双精度浮点类型。数字类型都是<strong>num</strong>的子类型。</p>
+<p>列表用List或者[]表示</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">List</span> list = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">var</span> list2= [<span class="number">1</span>,<span class="number">2</span>,...list]; <span class="comment">//...表示填充</span></span><br></pre></td></tr></table></figure>
+
+<p>集合类型用Set或者{}表示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;String&gt; set &#x3D; &#123;&quot;a&quot;,&quot;b&quot;,&quot;c&quot;&#125;;</span><br><span class="line">set.add(&quot;c&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>映射类型用Map或者{}表示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Map map &#x3D; &#123;</span><br><span class="line">    &#39;key&#39;:&#39;value1&#39;,</span><br><span class="line">    &#39;key2&#39;:&#39;value2&#39;</span><br><span class="line">&#125;;</span><br><span class="line">map[&#39;key3&#39;] &#x3D; &#39;value3&#39;;</span><br><span class="line">String value &#x3D; map[&#39;key&#39;];</span><br></pre></td></tr></table></figure>
+
+<p>枚举类型</p>
+<p>枚举类型不能包含数据成员和方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">enum UserType&#123;</span><br><span class="line">    vip,guest</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="逻辑语句与操作符"><a href="#逻辑语句与操作符" class="headerlink" title="逻辑语句与操作符"></a>逻辑语句与操作符</h4><p>switch语句支持String 、enum、num等类型</p>
+<p>三目运算符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a?xx:xx</span><br></pre></td></tr></table></figure>
+
+<p>级联操作符</p>
+<p>可以对类的成员进行链式调用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Event event &#x3D; Event();</span><br><span class="line">event</span><br><span class="line">  ..id &#x3D;1</span><br><span class="line">  ..type&#x3D;&quot;&quot;</span><br><span class="line">  ..name&#x3D;&quot;&quot;;</span><br></pre></td></tr></table></figure>
+
+<p>赋值操作符及空判断操作符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">A??&quot;999&quot; &#x2F;&#x2F; A为空返回999</span><br><span class="line"></span><br><span class="line">AA?? &#x3D; &quot;999&quot; &#x2F;&#x2F; AA为空则赋值&quot;999&quot;</span><br><span class="line"></span><br><span class="line">AA ~&#x2F; 999 &#x2F;&#x2F; AA对999整除</span><br><span class="line"></span><br><span class="line">Event event &#x3D; Event();</span><br><span class="line">event?.fit(); &#x2F;&#x2F; event不为空调用方法</span><br></pre></td></tr></table></figure>
+
+<h4 id="var-和-dynamic"><a href="#var-和-dynamic" class="headerlink" title="var 和 dynamic"></a>var 和 dynamic</h4><p>Dart是<code>强类型语言</code>。var是编译期语法糖，声明会自动推导出数据类型。dynamic表示动态类型，编译后是一个object类型，到运行时才对类型进行检查。var声明时没制定类型和赋值会被指定为dynamic,到赋值时才推导出类型。</p>
+<h4 id="函数方法"><a href="#函数方法" class="headerlink" title="函数方法"></a>函数方法</h4><p>方法可以省略返回值类型；参数可以不指定类型；可选参数用{}包裹,可选参数必须声明在最后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">func(String username,repoName,&#123;branch &#x3D; &quot;master&quot;&#125;)&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func(&quot;aaa&quot;,&quot;ccc&quot;); &#x2F;&#x2F; branch默认传master</span><br><span class="line"></span><br><span class="line">func(&quot;aaac&quot;,&quot;bbb&quot;,branch:&quot;dev&quot;); &#x2F;&#x2F; 可选参数必须指定参数名称</span><br></pre></td></tr></table></figure>
+
+<p>闭包：方法可以作为参数传递</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">callback(String text)&#123;</span><br><span class="line">    return &quot;aaa&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">do(String calback(String text))&#123;</span><br><span class="line">    calback(&quot;ttt&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="类、接口继承"><a href="#类、接口继承" class="headerlink" title="类、接口继承"></a>类、接口继承</h4><h5 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h5><p>普通构造函数</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">	<span class="built_in">String</span> name;</span><br><span class="line">	<span class="built_in">int</span> age;	</span><br><span class="line">	<span class="built_in">String</span> id;</span><br><span class="line">	Person(<span class="built_in">String</span> name)&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 语法糖，成员变量自动赋值</span></span><br><span class="line">	Person(<span class="keyword">this</span>.name);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 构造函数外部进行赋值，但是外部无法访问this</span></span><br><span class="line">	Person(<span class="built_in">String</span> n,<span class="built_in">int</span> a):name=n,age=a &#123;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 重定向</span></span><br><span class="line">	Person(<span class="built_in">String</span> id):<span class="keyword">this</span>(<span class="string">"person"</span>,<span class="number">10</span>,id);</span><br><span class="line">	Person(<span class="keyword">this</span>.name,<span class="keyword">this</span>.age,<span class="keyword">this</span>.id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>命名构造函数</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">  <span class="built_in">String</span> name;</span><br><span class="line">	<span class="built_in">int</span> age;	</span><br><span class="line">	<span class="built_in">String</span> id;</span><br><span class="line">	Person.json(<span class="built_in">Map</span> m)&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = m[<span class="string">"name"</span>];</span><br><span class="line">		<span class="keyword">this</span>.age = m[<span class="string">"age"</span>];</span><br><span class="line">		<span class="keyword">this</span>.id = m[<span class="string">"id"</span>];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>工厂构造函数</p>
+<p><code>factory</code>关键字实现工厂构造方法，类似工厂方法模式，一般会将默认构造方法以<code>_</code>开头命名表示私有。工厂构造函数内部无法使用<code>this</code>关键字，类似静态方法。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">final</span> <span class="built_in">Map</span>&lt;<span class="built_in">String</span>,Person&gt; _cache = &lt;<span class="built_in">String</span>,Person&gt;&#123;&#125;;</span><br><span class="line">	<span class="keyword">factory</span> Person(name)&#123;</span><br><span class="line">		<span class="keyword">if</span>(_cache.containsKey(name))</span><br><span class="line">      <span class="keyword">return</span> _cache[name];</span><br><span class="line">    Person p = Person._Internal(name);</span><br><span class="line">    _cache[name] = p;</span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">	&#125;</span><br><span class="line">  </span><br><span class="line">  Person._Internal(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h5><p>dart没有接口关键字，类或者abstarct抽象类可以作为接口，使用implements可以实现多个接口。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">abstarct <span class="class"><span class="keyword">class</span> <span class="title">Interface</span></span>&#123;</span><br><span class="line">    <span class="keyword">void</span> doA();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">InterfaceClass</span></span>&#123;</span><br><span class="line">    <span class="keyword">void</span> doB();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Name</span> <span class="keyword">implements</span> <span class="title">Interface</span>,<span class="title">InterfaceCalss</span></span>&#123;</span><br><span class="line">    <span class="meta">@override</span></span><br><span class="line">    <span class="keyword">void</span> doA()&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@override</span></span><br><span class="line">    <span class="keyword">void</span> doB()&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h5><p>dart只支持单继承，通过<code>extends</code>关键字继承父类, <code>super</code>关键字调用父类</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span></span>&#123;</span><br><span class="line">	<span class="built_in">String</span> name;</span><br><span class="line">	Base(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">	Child(name):<span class="keyword">super</span>(name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>获取对象类型</p>
+<p>通过对象<code>runtimeType</code>返回Type类型对象即当前对象的类型。 <code>is</code> 关键字判断对象的类型, <code>as</code>关键字用来对象转型。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Person p = Person();</span><br><span class="line">p.runtimeType</span><br><span class="line">p <span class="keyword">is</span> Person</span><br><span class="line">p <span class="keyword">as</span> Person</span><br></pre></td></tr></table></figure>
+
+
+
+<p><code>call( )</code>方法调用: 类内部声明了call方法，可以直接通过对象名称进行call方法的调用；通过<strong>typedef</strong>声明的方法也可以直接通过funcName.call进行调用。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Class CallTest&#123;</span><br><span class="line">  call(<span class="built_in">int</span> i) =&gt; <span class="string">"<span class="subst">$i</span>"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">CallTest callTest = CallTest();</span><br><span class="line">callTest.call(<span class="number">1</span>);</span><br><span class="line">callTest(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">void</span> MyFunction(<span class="built_in">int</span> i);</span><br><span class="line">MyFunction func = (<span class="built_in">int</span> i) =&gt; i;</span><br><span class="line">func(<span class="number">1</span>);</span><br><span class="line">func.call(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="Mixin-混入模式"><a href="#Mixin-混入模式" class="headerlink" title="Mixin(混入模式)"></a>Mixin(混入模式)</h4><p>当类之间不存在继承关系，但是想赋予类另一个通用的行为，可以使用mixin. 使用 <code> with</code>关键字可以添加多个Mixin类.</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Musician</span> <span class="keyword">extends</span> <span class="title">Performer</span> <span class="title">with</span> <span class="title">Musical</span> </span>&#123;</span><br><span class="line">  <span class="comment">// ···</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Maestro</span> <span class="keyword">extends</span> <span class="title">Person</span></span></span><br><span class="line"><span class="class">    <span class="title">with</span> <span class="title">Musical</span>, <span class="title">Aggressive</span>, <span class="title">Demented</span> </span>&#123;</span><br><span class="line">  Maestro(<span class="built_in">String</span> maestroName) &#123;</span><br><span class="line">    name = maestroName;</span><br><span class="line">    canConduct = <span class="keyword">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过创建一个继承自 Object 且没有构造函数的类，来 <em>实现</em> 一个 Mixin 。 如果 Mixin 不希望作为常规类被使用，使用关键字 <code>mixin</code> 替换 <code>class</code> 。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mixin</span> Musical &#123;</span><br><span class="line">  <span class="built_in">bool</span> canPlayPiano = <span class="keyword">false</span>;</span><br><span class="line">  <span class="built_in">bool</span> canCompose = <span class="keyword">false</span>;</span><br><span class="line">  <span class="built_in">bool</span> canConduct = <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">void</span> entertainMe() &#123;</span><br><span class="line">    <span class="keyword">if</span> (canPlayPiano) &#123;</span><br><span class="line">      <span class="built_in">print</span>(<span class="string">'Playing piano'</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (canConduct) &#123;</span><br><span class="line">      <span class="built_in">print</span>(<span class="string">'Waving hands'</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="built_in">print</span>(<span class="string">'Humming to self'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>on</code> 关键字可以限制被Mixin的类的父类，声明了父类后，混入类本身相当于继承了该类，可以调用父类的方法</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Class Performer&#123;</span><br><span class="line">	perform();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">mixin</span> Musical <span class="keyword">on</span> Performer&#123;</span><br><span class="line">	play()&#123;</span><br><span class="line">		perform();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>mixin 混入顺序是从右到左，如果多个mixin类同时继承了父类，并且复写了父类的方法，如果方法内部没有调用super方法，调用流程将不会向左继续传递下去。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">	a()&#123;</span><br><span class="line">		<span class="built_in">print</span>(<span class="string">"base a"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	b()&#123;</span><br><span class="line">		<span class="built_in">print</span>(<span class="string">"base b"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">mixin</span> A <span class="keyword">on</span> Base &#123;</span><br><span class="line">	a()&#123;</span><br><span class="line">		<span class="built_in">print</span>(<span class="string">"A a"</span>);</span><br><span class="line">		<span class="keyword">super</span>.a();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	b()&#123;</span><br><span class="line">		<span class="built_in">print</span>(<span class="string">"A b"</span>);</span><br><span class="line">		<span class="keyword">super</span>.b();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">mixin</span> A2 <span class="keyword">on</span> Base &#123;</span><br><span class="line">	a()&#123;</span><br><span class="line">		<span class="built_in">print</span>(<span class="string">"A2 a"</span>);</span><br><span class="line">		<span class="comment">// super.a();</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	b()&#123;</span><br><span class="line">		<span class="built_in">print</span>(<span class="string">"A2 b"</span>);</span><br><span class="line">		<span class="keyword">super</span>.b();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Base</span> <span class="title">with</span> <span class="title">A</span>,<span class="title">A2</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">main()&#123;</span><br><span class="line">	Child child = Child();</span><br><span class="line">	child.a(); <span class="comment">// 打印结果: A2 a</span></span><br><span class="line">	child.b(); <span class="comment">// 打印结果: A2 b -&gt; A b -&gt; base b</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2021-09-04T16:07:48.087Z" itemprop="dateUpdated">2021-09-05 00:07:48</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://mufans.github.io">
+            <img src="/img/avatar.jpeg" alt="MUFans">
+            MUFans
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dart/" rel="tag">dart</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://mufans.github.io/2021/09/05/dart%E7%AC%94%E8%AE%B0/&title=《dart笔记》 — MUFans's Blog&pic=https://mufans.github.io/img/avatar.jpeg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://mufans.github.io/2021/09/05/dart%E7%AC%94%E8%AE%B0/&title=《dart笔记》 — MUFans's Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://mufans.github.io/2021/09/05/dart%E7%AC%94%E8%AE%B0/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《dart笔记》 — MUFans's Blog&url=https://mufans.github.io/2021/09/05/dart%E7%AC%94%E8%AE%B0/&via=https://mufans.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://mufans.github.io/2021/09/05/dart%E7%AC%94%E8%AE%B0/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2021/08/18/gradle/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">gradle 插件调试</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>MUFans &copy; 2015 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://mufans.github.io/2021/09/05/dart%E7%AC%94%E8%AE%B0/&title=《dart笔记》 — MUFans's Blog&pic=https://mufans.github.io/img/avatar.jpeg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://mufans.github.io/2021/09/05/dart%E7%AC%94%E8%AE%B0/&title=《dart笔记》 — MUFans's Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://mufans.github.io/2021/09/05/dart%E7%AC%94%E8%AE%B0/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《dart笔记》 — MUFans's Blog&url=https://mufans.github.io/2021/09/05/dart%E7%AC%94%E8%AE%B0/&via=https://mufans.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://mufans.github.io/2021/09/05/dart%E7%AC%94%E8%AE%B0/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLUlEQVR42u3aQW7DMAwEwPz/0+k1RRF7SdoFLI1ORWBIHh9YiuTrFa/3x/r85dszf9ffJ5NTLl4YGBiPZSTHHzOSl75q569UDAyMDRjfIthk6+NX74X1r79jYGBgxIxmuAzOxcDAwKhulxyWv2gvNGNgYOzGyLdLQmc1+F4QsjEwMJZm9ELk//x9S38DAwPjUYz7gmASrCdv8msfDAyMpRl5gMsTsmTAondxPTkFAwNjS8ak+DVpAxx/gih7xcDAWIjRS+/mRbdqOngCxsDA2IzRC6a9UYxqOa8QcDEwMJZjzAcmrgJXL8MYGBj7MK4qjVUvvfkV9+RJDAyMpRl56Ow1L6sDFtWr8kljAAMDYwlGnrr1prOqX7RatsPAwNiBUa1iTQYmeo2HydgHBgbGSozJ1bTahrxq2AIDA2MfxrxAVh3ImHzvKMPFwMBYjlFN0QptxSKj3AY4rhpiYGAsxMiTtt4IV4+XU1/JnAgGBsbDGdXkr9pczGFXhXgMDIxVGVclfL3WQhJGo98xMDA2YCQjFL2w2Ev4qg0GDAyMHRh5u7EaFicJaOE9MTAwFmW8iysqeMWfJtk/omJgYCzNyFc+KpEPjeVN0+qlFwMDYz1G9bBqca03QtHsx2JgYCzNqA5VTIa9erzoKouBgYERJHN5YW7ekCj3OTEwMDZjzMN0tSVw4/8NDAyMhzCqzYBJOphEyxvv4hgYGA9k5FfHeZ8hD7W3NDUxMDCex/gBdyFgvm013l8AAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
