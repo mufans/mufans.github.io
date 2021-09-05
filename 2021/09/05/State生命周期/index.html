@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>State生命周期 | MUFans&#39;s Blog | 学无止境，不忘初心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="widget">
+    <meta name="description" content="Widget生命周期State 是StatefulWidget代理，包含控件构建和生命周期。 State生命周期如下：                initState初始化状态，只会调用一次。 didChangeDependenciesinitState之后会调用，当InheritedWidget发生变化时会触发。例如Provide（利用InheritedWidget实现)，监听的数据发生变化时">
+<meta property="og:type" content="article">
+<meta property="og:title" content="State生命周期">
+<meta property="og:url" content="https://mufans.github.io/2021/09/05/State%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/index.html">
+<meta property="og:site_name" content="MUFans&#39;s Blog">
+<meta property="og:description" content="Widget生命周期State 是StatefulWidget代理，包含控件构建和生命周期。 State生命周期如下：                initState初始化状态，只会调用一次。 didChangeDependenciesinitState之后会调用，当InheritedWidget发生变化时会触发。例如Provide（利用InheritedWidget实现)，监听的数据发生变化时">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://mufans.github.io/2021/09/05/State%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/state_lifecycle.png">
+<meta property="article:published_time" content="2021-09-05T07:49:59.000Z">
+<meta property="article:modified_time" content="2021-09-05T07:49:59.837Z">
+<meta property="article:author" content="MUFans">
+<meta property="article:tag" content="widget">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mufans.github.io/2021/09/05/State%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/state_lifecycle.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="MUFans&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpeg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">MUFans</h5>
+          <a href="mailto:294045132@qq.com" title="294045132@qq.com" class="mail">294045132@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/mufans" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">State生命周期</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">State生命周期</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2021-09-05T07:49:59.000Z" itemprop="datePublished" class="page-time">
+  2021-09-05
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Flutter/">Flutter</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Widget生命周期"><span class="post-toc-number">1.</span> <span class="post-toc-text">Widget生命周期</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#initState"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">initState</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#didChangeDependencies"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">didChangeDependencies</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#build"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">build</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#setState"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">setState</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#didUpdateWidget"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">didUpdateWidget</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#dispose"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">dispose</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-State生命周期"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">State生命周期</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2021-09-05 15:49:59" datetime="2021-09-05T07:49:59.000Z"  itemprop="datePublished">2021-09-05</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Flutter/">Flutter</a></li></ul>
+
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="Widget生命周期"><a href="#Widget生命周期" class="headerlink" title="Widget生命周期"></a>Widget生命周期</h3><p>State 是StatefulWidget代理，包含控件构建和生命周期。 State生命周期如下：</p>
+<div>
+
+</div>
+
+<div>
+  <img src="/2021/09/05/State%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/state_lifecycle.png" style="zoom:50%">
+</div>
+
+
+
+
+
+
+<h4 id="initState"><a href="#initState" class="headerlink" title="initState"></a>initState</h4><p>初始化状态，只会调用一次。</p>
+<h4 id="didChangeDependencies"><a href="#didChangeDependencies" class="headerlink" title="didChangeDependencies"></a>didChangeDependencies</h4><p>initState之后会调用，当InheritedWidget发生变化时会触发。例如Provide（利用InheritedWidget实现)，监听的数据发生变化时需要更新状态。</p>
+<h4 id="build"><a href="#build" class="headerlink" title="build"></a>build</h4><p>构建控件</p>
+<h4 id="setState"><a href="#setState" class="headerlink" title="setState"></a>setState</h4><p>改变数据通知Widget刷新</p>
+<h4 id="didUpdateWidget"><a href="#didUpdateWidget" class="headerlink" title="didUpdateWidget"></a>didUpdateWidget</h4><p>在setState之后调用，表示控件发生更新</p>
+<h4 id="dispose"><a href="#dispose" class="headerlink" title="dispose"></a>dispose</h4><p>Widget销毁时会调用，只会调用一次，可以用来回收资源。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2021-09-05T07:49:59.837Z" itemprop="dateUpdated">2021-09-05 15:49:59</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://mufans.github.io">
+            <img src="/img/avatar.jpeg" alt="MUFans">
+            MUFans
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/widget/" rel="tag">widget</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://mufans.github.io/2021/09/05/State%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/&title=《State生命周期》 — MUFans's Blog&pic=https://mufans.github.io/img/avatar.jpeg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://mufans.github.io/2021/09/05/State%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/&title=《State生命周期》 — MUFans's Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://mufans.github.io/2021/09/05/State%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《State生命周期》 — MUFans's Blog&url=https://mufans.github.io/2021/09/05/State%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/&via=https://mufans.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://mufans.github.io/2021/09/05/State%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2021/09/05/dart%E7%AC%94%E8%AE%B0/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">dart笔记</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>MUFans &copy; 2015 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://mufans.github.io/2021/09/05/State%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/&title=《State生命周期》 — MUFans's Blog&pic=https://mufans.github.io/img/avatar.jpeg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://mufans.github.io/2021/09/05/State%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/&title=《State生命周期》 — MUFans's Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://mufans.github.io/2021/09/05/State%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《State生命周期》 — MUFans's Blog&url=https://mufans.github.io/2021/09/05/State%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/&via=https://mufans.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://mufans.github.io/2021/09/05/State%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACqUlEQVR42u3aQW7DMAwEwPz/0y3QaxB7SYpJCoxOQevKmhxEdanHIx4/fyP/yfNvn598Hsnzj42Bh4eH11r69SurU18v/dVPkpGvGQ8PD2+bd10MkiX2/vZ60381T/I8Hh4e3jfw8g29uojrmfHw8PD+Ly9/fZU0+YyHh4f3KV7+z38eOlw/MykGK1kLHh4eXsyrNsC+4fNifw8PDw9v0FXPN99k+56EF73V4uHh4W3wJlea8sNuHnDkMxQKBh4eHt4Cb/KCOWMedkRhLh4eHt4h3uSwm1+cmofFza8ADw8P7428XjsqX0S1AZbPWag8eHh4eANeL66tLjo/1/fefhPg4uHh4S3zqq/pUauNtPLBGg8PD2+Nlx+vqxv9vN01KjZ4eHh4a7x56JAfdpMZ8nbXDRIPDw9vjVe4UxDfZarOlpelfM/Hw8PD2+NVp65mpNXwt1dsbrIWPDw8vEO8yYZevbBVjTNOXUfAw8PD2+DlR+T5M3nxyJtwyTx4eHh4p3jJRavqUbi6rVevFBQO93h4eHhrvLxllbTzq4uexBA3XwceHh7eGi/ZuHun9Wrh6bGjlAUPDw/vEC+ZrhdG5AFE8hWMrmHh4eHhLfCqcUAeuVbnzEtCXt7w8PDwtnl54//spatqocpLER4eHt4eLx+92CIPNXoR8LGBh4eHF/DybXpyvWBy7aBXkPDw8PDew5s0wybgU5UNDw8Pb5v3UxynWvv5JapqgYlqGh4eHt6ANwkg8oih17Kas/Hw8PD2eHkxyF/cKzlJWFy+XoCHh4e3xptcw5ocrHthcSG2wMPDw/sCXt4Ae2c0/PJv8fDw8D7Kqy69d4Ggd6C/CSPw8PDwFnjly0yDY3evkdYrVHh4eHgbvF5bqxfs5gWpGn8c6+/h4eHhXfF+AQXZAyfKd3mxAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
