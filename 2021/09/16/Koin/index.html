@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Koin | MUFans&#39;s Blog | 生命是以时间为单位的，浪费别人的时间等于谋财害命，浪费自己的时间，等于慢性自杀。——鲁迅</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="kotlin,IOC">
+    <meta name="description" content="Koin介绍Koin 是基于kotlin 实现的轻量级依赖注入框架，支持DSL语法调用。 Koin 对比 Dagger&#x2F;HiltKoin:  利用Kotlin 语言特性(大量使用了扩展方法、属性代理等)实现依赖注入,不会影响编译速度。 由Component、Module、Scope关键元素组成。 支持DSL语法调用,代码结构更加清晰。通过属性代理进行对象注入，在kotlin代码里使用起来相对比较方">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Koin">
+<meta property="og:url" content="https://mufans.github.io/2021/09/16/Koin/index.html">
+<meta property="og:site_name" content="MUFans&#39;s Blog">
+<meta property="og:description" content="Koin介绍Koin 是基于kotlin 实现的轻量级依赖注入框架，支持DSL语法调用。 Koin 对比 Dagger&#x2F;HiltKoin:  利用Kotlin 语言特性(大量使用了扩展方法、属性代理等)实现依赖注入,不会影响编译速度。 由Component、Module、Scope关键元素组成。 支持DSL语法调用,代码结构更加清晰。通过属性代理进行对象注入，在kotlin代码里使用起来相对比较方">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-09-15T16:25:42.000Z">
+<meta property="article:modified_time" content="2021-09-15T16:40:01.069Z">
+<meta property="article:author" content="MUFans">
+<meta property="article:tag" content="kotlin">
+<meta property="article:tag" content="IOC">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="MUFans&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpeg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">MUFans</h5>
+          <a href="mailto:294045132@qq.com" title="294045132@qq.com" class="mail">294045132@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/mufans" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Koin</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Koin</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2021-09-15T16:25:42.000Z" itemprop="datePublished" class="page-time">
+  2021-09-16
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Koin介绍"><span class="post-toc-number">1.</span> <span class="post-toc-text">Koin介绍</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Koin-对比-Dagger-Hilt"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">Koin 对比 Dagger&#x2F;Hilt</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Gradle依赖"><span class="post-toc-number">1.0.2.</span> <span class="post-toc-text">Gradle依赖</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#官方示例"><span class="post-toc-number">1.0.3.</span> <span class="post-toc-text">官方示例</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Koin-Core"><span class="post-toc-number">2.</span> <span class="post-toc-text">Koin-Core</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#KoinApplication"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">KoinApplication</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#module"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">module</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#覆盖module-和definition"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">覆盖module 和definition</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Scope-definition"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">Scope definition</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#获取注入依赖"><span class="post-toc-number">2.2.3.</span> <span class="post-toc-text">获取注入依赖</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#绑定对象类型"><span class="post-toc-number">2.2.4.</span> <span class="post-toc-text">绑定对象类型</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#命名"><span class="post-toc-number">2.2.5.</span> <span class="post-toc-text">命名</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#带参的注入"><span class="post-toc-number">2.2.6.</span> <span class="post-toc-text">带参的注入</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#koin-component"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">koin component</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#scope"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">scope</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Scope的定义"><span class="post-toc-number">2.4.1.</span> <span class="post-toc-text">Scope的定义</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Scope的使用"><span class="post-toc-number">2.4.2.</span> <span class="post-toc-text">Scope的使用</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#scope-互相关联"><span class="post-toc-number">2.4.3.</span> <span class="post-toc-text">scope 互相关联</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Context"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">Context</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Koin"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">Koin</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#关系"><span class="post-toc-number">2.6.1.</span> <span class="post-toc-text">关系</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Koin-Android"><span class="post-toc-number">3.</span> <span class="post-toc-text">Koin-Android</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#初始化"><span class="post-toc-number">3.0.1.</span> <span class="post-toc-text">初始化</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#在Android组件中使用Koin"><span class="post-toc-number">3.0.2.</span> <span class="post-toc-text">在Android组件中使用Koin</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Android-Scope"><span class="post-toc-number">3.0.3.</span> <span class="post-toc-text">Android Scope</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#创建Scope"><span class="post-toc-number">3.0.3.1.</span> <span class="post-toc-text">创建Scope</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#定义Scope"><span class="post-toc-number">3.0.3.2.</span> <span class="post-toc-text">定义Scope</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#跨页面共享实例"><span class="post-toc-number">3.0.3.3.</span> <span class="post-toc-text">跨页面共享实例</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ViewModel注入"><span class="post-toc-number">3.0.4.</span> <span class="post-toc-text">ViewModel注入</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#共享-ViewModel"><span class="post-toc-number">3.0.4.1.</span> <span class="post-toc-text">共享 ViewModel</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#viewModel状态存储"><span class="post-toc-number">3.0.4.2.</span> <span class="post-toc-text">viewModel状态存储</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#FragmentFactory"><span class="post-toc-number">3.0.5.</span> <span class="post-toc-text">FragmentFactory</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#scope-1"><span class="post-toc-number">3.0.5.1.</span> <span class="post-toc-text">scope</span></a></li></ol></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Koin"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Koin</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2021-09-16 00:25:42" datetime="2021-09-15T16:25:42.000Z"  itemprop="datePublished">2021-09-16</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
+
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="Koin介绍"><a href="#Koin介绍" class="headerlink" title="Koin介绍"></a>Koin介绍</h2><p>Koin 是基于<code>kotlin</code> 实现的轻量级依赖注入框架，支持DSL语法调用。</p>
+<h4 id="Koin-对比-Dagger-Hilt"><a href="#Koin-对比-Dagger-Hilt" class="headerlink" title="Koin 对比 Dagger/Hilt"></a>Koin 对比 Dagger/Hilt</h4><p><strong>Koin:</strong></p>
+<ul>
+<li>利用Kotlin 语言特性(大量使用了扩展方法、属性代理等)实现依赖注入,不会影响编译速度。</li>
+<li>由Component、Module、Scope关键元素组成。</li>
+<li>支持DSL语法调用,代码结构更加清晰。通过属性代理进行对象注入，在kotlin代码里使用起来相对比较方便。</li>
+<li>没有使用到反射，基本无性能影响。</li>
+<li>支持kotlin和java</li>
+<li>只有运行时才会报错，会导致程序崩溃</li>
+</ul>
+<p><strong>Dagger/Hilt:</strong></p>
+<ul>
+<li>借助编译时注解KPT 生成模板辅助类实现依赖注入，Hilt 结合 Javasisit/ASM修改字节码省去inject调用。由于使用插件拦截构建流程，会影响编译速度。</li>
+<li>由Component、Module、Scope关键元素组成。</li>
+<li>使用时强依赖注解，包含各种注解, 部分注解的作用重复。</li>
+<li>使用生成的辅助类实现注入，基本无性能影响。</li>
+<li>支持kotlin和java </li>
+<li>编译时期会报错，可靠性相对较高</li>
+</ul>
+<h4 id="Gradle依赖"><a href="#Gradle依赖" class="headerlink" title="Gradle依赖"></a>Gradle依赖</h4><p><strong>Kotlin 工程</strong></p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Add Maven Central to your repositories if needed</span></span><br><span class="line">repositories &#123;</span><br><span class="line">    mavenCentral()    </span><br><span class="line">&#125;</span><br><span class="line">dependencies &#123;</span><br><span class="line">    <span class="comment">// Koin for Kotlin apps</span></span><br><span class="line">    compile <span class="string">"io.insert-koin:koin-core:$koin_version"</span></span><br><span class="line">    <span class="comment">// Testing</span></span><br><span class="line">    testCompile <span class="string">"io.insert-koin:koin-test:$koin_version"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>Android 工程</strong></p>
+<p>koin-android 依赖 koin-core，发现koin-android-viewmodel无需依赖,最新版本viewmodel部分实现已合入koin-android，所以只需依赖koin-android即可</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Add Maven Central to your repositories if needed</span></span><br><span class="line">repositories &#123;</span><br><span class="line">    mavenCentral()    </span><br><span class="line">&#125;</span><br><span class="line">dependencies &#123;</span><br><span class="line">    <span class="comment">// Koin for Android - Scope feature</span></span><br><span class="line">    <span class="comment">// include koin-android-scope &amp; koin-android</span></span><br><span class="line">    implementation <span class="string">"io.insert-koin:koin-android:$koin_version"</span></span><br><span class="line">    implementation <span class="string">"io.insert-koin:koin-android-viewmodel:$koin_version"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="官方示例"><a href="#官方示例" class="headerlink" title="官方示例"></a>官方示例</h4><p>以下是<code>kotlin</code>依赖注入的使用方式，<code>Android</code>为了支持四大组件和jetpack在koin-core库上进行了扩展，使用方式大同小异</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数据模型</span></span><br><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloMessage</span></span>(<span class="keyword">val</span> message: String = <span class="string">" hello Koin!"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 抽象接口</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">HelloService</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">hello</span><span class="params">()</span></span>: String</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 接口实现类 依赖数据模型</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HelloServiceImpl</span></span>(<span class="keyword">private</span> <span class="keyword">val</span> helloMessage: HelloMessage) : HelloService &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">hello</span><span class="params">()</span></span>: String &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hey, <span class="subst">$&#123;helloMessage.message&#125;</span>"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 被注入的组件，继承KoinComponent</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HelloApplication</span> : <span class="type">KoinComponent &#123;</span></span></span><br><span class="line">    <span class="comment">// 通过属性代理注入HelloService</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> helloService <span class="keyword">by</span> inject&lt;HelloService&gt;() </span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">hello</span><span class="params">()</span></span> = println(helloService.hello())</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义Module对象，提供了DSL语法声明依赖的对象</span></span><br><span class="line"><span class="keyword">val</span> helloModule = module &#123;</span><br><span class="line">    single &#123; HelloMessage() &#125;</span><br><span class="line">    single &#123; HelloServiceImpl(<span class="keyword">get</span>()) <span class="keyword">as</span> HelloService &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 启动Koin,添加之前声明的Modules</span></span><br><span class="line">startKoin &#123;</span><br><span class="line">    printLogger()</span><br><span class="line">    modules(helloModule)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 然后就能直接使用了</span></span><br><span class="line">HelloApplication().hello()</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Koin-Core"><a href="#Koin-Core" class="headerlink" title="Koin-Core"></a>Koin-Core</h2><p><code>Koin-Core</code>是Koin的基础库, 提供了Koin完整的api</p>
+<h3 id="KoinApplication"><a href="#KoinApplication" class="headerlink" title="KoinApplication"></a>KoinApplication</h3><p><code>KoinApplication</code> 实例是Koin容器，它包含了Koin实例，用来配置<code>logger</code>，<code>properties</code>和<code>modules</code>。</p>
+<p>DSL语法创建<code>KoinApplication</code>两种方式：</p>
+<ul>
+<li><code>koinAppication{}</code>  -  创建一个独立的实例，需要自己管理。</li>
+<li><code>startKoin{}</code> - 创建一个实例，并绑定到<code>GlobalContext</code>上，通常是使用这种方式。</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">startKoin &#123;</span><br><span class="line">       printLogger()  <span class="comment">// 日志</span></span><br><span class="line">       properties(mapOf(<span class="string">"key"</span> to <span class="string">"value"</span>))  <span class="comment">// 属性</span></span><br><span class="line">       modules(helloModule) <span class="comment">// 模块</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="module"><a href="#module" class="headerlink" title="module"></a>module</h3><p><code>Module</code> 是提供依赖对象的模块, 内部包含所有依赖对象的工厂。</p>
+<p>koin也提供了一种DSL创建方式：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ComponentA</span></span>()</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ComponentB</span></span>(<span class="keyword">val</span> componentA:ComponentA)</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> moduleA = module&#123;</span><br><span class="line">  single&#123;ComponentA()&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> moduleB = module&#123;</span><br><span class="line">  single(ComponentB(<span class="keyword">get</span>()))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">startKoin&#123;</span><br><span class="line">  modules(moduleA,moduleB) <span class="comment">// 注册多个module</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Moudle类 重载了plus操作符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line">   * Help write list of Modules</span><br><span class="line">   *&#x2F;</span><br><span class="line">  operator fun plus(module: Module) &#x3D; listOf(this, module)</span><br><span class="line"></span><br><span class="line">  &#x2F;**</span><br><span class="line">   * Help write list of Modules</span><br><span class="line">   *&#x2F;</span><br><span class="line">  operator fun plus(modules: List&lt;Module&gt;) &#x3D; listOf(this) + modules</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> totalModule = moduleA+moduleB <span class="comment">// 拼接多个module</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="覆盖module-和definition"><a href="#覆盖module-和definition" class="headerlink" title="覆盖module 和definition"></a>覆盖module 和definition</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> myModuleA = module &#123;</span><br><span class="line">    single&lt;Service&gt; &#123; ServiceImp() &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">val</span> myModuleB = module &#123;</span><br><span class="line">    single&lt;Service&gt; &#123; TestServiceImp() &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">startKoin &#123;</span><br><span class="line">    <span class="comment">// 默认情况下，后注册的module会覆盖之前的</span></span><br><span class="line">    modules(myModuleA,myModuleB)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">startKoin &#123;</span><br><span class="line">    <span class="comment">// 禁止覆盖</span></span><br><span class="line">    allowOverride(<span class="literal">false</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Scope-definition"><a href="#Scope-definition" class="headerlink" title="Scope definition"></a>Scope definition</h4><ul>
+<li><code>single</code> - 定义单例</li>
+<li><code>factory</code> - 普通工厂，每次注入都会重新创建对象</li>
+<li><code>scoped</code> - 创建对象与作用域生命周期关联</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyService</span></span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> myModule = module &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// declare single instance for MyService class</span></span><br><span class="line">    single &#123; MyService() &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Controller</span></span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> myModule = module &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// declare factory instance for Controller class</span></span><br><span class="line">    factory &#123; Controller() &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="获取注入依赖"><a href="#获取注入依赖" class="headerlink" title="获取注入依赖"></a>获取注入依赖</h4><p>通过<code>get()</code> 方法获取依赖的对象</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Presenter &lt;- Service</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Service</span></span>()</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Controller</span></span>(<span class="keyword">val</span> view : View)</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> myModule = module &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// declare Service as single instance</span></span><br><span class="line">    single &#123; Service() &#125;</span><br><span class="line">    <span class="comment">// declare Controller as single instance, resolving View instance with get()</span></span><br><span class="line">    single &#123; Controller(<span class="keyword">get</span>()) &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="绑定对象类型"><a href="#绑定对象类型" class="headerlink" title="绑定对象类型"></a>绑定对象类型</h4><p>绑定单个类型</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> myModule = module &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Will match type ServiceImp only</span></span><br><span class="line">    single &#123; ServiceImp() &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Will match type Service only</span></span><br><span class="line">    single &#123; ServiceImp() <span class="keyword">as</span> Service &#125; </span><br><span class="line">    </span><br><span class="line">    single&lt;Service&gt; &#123; ServiceImp() &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>绑定多个类型(bind)</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> myModule = module &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Will match types ServiceImp &amp; Service</span></span><br><span class="line">    single &#123; ServiceImp() &#125; bind Service::<span class="class"><span class="keyword">class</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h4><p>用来区分不同的依赖对象</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> myModule = module &#123;</span><br><span class="line">    single&lt;Service&gt;(named(<span class="string">"default"</span>)) &#123; ServiceImpl() &#125;</span><br><span class="line">    single&lt;Service&gt;(named(<span class="string">"test"</span>)) &#123; ServiceImpl() &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> service : Service <span class="keyword">by</span> inject(qualifier = named(<span class="string">"default"</span>))</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="带参的注入"><a href="#带参的注入" class="headerlink" title="带参的注入"></a>带参的注入</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> myModule = module &#123;</span><br><span class="line">    single&#123; params -&gt; Presenter(a = params.<span class="keyword">get</span>(), b = params.<span class="keyword">get</span>(),c=<span class="keyword">get</span>()) &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">val</span> presenter : Presenter <span class="keyword">by</span> inject &#123; parametersOf(a, b)  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>注：参数最大数量为5</p>
+<h3 id="koin-component"><a href="#koin-component" class="headerlink" title="koin component"></a>koin component</h3><p>koin是依赖注入的容器，koinComponent是直接从koin获取依赖对象的接口。被注入的对象都要实现这个接口。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyComponent</span> : <span class="type">KoinComponent &#123;</span></span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 懒加载注入</span></span><br><span class="line">    <span class="keyword">val</span> myService : MyService <span class="keyword">by</span> inject()</span><br><span class="line"></span><br><span class="line">    <span class="comment">// or</span></span><br><span class="line">    <span class="comment">// 直接注入</span></span><br><span class="line">    <span class="keyword">val</span> myService : MyService = <span class="keyword">get</span>()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">KoinComponent</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Get the associated Koin instance</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">getKoin</span><span class="params">()</span></span>: Koin = KoinPlatformTools.defaultContext().<span class="keyword">get</span>()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><code>KoinScopeComponent</code> 是KoinComponent的子类，配合<code>scope</code>使用</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">KoinScopeComponent</span> : <span class="type">KoinComponent &#123;</span></span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> scope: Scope</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">closeScope</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (scope.isNotClosed()) &#123;</span><br><span class="line">            scope.close()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="scope"><a href="#scope" class="headerlink" title="scope"></a>scope</h3><p>Koin 提供的一种可以将创建实例绑定生命周期的方式。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">module &#123;</span><br><span class="line">		<span class="comment">// 声明作用域</span></span><br><span class="line">    scope&lt;MyType&gt;&#123;</span><br><span class="line">    		<span class="comment">// 声明依赖</span></span><br><span class="line">        scoped &#123; Presenter() &#125;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Scope的定义"><a href="#Scope的定义" class="headerlink" title="Scope的定义"></a>Scope的定义</h4><ul>
+<li>Scope name - scope 名称</li>
+<li>Scope id - scope 实例的唯一标识</li>
+</ul>
+<p><code>scope&lt;A&gt; { }</code>  、<code>scope(named&lt;A&gt;()){ }</code>  、<code>scope(named(&quot;SCOPE_NAME&quot;)) { }</code> 是等价的，用来定义带有标识的scope,  实际上就是注册了<code>ScopedInstanceFactory</code> Scope 实例工厂。</p>
+<h4 id="Scope的使用"><a href="#Scope的使用" class="headerlink" title="Scope的使用"></a>Scope的使用</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> : <span class="type">KoinScopeComponent &#123;</span></span></span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">val</span> scope: Scope <span class="keyword">by</span> lazy &#123; newScope(<span class="keyword">this</span>) &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// resolve B as inject</span></span><br><span class="line">    <span class="keyword">val</span> b : B <span class="keyword">by</span> inject() <span class="comment">// inject from scope</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Resolve B</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">doSomething</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">val</span> b = <span class="keyword">get</span>&lt;B&gt;()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">close</span><span class="params">()</span></span>&#123;</span><br><span class="line">        scope.close() <span class="comment">// don't forget to close current scope</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>KoinScopeComponent 内调用inject/get ，最终都是通过scope实例去获取注入的对象。所以在KoinScopeComponent外部可以通过scope对象共享依赖。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// create scope</span></span><br><span class="line"><span class="keyword">val</span> myScope = koin.createScope&lt;A&gt;()</span><br><span class="line"></span><br><span class="line"><span class="comment">// from the same scope</span></span><br><span class="line"><span class="keyword">val</span> b = myScope.<span class="keyword">get</span>&lt;B&gt;()</span><br></pre></td></tr></table></figure>
+
+<h4 id="scope-互相关联"><a href="#scope-互相关联" class="headerlink" title="scope 互相关联"></a>scope 互相关联</h4><p>koin 通过<code>linkTo()</code>连接多少个scope ，实现依赖实例的共享。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义多个scope</span></span><br><span class="line">module &#123;</span><br><span class="line">    single &#123; A() &#125; <span class="comment">// A包含Scope实例</span></span><br><span class="line">    scope&lt;A&gt; &#123;</span><br><span class="line">        scoped &#123; B() &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    scope&lt;B&gt; &#123;</span><br><span class="line">        scoped &#123; C() &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取单例</span></span><br><span class="line"><span class="keyword">val</span> a = koin.<span class="keyword">get</span>&lt;A&gt;()</span><br><span class="line"><span class="comment">// 获取scope A 的 B实例</span></span><br><span class="line"><span class="keyword">val</span> b = a.scope.<span class="keyword">get</span>&lt;B&gt;()</span><br><span class="line"><span class="comment">// 连接scope</span></span><br><span class="line">a.scope.linkTo(b.scope)</span><br><span class="line"><span class="comment">// 获取的C实例相同</span></span><br><span class="line">assertTrue(a.scope.<span class="keyword">get</span>&lt;C&gt;() == b.scope.<span class="keyword">get</span>&lt;C&gt;())</span><br></pre></td></tr></table></figure>
+
+<p><strong>TIPS:Android中的应用场景</strong></p>
+<p>Activity和Fragment, Fragment和 Fragment之间共享依赖。</p>
+<h3 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h3><p>Koin 提供了一种context上下文的概念，用来防止依赖冲突, 实现模块间独立的依赖注入。</p>
+<p>通常情况下都是通过以下方式初始化Koin</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过这种方式是创建了一个KoinApplication实例并注册到GlobalContext下</span></span><br><span class="line">startKoin &#123;</span><br><span class="line">    <span class="comment">// declare used modules</span></span><br><span class="line">    modules(coffeeAppModule)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后KoinComponent 就会使用GlobalContext中的Koin实例来依赖注入。GlobalContext是单例的，是全局的上下文。</p>
+<p>通过如下方式创建的KoinApplication 实例不会注册到GlobalContext中，它是独立的个体。所以通过这种方式可以实现<strong>组件化DI</strong>。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> myApp = koinApplication &#123;</span><br><span class="line">    <span class="comment">// declare used modules</span></span><br><span class="line">    modules(coffeeAppModule)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 自定义KoinContext 来持有koinApplication</span></span><br><span class="line"><span class="keyword">object</span> MyKoinContext &#123;</span><br><span class="line">    <span class="keyword">var</span> koinApp : KoinApplication? = <span class="literal">null</span></span><br><span class="line">&#125;</span><br><span class="line">MyKoinContext.koinApp = KoinApp</span><br><span class="line"></span><br><span class="line"><span class="comment">// 自定义组件使用MyKoinContext下的Koin对象</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomKoinComponent</span> : <span class="type">KoinComponent &#123;</span></span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">getKoin</span><span class="params">()</span></span>: Koin = MyKoinContext?.koinApp.koin</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="Koin"><a href="#Koin" class="headerlink" title="Koin"></a>Koin</h3><p>实现DI api的核心类</p>
+<h4 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h4><p>Koin、KoinApplication、KoinContext 是一一对应的关系。</p>
+<p><code>Koin</code>基本实现了所有关键api 。</p>
+<p><code>KoinApplication</code> 实例包含Koin对象，提供了初始化Koin的外部api, 内部逻辑都是委托给Koin来实现。</p>
+<p><code>KoinContext</code> 包含KoinApplication 。</p>
+<p>Koin 和 KoinComponent 关系</p>
+<p>KoinComponent 内部持有Koin对象。Koin 提供了<code>get()</code> 、<code>inject()</code>方法。KoinComponent委托Koin实现所有DI逻辑。</p>
+<p>Koin 和 Scope 关系</p>
+<p>Koin 提供了scope 创建、查询、删除api, 所有被创建的scope都会被注册到Koin里。</p>
+<h2 id="Koin-Android"><a href="#Koin-Android" class="headerlink" title="Koin-Android"></a>Koin-Android</h2><p>Koin-Android 为了更好的支持Android组件的依赖注入 ,在Koin-core基础上进行了扩展。</p>
+<h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><p>Android中初始化koin的方式同样使用startKoin, 额外提供了androidLogger() 和 androidContext() 方法。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">startKoin &#123;</span><br><span class="line">            <span class="comment">// Koin Android logger</span></span><br><span class="line">            androidLogger()</span><br><span class="line">            <span class="comment">// 注册Android context</span></span><br><span class="line">            androidContext(<span class="keyword">this</span><span class="symbol">@MainApplication</span>)</span><br><span class="line">            <span class="comment">// use modules</span></span><br><span class="line">            modules(myAppModules)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// module 中通过androidContext()获取注册的context</span></span><br><span class="line"><span class="keyword">val</span> appModule = module &#123;</span><br><span class="line">    factory &#123;</span><br><span class="line">        MyPresenter(androidContext().resources.getString(R.string.mystring))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="在Android组件中使用Koin"><a href="#在Android组件中使用Koin" class="headerlink" title="在Android组件中使用Koin"></a>在Android组件中使用Koin</h4><p>Koin-Android 实现了Activity, Fragment, Service组件的KoinComponents扩展，所以可以使用相同的方式注入对象</p>
+<ul>
+<li>by inject() - 延迟加载</li>
+<li> get()  - 直接获取</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DetailActivity</span> : <span class="type">AppCompatActivity</span></span>() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> presenter : Presenter <span class="keyword">by</span> inject()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">(savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState)</span><br><span class="line">        <span class="keyword">val</span> presenter2:Presenter = <span class="keyword">get</span>()</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>Android组件都实现了ComponentCallbacks接口，koin 通过ComponentCallbacks的扩展方法统一实现DI。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;<span class="keyword">reified</span> T : Any&gt;</span> ComponentCallbacks.<span class="title">get</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">        qualifier: <span class="type">Qualifier</span>? = <span class="literal">null</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="keyword">noinline</span> parameters: <span class="type">ParametersDefinition</span>? = <span class="literal">null</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span>: T &#123;</span><br><span class="line">    <span class="keyword">return</span> getDefaultScope().<span class="keyword">get</span>(qualifier, parameters)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> ComponentCallbacks.<span class="title">getDefaultScope</span><span class="params">()</span></span>: Scope = <span class="keyword">when</span> (<span class="keyword">this</span>) &#123;</span><br><span class="line">    <span class="keyword">is</span> AndroidScopeComponent -&gt; <span class="keyword">this</span>.scope</span><br><span class="line">    <span class="keyword">is</span> KoinScopeComponent -&gt; <span class="keyword">this</span>.scope</span><br><span class="line">    <span class="keyword">else</span> -&gt; getKoin().scopeRegistry.rootScope</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> ComponentCallbacks.<span class="title">getKoin</span><span class="params">()</span></span> = <span class="keyword">when</span> (<span class="keyword">this</span>) &#123;</span><br><span class="line">    <span class="keyword">is</span> KoinComponent -&gt; <span class="keyword">this</span>.getKoin()</span><br><span class="line">    <span class="keyword">else</span> -&gt; GlobalContext.<span class="keyword">get</span>()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="Android-Scope"><a href="#Android-Scope" class="headerlink" title="Android Scope"></a>Android Scope</h4><p>同样包含三种类型： <code>single</code> ,<code>factory</code>  和  <code>scope</code> 。前两种使用方式没有区别，下面说说scope的使用方式。</p>
+<h5 id="创建Scope"><a href="#创建Scope" class="headerlink" title="创建Scope"></a>创建Scope</h5><p>Android组件必须实现AndroidScopeComponent 接口提供scope属性的实现。然后scope可以通过如下几个属性代理来创建：</p>
+<ul>
+<li>activityScope() - 绑定Activity生命周期</li>
+<li>activityRetaindScope() - viewModel生命周期</li>
+<li>fragmentScope() - 绑定fragment生命周期，并且默认和父层级scope绑定</li>
+<li>serviceScope() - Service生命周期</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyActivity</span> : <span class="type">AppCompatActivity</span>, <span class="type">AndroidScopeComponent &#123;</span></span></span><br><span class="line">    <span class="comment">// get current Activity's scope</span></span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">val</span> scope : Scope <span class="keyword">by</span> activityScope()</span><br><span class="line">    <span class="comment">// MyPresenter is resolved from MyActivity's scope </span></span><br><span class="line">    <span class="keyword">val</span> presenter : MyPresenter <span class="keyword">by</span> inject()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="定义Scope"><a href="#定义Scope" class="headerlink" title="定义Scope"></a>定义Scope</h5><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyPresenter</span></span>()</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyAdapter</span></span>(<span class="keyword">val</span> presenter : MyPresenter)</span><br><span class="line"></span><br><span class="line">module &#123;</span><br><span class="line">  <span class="comment">// Declare scope for MyActivity</span></span><br><span class="line">  scope&lt;MyActivity&gt; &#123;</span><br><span class="line">    <span class="comment">// get MyPresenter instance from current scope </span></span><br><span class="line">    scoped &#123; MyAdapter(<span class="keyword">get</span>()) &#125;</span><br><span class="line">    scoped &#123; MyPresenter() &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="跨页面共享实例"><a href="#跨页面共享实例" class="headerlink" title="跨页面共享实例"></a>跨页面共享实例</h5><p>首先named定义命名scope</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">module &#123;</span><br><span class="line">    <span class="comment">// Shared user session data</span></span><br><span class="line">    scope(named(<span class="string">"session"</span>)) &#123;</span><br><span class="line">        scoped &#123; UserSession() &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后在获取实例的之前，创建一个Scope实例并绑定到当前KoinComponent的scope上</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> ourSession = getKoin().createScope(<span class="string">"ourSession"</span>,named(<span class="string">"session"</span>)) <span class="comment">// 跨页面scopeId scopeName必须相同</span></span><br><span class="line">scope.linkTo(ourSession)</span><br><span class="line"><span class="keyword">val</span> userSession = <span class="keyword">get</span>&lt;UserSession&gt;()</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="ViewModel注入"><a href="#ViewModel注入" class="headerlink" title="ViewModel注入"></a>ViewModel注入</h4><p>在acitivity, fragment 或者 service 中注入viewmodel 可以使用如下几种方式：</p>
+<ul>
+<li>by viewModel() - 懒加载属性代理</li>
+<li>getViewModel() - 直接获取实例</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DetailActivity</span> : <span class="type">AppCompatActivity</span></span>() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Lazy inject ViewModel</span></span><br><span class="line">    <span class="keyword">val</span> detailViewModel: DetailViewModel <span class="keyword">by</span> viewModel()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="共享-ViewModel"><a href="#共享-ViewModel" class="headerlink" title="共享 ViewModel"></a>共享 ViewModel</h5><p>Viewmodel 实例可以在fragment和它们宿主activity之间共享。</p>
+<p>注入同样提供了两种方式:</p>
+<ul>
+<li>by sharedViewModel()</li>
+<li>getSharedViewModel()</li>
+</ul>
+<p>只需定义一次viewModel, viewmodel定义方式和factory一样。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> weatherAppModule = module &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// viewModel</span></span><br><span class="line">    viewModel &#123; WeatherViewModel(<span class="keyword">get</span>(), <span class="keyword">get</span>()) &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>Activity 通过 by viewModel 或者 getViewModel提供共享ViewModel实例。Fragments 通过by sharedViewModel()复用。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WeatherActivity</span> : <span class="type">AppCompatActivity</span></span>() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     * Declare WeatherViewModel with Koin and allow constructor dependency injection</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> weatherViewModel <span class="keyword">by</span> viewModel&lt;WeatherViewModel&gt;()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WeatherHeaderFragment</span> : <span class="type">Fragment</span></span>() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     * Declare shared WeatherViewModel with WeatherActivity</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> weatherViewModel <span class="keyword">by</span> sharedViewModel&lt;WeatherViewModel&gt;()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WeatherListFragment</span> : <span class="type">Fragment</span></span>() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     * Declare shared WeatherViewModel with WeatherActivity</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> weatherViewModel <span class="keyword">by</span> sharedViewModel&lt;WeatherViewModel&gt;()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="viewModel状态存储"><a href="#viewModel状态存储" class="headerlink" title="viewModel状态存储"></a>viewModel状态存储</h5><p>koin 提供了 stateViewModel 方法用来处理SavedStateHandle</p>
+<h4 id="FragmentFactory"><a href="#FragmentFactory" class="headerlink" title="FragmentFactory"></a>FragmentFactory</h4><p>通过setupKoinFragmentFactory() 方法替换fragmentFactory,能实现fragment注入。</p>
+<p>注册默认koinFactory</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> startKoin &#123;</span><br><span class="line">    <span class="comment">// setup a KoinFragmentFactory instance</span></span><br><span class="line">    fragmentFactory()</span><br><span class="line"></span><br><span class="line">    modules(...)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>定义fragment依赖</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyFragment</span></span>(<span class="keyword">val</span> myService: MyService) : Fragment() &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> appModule = module &#123;</span><br><span class="line">    single &#123; MyService() &#125;</span><br><span class="line">    fragment &#123; MyFragment(<span class="keyword">get</span>()) &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>setupKoinFragmentFactory替换framentFactory</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyActivity</span> : <span class="type">AppCompatActivity</span></span>() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">(savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line">        <span class="comment">// Koin Fragment Factory</span></span><br><span class="line">        setupKoinFragmentFactory()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState)</span><br><span class="line">      </span><br><span class="line">       supportFragmentManager.beginTransaction()</span><br><span class="line">            .replace&lt;MyFragment&gt;(</span><br><span class="line">                containerViewId = R.id.mvvm_frame,</span><br><span class="line">                args = MyBundle(),</span><br><span class="line">                tag = MyString()</span><br><span class="line">            )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="scope-1"><a href="#scope-1" class="headerlink" title="scope"></a>scope</h5><p>Fragment也同样支持scope, 如果要绑定Acitivity的scope 可以使用如下方式：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> appModule = module &#123;</span><br><span class="line">    scope&lt;MyActivity&gt; &#123;</span><br><span class="line">        fragment &#123; MyFragment(<span class="keyword">get</span>()) &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyActivity</span> : <span class="type">AppCompatActivity</span></span>() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">(savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line">        <span class="comment">// 添加lifecycleScope</span></span><br><span class="line">        setupKoinFragmentFactory(lifecycleScope)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState)</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2021-09-15T16:40:01.069Z" itemprop="dateUpdated">2021-09-16 00:40:01</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://mufans.github.io">
+            <img src="/img/avatar.jpeg" alt="MUFans">
+            MUFans
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kotlin/" rel="tag">kotlin</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://mufans.github.io/2021/09/16/Koin/&title=《Koin》 — MUFans's Blog&pic=https://mufans.github.io/img/avatar.jpeg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://mufans.github.io/2021/09/16/Koin/&title=《Koin》 — MUFans's Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://mufans.github.io/2021/09/16/Koin/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Koin》 — MUFans's Blog&url=https://mufans.github.io/2021/09/16/Koin/&via=https://mufans.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://mufans.github.io/2021/09/16/Koin/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2021/09/05/9%E6%9C%88%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">9月学习计划</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>MUFans &copy; 2015 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://mufans.github.io/2021/09/16/Koin/&title=《Koin》 — MUFans's Blog&pic=https://mufans.github.io/img/avatar.jpeg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://mufans.github.io/2021/09/16/Koin/&title=《Koin》 — MUFans's Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://mufans.github.io/2021/09/16/Koin/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Koin》 — MUFans's Blog&url=https://mufans.github.io/2021/09/16/Koin/&via=https://mufans.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://mufans.github.io/2021/09/16/Koin/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABw0lEQVR42u3aQW7EIAwF0Ln/pdNtpSrptw00lR6raoaBRxeWbfh84nEF4/vMfM3PjoGLizvm5ohkg59z7tZ5/vx2R1xc3IPc542rc5KjVtfHxcV9P/c5qD2nPnlihIuL+1+4OeV5ZVxc3PdzVzU78rJne62Gi4s74PY2Xvv3lv4uLi5ui3sVRy/wVVe4XRkXF/cINw8oq1KQ6m9xcXHPc/MQk285L11+CWG4uLibub1tkkPOm6TlXg4uLu4G7vNlahKwenOSS1xcXNy/4iaPLeZXLJN0ChcX9ww32f659TlpoOQpTiFLwsXFHXN76PmDjLxwWvA/xsXFHXDzxxbJt9U5hUiFi4t7hFu9Jqm2S6olUFSr4eLibuZWW5lJ2Jo81Ihapbi4uAe51RZJUgj1UpwokOHi4h7h5qz8eNWrl6hWw8XFPc7NU5D5M4vyHFxc3M3cqzjycNZ7tlW4h8HFxd3G7V2OrgpbSerTPAwuLu6YWw1e1XbnqpYrLi7ueW410PQuS5bVari4uC/jVgueZH4hXOLi4r6SW70s6aVKt0JcXNyD3Dz09FoeyZrRIXFxcY9we82OvJ2ad22rR8LFxd3A/QIMAjPSKWXZRwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
