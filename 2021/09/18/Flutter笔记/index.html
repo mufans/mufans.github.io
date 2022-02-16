@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Flutter笔记 | MUFans&#39;s Blog | 生命是以时间为单位的，浪费别人的时间等于谋财害命，浪费自己的时间，等于慢性自杀。——鲁迅</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="Flutter笔记简介Flutter是谷歌开源的跨平台UI框架，支持移动端，web端，桌面以及嵌入式设备。 Flutter是自带渲染引擎的，可以实现平台无关的页面展示。另外也提供了与平台通信的api，补足UI以外的能力。 Flutter开发语言是Dart，是一种编译型语言。它提供了和js相似的语法糖。 Flutter支持热重载，开发比原生要高效。 框架">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flutter笔记">
+<meta property="og:url" content="https://mufans.github.io/2021/09/18/Flutter%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="MUFans&#39;s Blog">
+<meta property="og:description" content="Flutter笔记简介Flutter是谷歌开源的跨平台UI框架，支持移动端，web端，桌面以及嵌入式设备。 Flutter是自带渲染引擎的，可以实现平台无关的页面展示。另外也提供了与平台通信的api，补足UI以外的能力。 Flutter开发语言是Dart，是一种编译型语言。它提供了和js相似的语法糖。 Flutter支持热重载，开发比原生要高效。 框架">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://mufans.github.io/2021/09/18/Flutter%E7%AC%94%E8%AE%B0/flutter_arch.png">
+<meta property="og:image" content="https://mufans.github.io/2021/09/18/Flutter%E7%AC%94%E8%AE%B0/state_lifecycle.png">
+<meta property="article:published_time" content="2021-09-18T01:37:18.000Z">
+<meta property="article:modified_time" content="2021-10-04T07:46:13.553Z">
+<meta property="article:author" content="MUFans">
+<meta property="article:tag" content="Android">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mufans.github.io/2021/09/18/Flutter%E7%AC%94%E8%AE%B0/flutter_arch.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="MUFans&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpeg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">MUFans</h5>
+          <a href="mailto:294045132@qq.com" title="294045132@qq.com" class="mail">294045132@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/mufans" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Flutter笔记</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Flutter笔记</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2021-09-18T01:37:18.000Z" itemprop="datePublished" class="page-time">
+  2021-09-18
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Flutter/">Flutter</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Flutter笔记"><span class="post-toc-number">1.</span> <span class="post-toc-text">Flutter笔记</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#简介"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">简介</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#框架"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">框架</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实现原理"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">实现原理</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#编译产物"><span class="post-toc-number">1.1.3.</span> <span class="post-toc-text">编译产物</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#热更新"><span class="post-toc-number">1.1.4.</span> <span class="post-toc-text">热更新</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#环境配置"><span class="post-toc-number">1.1.5.</span> <span class="post-toc-text">环境配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#依赖库"><span class="post-toc-number">1.1.6.</span> <span class="post-toc-text">依赖库</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#项目脚手架"><span class="post-toc-number">1.1.7.</span> <span class="post-toc-text">项目脚手架</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Widget"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Widget</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#无状态和有状态控件"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">无状态和有状态控件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#State-的生命周期"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">State 的生命周期</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#initState"><span class="post-toc-number">1.2.2.1.</span> <span class="post-toc-text">initState</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#didChangeDependencies"><span class="post-toc-number">1.2.2.2.</span> <span class="post-toc-text">didChangeDependencies</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#build"><span class="post-toc-number">1.2.2.3.</span> <span class="post-toc-text">build</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#setState"><span class="post-toc-number">1.2.2.4.</span> <span class="post-toc-text">setState</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#didUpdateWidget"><span class="post-toc-number">1.2.2.5.</span> <span class="post-toc-text">didUpdateWidget</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#dispose"><span class="post-toc-number">1.2.2.6.</span> <span class="post-toc-text">dispose</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常用控件"><span class="post-toc-number">1.2.3.</span> <span class="post-toc-text">常用控件</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#路由"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">路由</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#动画"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">动画</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#图片加载"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">图片加载</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数据持久化"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">数据持久化</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#网络请求"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">网络请求</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#状态管理"><span class="post-toc-number">1.8.</span> <span class="post-toc-text">状态管理</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Flutter笔记"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Flutter笔记</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2021-09-18 09:37:18" datetime="2021-09-18T01:37:18.000Z"  itemprop="datePublished">2021-09-18</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Flutter/">Flutter</a></li></ul>
+
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="Flutter笔记"><a href="#Flutter笔记" class="headerlink" title="Flutter笔记"></a>Flutter笔记</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Flutter是谷歌开源的跨平台UI框架，支持移动端，web端，桌面以及嵌入式设备。</p>
+<p>Flutter是自带渲染引擎的，可以实现平台无关的页面展示。另外也提供了与平台通信的api，补足UI以外的能力。</p>
+<p>Flutter开发语言是Dart，是一种编译型语言。它提供了和js相似的语法糖。</p>
+<p>Flutter支持热重载，开发比原生要高效。</p>
+<h3 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/2021/09/18/Flutter%E7%AC%94%E8%AE%B0/flutter_arch.png" alt="Flutter 架构图" title>
+                </div>
+                <div class="image-caption">Flutter 架构图</div>
+            </figure>
+
+<p>Flutter框架由Framework,Engine,Embedder三层组成：</p>
+<ol>
+<li><p><strong>Framework</strong> - 由Dart语言实现</p>
+<ul>
+<li>包含两种UI样式</li>
+<li>基础控件框架</li>
+<li>布局渲染层：负责布局渲染，布局大小位置计算以及UI的变化</li>
+<li>动画、画布绘图、手势支持</li>
+<li>底层基础接口</li>
+</ul>
+</li>
+<li><p><strong>Engine</strong> - C/C++</p>
+<ul>
+<li>Skia渲染引擎</li>
+<li>Dart运行时</li>
+<li>Text文字排版引擎</li>
+<li>PlatformChannels 原生平台通信接口</li>
+</ul>
+</li>
+<li><p><strong>Embedder</strong></p>
+<p>嵌入层用来实现原生平台的扩展功能。</p>
+</li>
+</ol>
+<h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><p>Flutter在原生平台相当于一个单页面应用，它需要原生平台提供一个容器。Android和IOS分别提供了Activity和ViewController作为原生页面的容器。</p>
+<p>Flutter 会在容器中添加一个FlutterView,用于提供Surface, 然后Enigine层会将Framework的控件通过Skia绘制到Surface上。</p>
+<p>Flutter一切皆为widget,通常开发只需要专注Widget层的UI实现就行。</p>
+<h3 id="编译产物"><a href="#编译产物" class="headerlink" title="编译产物"></a>编译产物</h3><p>Flutter编译的产物是可执行的二进制文件，安全性和代码的执行效率相对JS较高。</p>
+<p>另外需要注意的是：如果没有重新安装而是始终使用热重载进行开发调试，杀掉进程后app会回退到了上一次安装的状态。发现Debug和Release包的产物不同，怀疑是Flutter为了提高热重载的效率启用了不同的编译方式。</p>
+<h3 id="热更新"><a href="#热更新" class="headerlink" title="热更新"></a>热更新</h3><p>Flutter本身没有提供热更新的能力。但是Android可以尝试通过运行时替换so的方式实现。也有第三方例如淘宝的北海(kraken)框架进行了其他尝试，在上层增加了Js到Flutter的映射，通过更新JsBundle来实现热更新，但同时也带来了一部分性能上的损耗。</p>
+<h3 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export PUB_HOSTED_URL=https://pub.flutter-io.cn //国内用户需要设置</span><br><span class="line">export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn //国内用户需要设置</span><br><span class="line">export PATH=PATH_TO_FLUTTER_GIT_DIRECTORY/flutter/bin:$PATH</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="依赖库"><a href="#依赖库" class="headerlink" title="依赖库"></a>依赖库</h3><p>flutter的三方库由pub统一管理，可以在 &lt;<a href="http://www.pub.dev&gt;/" target="_blank" rel="noopener">www.pub.dev&gt;</a> 上查看。</p>
+<p>开发的库或者插件首先要打包上传到pub上，然后就可以在工程的pubspec.yaml文件上配置依赖。</p>
+<p>版本号的规则：</p>
+<p>版本号前添加”^”表示匹配最近的一个大版本，比如”^0.1.2”将会匹配所有0.x.x的最新库。</p>
+<p>pubspec.yaml 配置示例：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="number">1.0</span><span class="number">.0</span><span class="string">+1</span></span><br><span class="line"></span><br><span class="line"><span class="attr">environment:</span></span><br><span class="line">  <span class="attr">sdk:</span> <span class="string">"&gt;=2.12.0 &lt;3.0.0"</span></span><br><span class="line"></span><br><span class="line"><span class="attr">dependencies:</span></span><br><span class="line">  <span class="attr">flutter:</span></span><br><span class="line">    <span class="attr">sdk:</span> <span class="string">flutter</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">retrofit:</span> <span class="number">2.0</span><span class="number">.1</span></span><br><span class="line">  <span class="attr">dio:</span> <span class="string">^4.0.0</span></span><br><span class="line">  <span class="attr">shared_preferences:</span> <span class="string">^2.0.6</span></span><br><span class="line">  <span class="attr">cached_network_image:</span> <span class="string">^3.1.0</span></span><br><span class="line">  <span class="attr">provider:</span> <span class="string">^5.0.0</span></span><br><span class="line">  <span class="attr">event_bus:</span> <span class="string">^2.0.0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment"># The following adds the Cupertino Icons font to your application.</span></span><br><span class="line">  <span class="comment"># Use with the CupertinoIcons class for iOS style icons.</span></span><br><span class="line">  <span class="attr">cupertino_icons:</span> <span class="string">^1.0.2</span></span><br><span class="line"></span><br><span class="line"><span class="attr">dev_dependencies:</span></span><br><span class="line">  <span class="attr">flutter_test:</span></span><br><span class="line">    <span class="attr">sdk:</span> <span class="string">flutter</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">retrofit_generator:</span> <span class="number">2.0</span><span class="number">.1</span></span><br><span class="line">  <span class="attr">build_runner:</span> <span class="number">2.0</span><span class="number">.1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># For information on the generic Dart part of this file, see the</span></span><br><span class="line"><span class="comment"># following page: https://dart.dev/tools/pub/pubspec</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The following section is specific to Flutter.</span></span><br><span class="line"><span class="attr">flutter:</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># The following line ensures that the Material Icons font is</span></span><br><span class="line">  <span class="comment"># included with your application, so that you can use the icons in</span></span><br><span class="line">  <span class="comment"># the material Icons class.</span></span><br><span class="line">  <span class="attr">uses-material-design:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># To add assets to your application, add an assets section, like this:</span></span><br><span class="line">  <span class="comment"># assets:</span></span><br><span class="line">  <span class="comment">#   - images/a_dot_burr.jpeg</span></span><br><span class="line">  <span class="comment">#   - images/a_dot_ham.jpeg</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">assets:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">images/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment"># An image asset can refer to one or more resolution-specific "variants", see</span></span><br><span class="line">  <span class="comment"># https://flutter.dev/assets-and-images/#resolution-aware.</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># For details regarding adding assets from package dependencies, see</span></span><br><span class="line">  <span class="comment"># https://flutter.dev/assets-and-images/#from-packages</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># To add custom fonts to your application, add a fonts section here,</span></span><br><span class="line">  <span class="comment"># in this "flutter" section. Each entry in this list should have a</span></span><br><span class="line">  <span class="comment"># "family" key with the font family name, and a "fonts" key with a</span></span><br><span class="line">  <span class="comment"># list giving the asset and other descriptors for the font. For</span></span><br><span class="line">  <span class="comment"># example:</span></span><br><span class="line">  <span class="comment"># fonts:</span></span><br><span class="line">  <span class="comment">#   - family: Schyler</span></span><br><span class="line">  <span class="comment">#     fonts:</span></span><br><span class="line">  <span class="comment">#       - asset: fonts/Schyler-Regular.ttf</span></span><br><span class="line">  <span class="comment">#       - asset: fonts/Schyler-Italic.ttf</span></span><br><span class="line">  <span class="comment">#         style: italic</span></span><br><span class="line">  <span class="comment">#   - family: Trajan Pro</span></span><br><span class="line">  <span class="comment">#     fonts:</span></span><br><span class="line">  <span class="comment">#       - asset: fonts/TrajanPro.ttf</span></span><br><span class="line">  <span class="comment">#       - asset: fonts/TrajanPro_Bold.ttf</span></span><br><span class="line">  <span class="comment">#         weight: 700</span></span><br><span class="line">  <span class="comment">#</span></span><br><span class="line">  <span class="comment"># For details regarding fonts from package dependencies,</span></span><br><span class="line">  <span class="comment"># see https://flutter.dev/custom-fonts/#from-packages</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="项目脚手架"><a href="#项目脚手架" class="headerlink" title="项目脚手架"></a>项目脚手架</h3><p>当我们新建一个Flutter工程时，Flutter插件会帮助我们创建一个Demo，里面包含了程序的入口和脚手架。通常我们都是基于这个脚手架进行开发。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main 表示程序的入口</span></span><br><span class="line"><span class="keyword">void</span> main() &#123;</span><br><span class="line">  <span class="comment">// runApp 负责创建App启动页并进行展示</span></span><br><span class="line">  runApp(MyApp());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="comment">// This widget is the root of your application.</span></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">var</span> routes = buildRoute();</span><br><span class="line">    <span class="comment">// 因为Flutter可以看作一个单页面应用，MyApp作为最底层的父容器，可以说MaterialApp包含了整个app的主题样式</span></span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      title: <span class="string">'Flutter Demo'</span>,</span><br><span class="line">      <span class="comment">// 配置主题样式</span></span><br><span class="line">      theme: ThemeData(</span><br><span class="line">        primarySwatch: Colors.blue,</span><br><span class="line">      ),</span><br><span class="line">      routes: routes, <span class="comment">// 配置路由</span></span><br><span class="line">      home: MyHomePage(routes.keys.toList(), title: <span class="string">'Flutter Demo Home Page'</span>), <span class="comment">// 配置首页</span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">Map</span>&lt;<span class="built_in">String</span>, WidgetBuilder&gt; buildRoute() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">"first_widget"</span>: (context) =&gt; FirstWidget()&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyHomePage</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  MyHomePage(<span class="keyword">this</span>.routesName, &#123;Key? key, required <span class="keyword">this</span>.title&#125;)</span><br><span class="line">      : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">String</span> title;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; routesName;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  _MyHomePageState createState() =&gt; _MyHomePageState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_MyHomePageState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">MyHomePage</span>&gt; </span>&#123;</span><br><span class="line">  <span class="built_in">int</span> _counter = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">void</span> _incrementCounter() &#123;</span><br><span class="line">    setState(() &#123;</span><br><span class="line">      _counter++;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="comment">// Scaffold是脚手架容器，它包含了导航栏、抽屉、底部Tab布局，悬浮按钮等常用的功能</span></span><br><span class="line">    <span class="comment">// 并且MaterialApp必须配合Scaffold使用，所以每个页面的根布局都要基于这个容器来实现。</span></span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: Text(widget.title),</span><br><span class="line">      ),</span><br><span class="line">      body: Center(</span><br><span class="line">        child: Column(</span><br><span class="line">          mainAxisAlignment: MainAxisAlignment.center,</span><br><span class="line">          children: &lt;Widget&gt;[</span><br><span class="line">            Text(</span><br><span class="line">              <span class="string">'You have pushed the button this many times:'</span>,</span><br><span class="line">            ),</span><br><span class="line">            Text(</span><br><span class="line">              <span class="string">'<span class="subst">$_counter</span>'</span>,</span><br><span class="line">              style: Theme.of(context).textTheme.headline4,</span><br><span class="line">            ),</span><br><span class="line">            Expanded(</span><br><span class="line">                child: ListView.separated(</span><br><span class="line">                    itemCount: widget.routesName.length,</span><br><span class="line">                    separatorBuilder: (BuildContext context, <span class="built_in">int</span> index) =&gt;</span><br><span class="line">                        Divider(</span><br><span class="line">                          color: Colors.grey,</span><br><span class="line">                          height: <span class="number">1</span>,</span><br><span class="line">                        ),</span><br><span class="line">                    itemBuilder: (BuildContext context, <span class="built_in">int</span> index) &#123;</span><br><span class="line">                      <span class="keyword">return</span> GestureDetector(</span><br><span class="line">                          onTap: () &#123;</span><br><span class="line">                           Navigator.pushNamed(context, widget.routesName[index]);</span><br><span class="line">                          &#125;,</span><br><span class="line">                          child: Container(</span><br><span class="line">                              color: Colors.white,</span><br><span class="line">                              padding: EdgeInsets.only(</span><br><span class="line">                                  left: <span class="number">15</span>, right: <span class="number">15</span>, top: <span class="number">5</span>, bottom: <span class="number">5</span>),</span><br><span class="line">                              child: Text(widget.routesName[index])));</span><br><span class="line">                    &#125;))</span><br><span class="line">          ],</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">      floatingActionButton: FloatingActionButton(</span><br><span class="line">        onPressed: _incrementCounter,</span><br><span class="line">        tooltip: <span class="string">'Increment'</span>,</span><br><span class="line">        child: Icon(Icons.add),</span><br><span class="line">      ), <span class="comment">// This trailing comma makes auto-formatting nicer for build methods.</span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h2 id="Widget"><a href="#Widget" class="headerlink" title="Widget"></a>Widget</h2><p>Flutter 一切皆为Widget, 可以说Widget是构成页面点基础。</p>
+<h3 id="无状态和有状态控件"><a href="#无状态和有状态控件" class="headerlink" title="无状态和有状态控件"></a>无状态和有状态控件</h3><p>Flutter 包含两种控件，分别为StatelessWidget 和 StatefulWidget 。开发时需要继承这两个类实现自定义UI，然后进行多层嵌套组成一个完整的页面。同时这也是Flutter的一个诟病，一个复杂的页面通常会包含多层嵌套，必定会增加调试和维护的难度。所以如何封装Widget并且控制好Widget的粒度是Flutter开发最需要考量的问题。</p>
+<p><strong>StatelessWidget</strong> 表示无状态的控件 ，意思就是这个控件不包含变化的元素，每次都是重新构建。</p>
+<p>实现无状态布局，需要通过继承StatelessWidget，在<strong>build</strong>方法中返回需要渲染的布局。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestStatelessWidget</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Expanded(</span><br><span class="line">        child: Container(</span><br><span class="line">            constraints: BoxConstraints.expand(),</span><br><span class="line">            color: Colors.blue,</span><br><span class="line">            child: Center(child: Text(<span class="string">"I am Stateless"</span>))));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>StatefulWidget</strong> 表示有状态的控件，它是包含<strong>State</strong>状态的。当数据发生变化时,页面要同步更新。</p>
+<p>StatefulWidget 只用来创建State实例，关键在于State的实现。State可以看作是Widget的代理，负责创建布局和业务逻辑的实现。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestStatefulWidget</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  State&lt;StatefulWidget&gt; createState() &#123;</span><br><span class="line">    <span class="keyword">return</span> TestStatefulWidgetState();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestStatefulWidgetState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">TestStatefulWidget</span>&gt; </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">List</span>&lt;Color&gt; _colors = [Colors.red, Colors.blue];</span><br><span class="line">  <span class="built_in">int</span> _colorPos = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Expanded(</span><br><span class="line">        child: GestureDetector(</span><br><span class="line">            onTap: () &#123;</span><br><span class="line">              setState(() &#123;</span><br><span class="line">                _colorPos = (_colorPos + <span class="number">1</span>) % <span class="number">2</span>;</span><br><span class="line">              &#125;);</span><br><span class="line">            &#125;,</span><br><span class="line">            child: Container(</span><br><span class="line">              color: _colors[_colorPos],</span><br><span class="line">              child: Center(</span><br><span class="line">                child: Text(<span class="string">"click to change color"</span>),</span><br><span class="line">              ),</span><br><span class="line">            )));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="State-的生命周期"><a href="#State-的生命周期" class="headerlink" title="State 的生命周期"></a>State 的生命周期</h3><p>StatefulWidget 生命周期如下所示：</p>
+<div>
+  <img src="/2021/09/18/Flutter%E7%AC%94%E8%AE%B0/state_lifecycle.png" style="zoom:50%">
+</div>
+
+
+
+<p>包含下面几种生命周期方法：</p>
+<h4 id="initState"><a href="#initState" class="headerlink" title="initState"></a>initState</h4><p>初始化状态，只会调用一次。</p>
+<h4 id="didChangeDependencies"><a href="#didChangeDependencies" class="headerlink" title="didChangeDependencies"></a>didChangeDependencies</h4><p>initState之后会调用，当InheritedWidget发生变化时会触发。例如Provide（利用InheritedWidget实现)，监听的数据发生变化时需要更新状态。</p>
+<h4 id="build"><a href="#build" class="headerlink" title="build"></a>build</h4><p>构建控件</p>
+<h4 id="setState"><a href="#setState" class="headerlink" title="setState"></a>setState</h4><p>改变数据通知Widget刷新</p>
+<h4 id="didUpdateWidget"><a href="#didUpdateWidget" class="headerlink" title="didUpdateWidget"></a>didUpdateWidget</h4><p>在setState之后调用，表示控件发生更新</p>
+<h4 id="dispose"><a href="#dispose" class="headerlink" title="dispose"></a>dispose</h4><p>Widget销毁时会调用，只会调用一次，可以用来回收资源。</p>
+<h3 id="常用控件"><a href="#常用控件" class="headerlink" title="常用控件"></a>常用控件</h3><p>Flutter控件分为几种类型：布局容器、滚动控件、单一控件以及脚手架控件。</p>
+<table>
+<thead>
+<tr>
+<th>容器</th>
+<th>特性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Container</td>
+<td>只有一个子Widget ，默认充满全屏，是一个<strong>复合容器</strong>，包含padding、margin、color、width、height、decoration等配置；</td>
+</tr>
+<tr>
+<td>Padding</td>
+<td>只有一个Child, 嵌套child 用来设置它的padding</td>
+</tr>
+<tr>
+<td>Center</td>
+<td>只有一个child, 嵌套设置居中效果</td>
+</tr>
+<tr>
+<td>Stack</td>
+<td>堆叠布局，多个child , 类似framelayout</td>
+</tr>
+<tr>
+<td>Column</td>
+<td>垂直布局，多个child，类似Linearlayout ；包含 maxAxisXX 主轴 和crossAxisXX 副轴属性，用来设置对齐方向和 容器的大小</td>
+</tr>
+<tr>
+<td>Row</td>
+<td>水平布局，多个child, 类似Linearlayout；包含 maxAxisXX 主轴 和crossAxisXX 副轴属性，用来设置对齐方向和 容器的大小</td>
+</tr>
+<tr>
+<td>Expanded</td>
+<td>只有一个child 用于在Column和Row中,通过flex设置child的比重，类似Linearlayout的weight</td>
+</tr>
+<tr>
+<td>Wrap</td>
+<td>自动换行</td>
+</tr>
+<tr>
+<td>Table</td>
+<td>表格布局</td>
+</tr>
+<tr>
+<td>Flow</td>
+<td>瀑布流布局</td>
+</tr>
+<tr>
+<td>CustomMultiChildLayout</td>
+<td>自定义布局</td>
+</tr>
+<tr>
+<td>SizedBox</td>
+<td>包含一个child,用来设置尺寸</td>
+</tr>
+<tr>
+<td>ConstraintBox</td>
+<td>约束布局</td>
+</tr>
+</tbody></table>
+<p>Flutter Widget 都是十分细粒度的，一般布局的对齐方式，边距，尺寸，边框样式等属性都是通过多个控件嵌套组合来实现。Container 作为一个复合的控件，包含了几乎所有的属性，是最常用的容器控件。</p>
+<table>
+<thead>
+<tr>
+<th>滚动布局</th>
+<th>特性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ListView</td>
+<td>列表，包含多个Child</td>
+</tr>
+<tr>
+<td>GridView</td>
+<td>表格列表，包含多个Child</td>
+</tr>
+<tr>
+<td>SingleChildScrollView</td>
+<td>滚动布局，包含单个Child</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>单一控件</th>
+<th>特性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Text</td>
+<td>文本</td>
+</tr>
+<tr>
+<td>Image</td>
+<td>图片</td>
+</tr>
+<tr>
+<td>RichText</td>
+<td>富文本</td>
+</tr>
+<tr>
+<td>TextField</td>
+<td>输入框</td>
+</tr>
+<tr>
+<td>TextButton</td>
+<td>按钮</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>脚手架控件</th>
+<th>特性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MaterialApp</td>
+<td>app 顶层主页入口，用来配置主题，路由等</td>
+</tr>
+<tr>
+<td>Scaffold</td>
+<td>作为独立页面的脚手架容器，提供appbar, snackbar,drawer 等常用配置</td>
+</tr>
+<tr>
+<td>AppBar</td>
+<td>作为Scaffold的appbar属性来使用，提供导航栏，tabbar等功能。</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h2><h2 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h2><h2 id="图片加载"><a href="#图片加载" class="headerlink" title="图片加载"></a>图片加载</h2><h2 id="数据持久化"><a href="#数据持久化" class="headerlink" title="数据持久化"></a>数据持久化</h2><h2 id="网络请求"><a href="#网络请求" class="headerlink" title="网络请求"></a>网络请求</h2><h2 id="状态管理"><a href="#状态管理" class="headerlink" title="状态管理"></a>状态管理</h2>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2021-10-04T07:46:13.553Z" itemprop="dateUpdated">2021-10-04 15:46:13</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://mufans.github.io">
+            <img src="/img/avatar.jpeg" alt="MUFans">
+            MUFans
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://mufans.github.io/2021/09/18/Flutter%E7%AC%94%E8%AE%B0/&title=《Flutter笔记》 — MUFans's Blog&pic=https://mufans.github.io/img/avatar.jpeg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://mufans.github.io/2021/09/18/Flutter%E7%AC%94%E8%AE%B0/&title=《Flutter笔记》 — MUFans's Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://mufans.github.io/2021/09/18/Flutter%E7%AC%94%E8%AE%B0/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Flutter笔记》 — MUFans's Blog&url=https://mufans.github.io/2021/09/18/Flutter%E7%AC%94%E8%AE%B0/&via=https://mufans.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://mufans.github.io/2021/09/18/Flutter%E7%AC%94%E8%AE%B0/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2022/02/17/Hexo%E6%8C%87%E4%BB%A4/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Hexo指令</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2021/09/16/Koin/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Koin</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>MUFans &copy; 2015 - 2022</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://mufans.github.io/2021/09/18/Flutter%E7%AC%94%E8%AE%B0/&title=《Flutter笔记》 — MUFans's Blog&pic=https://mufans.github.io/img/avatar.jpeg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://mufans.github.io/2021/09/18/Flutter%E7%AC%94%E8%AE%B0/&title=《Flutter笔记》 — MUFans's Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://mufans.github.io/2021/09/18/Flutter%E7%AC%94%E8%AE%B0/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Flutter笔记》 — MUFans's Blog&url=https://mufans.github.io/2021/09/18/Flutter%E7%AC%94%E8%AE%B0/&via=https://mufans.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://mufans.github.io/2021/09/18/Flutter%E7%AC%94%E8%AE%B0/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACH0lEQVR42u3aS46DMBBF0ex/00TqaQe4rwqiUL4eoXQ69mFg1e/1wmv7W3vPZO392v/P9/56wZIhQ8ZjGWR7cpTj75Pv7O1LXo0MGTJWYJAtOS+9oDuvQ4YMGTI4icBkyJAh45sX7kmgVgLLkCFDxjGDJLHkk+Pt0wT4llxchgwZD2T0GwP3PX+1vyFDhoyfZGzhSstnaaGteCoZMmSMZvD2JD80PyhJd0krQoYMGbMZPE0lrUpeaONnQMGiDBkylmTw5uK1+DRjlSFDxgoMXqYvRp2lQJMnwzJkyFiNcUcgWLuyi2GiDBkyhjJqIw6kiJZex3x048OzDBkyFmDwSzDduNOwDFoIMmTIWJhRa1v2D5pGfTJkyJjN6IRxtYFXUoCTIUOGDHKSNH1NS3JohCJ8BTJkyJjN6I9wkcAxLfenjVUZMmRMZaRHT0cx+IgGfz4Zs5AhQ8Y4Bim+15qU5Dd5CQ9FtTJkyBjNSEtgaRrcGcuI02kZMmSMYxz7OIA3KdPWAjqVDBkyFmDw1JGz++NlPGCVIUPGbEanMVBLOGvDYTJkyFiZsYWr05jk13F6rcuQIWM2Iy2fcQYvoqXFOBkyZKzJ4JcsfytxXyIMVVF7QIYMGeMY/JLlxbhrA7uT/5UhQ4aMRjvzqlZB0MiUIUOGjHbDMh3pQHvJkCFjAUbaDCDXZdoQbSW3MmTIGM24rzFAgsu0qNfCyJAh43mMN+qbGQZnbkaJAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
