@@ -1,704 +1,813 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    
-
-    
+<link rel="stylesheet" href="/css/main.css">
 
 
 
-    <meta charset="utf-8">
-    
-    
-    
-    
-    <title>MUFans&#39;s Blog | 生命是以时间为单位的，浪费别人的时间等于谋财害命，浪费自己的时间，等于慢性自杀。——鲁迅</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    <meta name="theme-color" content="#3F51B5">
-    
-    
-    <meta name="keywords" content="Android">
-    <meta property="og:type" content="website">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mufans.github.io","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta property="og:type" content="website">
 <meta property="og:title" content="MUFans&#39;s Blog">
 <meta property="og:url" content="https://mufans.github.io/index.html">
 <meta property="og:site_name" content="MUFans&#39;s Blog">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="MUFans">
 <meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary">
-    
-        <link rel="alternate" type="application/atom+xml" title="MUFans&#39;s Blog" href="/atom.xml">
-    
-    <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
-    <script>window.lazyScripts=[]</script>
 
-    <!-- custom head -->
-    
 
-<meta name="generator" content="Hexo 4.2.1"></head>
+<link rel="canonical" href="https://mufans.github.io/">
 
-<body>
-    <div id="loading" class="active"></div>
 
-    <aside id="menu"  >
-  <div class="inner flex-row-vertical">
-    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
-        <i class="icon icon-lg icon-close"></i>
-    </a>
-    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
-      <div class="brand">
-        <a href="/" class="avatar waves-effect waves-circle waves-light">
-          <img src="/img/avatar.jpeg">
-        </a>
-        <hgroup class="introduce">
-          <h5 class="nickname">MUFans</h5>
-          <a href="mailto:294045132@qq.com" title="294045132@qq.com" class="mail">294045132@qq.com</a>
-        </hgroup>
-      </div>
-    </div>
-    <div class="scroll-wrap flex-col">
-      <ul class="nav">
-        
-            <li class="waves-block waves-effect active">
-              <a href="/"  >
-                <i class="icon icon-lg icon-home"></i>
-                主页
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/archives"  >
-                <i class="icon icon-lg icon-archives"></i>
-                Archives
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/tags"  >
-                <i class="icon icon-lg icon-tags"></i>
-                Tags
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/categories"  >
-                <i class="icon icon-lg icon-th-list"></i>
-                Categories
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="https://github.com/mufans" target="_blank" >
-                <i class="icon icon-lg icon-github"></i>
-                Github
-              </a>
-            </li>
-        
-      </ul>
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>MUFans's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
     </div>
   </div>
-</aside>
 
-    <main id="main">
-        <header class="top-header" id="header">
-    <div class="flex-row">
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
-          <i class="icon icon-lg icon-navicon"></i>
-        </a>
-        <div class="flex-col header-title ellipsis">MUFans&#39;s Blog</div>
-        
-        <div class="search-wrap" id="search-wrap">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
-                <i class="icon icon-lg icon-chevron-left"></i>
-            </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
-                <i class="icon icon-lg icon-search"></i>
-            </a>
-        </div>
-        
-        
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
-            <i class="icon icon-lg icon-share-alt"></i>
-        </a>
-        
-    </div>
-</header>
-<header class="content-header index-header">
+  <div class="site-meta">
 
-    <div class="container fade-scale">
-        <h1 class="title">MUFans&#39;s Blog</h1>
-        <h5 class="subtitle">
-            
-                生命是以时间为单位的，浪费别人的时间等于谋财害命，浪费自己的时间，等于慢性自杀。——鲁迅
-            
-        </h5>
-    </div>
-
-    
-
-
-</header>
-
-<div class="container body-wrap">
-
-    <ul class="post-list">
-    
-        <li class="post-list-item fade">
-            <article id="post-Hexo指令"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2022-02-17 01:11:06" datetime="2022-02-16T17:11:06.000Z"  itemprop="datePublished">2022-02-17</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2022/02/17/Hexo%E6%8C%87%E4%BB%A4/">Hexo指令</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        hexo提供了一些指令，方便我们快速搭建博客和发布文章
-
-初始化项目目
-
-  1$ hexo init [folder]
-
-
-folder 为可选参数表示初始化目录，默认为当前目录
-
-
-新建文章
-
-1$ hexo new [layout] title
-
-
-layout 有三种布局: post (直接发布的文章), draft (文章草稿) , page** (新的文章), 分别放在不同路径。...
-    
-
-        <a href="/2022/02/17/Hexo%E6%8C%87%E4%BB%A4/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-Flutter笔记"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2021-09-18 09:37:18" datetime="2021-09-18T01:37:18.000Z"  itemprop="datePublished">2021-09-18</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Flutter/">Flutter</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2021/09/18/Flutter%E7%AC%94%E8%AE%B0/">Flutter笔记</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        Flutter笔记简介Flutter是谷歌开源的跨平台UI框架，支持移动端，web端，桌面以及嵌入式设备。
-Flutter是自带渲染引擎的，可以实现平台无关的页面展示。另外也提供了与平台通信的api，补足UI以外的能力。
-Flutter开发语言是Dart，是一种编译型语言。它提供了和js相似的语法糖。
-Flutter支持热重载，开发比原生要高效。
-框架
-                
-  ...
-    
-
-        <a href="/2021/09/18/Flutter%E7%AC%94%E8%AE%B0/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-Koin"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2021-09-16 00:25:42" datetime="2021-09-15T16:25:42.000Z"  itemprop="datePublished">2021-09-16</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2021/09/16/Koin/">Koin</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        Koin介绍Koin 是基于kotlin 实现的轻量级依赖注入框架，支持DSL语法调用。
-Koin 对比 Dagger/HiltKoin:
-
-利用Kotlin 语言特性(大量使用了扩展方法、属性代理等)实现依赖注入,不会影响编译速度。
-由Component、Module、Scope关键元素组成。
-支持DSL语法调用,代码结构更加清晰。通过属性代理进行对象注入，在kotlin代码里使用起来相对...
-    
-
-        <a href="/2021/09/16/Koin/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IOC/" rel="tag">IOC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kotlin/" rel="tag">kotlin</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-9月学习计划"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2021-09-05 18:11:24" datetime="2021-09-05T10:11:24.000Z"  itemprop="datePublished">2021-09-05</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2021/09/05/9%E6%9C%88%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/">9月学习计划</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        9月学习计划
-生命是以时间为单位的，浪费别人的时间等于谋财害命，浪费自己的时间，等于慢性自杀。——鲁迅
-
-书籍
-
- Flutter 开发实战详解
-
-
-
- Vue.js 实战
-
-
-
- Java 虚拟机规范
-
-
-
- 深入理解Android java 虚拟机ART
-
-
-
- C++ Premier
-
-
-
- CSAPP
-
-
-
-课程
-
- Android高手开发课
-
-
-
- 数据结构之美
-
-
-
- 设计模式之...
-    
-
-        <a href="/2021/09/05/9%E6%9C%88%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/schedule/" rel="tag">schedule</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-State生命周期"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2021-09-05 15:49:59" datetime="2021-09-05T07:49:59.000Z"  itemprop="datePublished">2021-09-05</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Flutter/">Flutter</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2021/09/05/State%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">State生命周期</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        Widget生命周期State 是StatefulWidget代理，包含控件构建和生命周期。 State生命周期如下：
-
-
-
-
-
-  
-
-
-
-
-
-
-
-initState初始化状态，只会调用一次。
-didChangeDependenciesinitState之后会调用，当InheritedWidget发生变化时会触发。例如Provide（利用InheritedWidget实现)，监听的数据发生...
-    
-
-        <a href="/2021/09/05/State%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/widget/" rel="tag">widget</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-dart笔记"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2021-09-05 00:07:48" datetime="2021-09-04T16:07:48.000Z"  itemprop="datePublished">2021-09-05</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Flutter/">Flutter</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2021/09/05/dart%E7%AC%94%E8%AE%B0/">dart笔记</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        final/const常量声明，const表示编译期常量,final运行时常量。
-import导入关键字
-1import 'dart:marth' as math
-
-
-内置数据类型数字类型int 取值范围-2^53 ~2^53 ,double为64位双精度浮点类型。数字类型都是num的子类型。
-列表用List或者[]表示
-12List list = [1,2,3];var list2= [1...
-    
-
-        <a href="/2021/09/05/dart%E7%AC%94%E8%AE%B0/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dart/" rel="tag">dart</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-gradle"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2021-08-18 01:52:00" datetime="2021-08-17T17:52:00.000Z"  itemprop="datePublished">2021-08-18</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2021/08/18/gradle/">gradle 插件调试</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        插件调试步骤
-AS分别打开插件的P项目和依赖插件的D项目
-插件项目创建remote调试配置
-
-
-
-打开D项目编辑依赖插件的gradle Task,填入上次记录的jvm配置，将suspend改为y(执行时task会等待调试项目Attach)
-
-
-
-                
-                    
-                    
-               ...
-    
-
-        <a href="/2021/08/18/gradle/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gradle/" rel="tag">gradle</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-    </ul>
-
-    
-
-</div>
-
-        <footer class="footer">
-    <div class="top">
-        
-
-        <p>
-            
-                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
-            
-            <span>This blog is licensed under a <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</span>
-        </p>
-    </div>
-    <div class="bottom">
-        <p><span>MUFans &copy; 2015 - 2022</span>
-            <span>
-                
-                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
-            </span>
-        </p>
-    </div>
-</footer>
-
-    </main>
-    <div class="mask" id="mask"></div>
-<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
-
-
-
-<div class="global-share" id="globalShare">
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://mufans.github.io/&title=MUFans's Blog&pic=https://mufans.github.io/img/avatar.jpeg" data-title="微博">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://mufans.github.io/&title=MUFans's Blog&source=" data-title=" QQ">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://mufans.github.io/" data-title=" Facebook">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=MUFans's Blog&url=https://mufans.github.io/&via=https://mufans.github.io" data-title=" Twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://mufans.github.io/" data-title=" Google+">
-          <i class="icon icon-google-plus"></i>
-        </a>
-      </li>
-    </ul>
- </div>
-
-
-<div class="page-modal wx-share" id="wxShare">
-    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAAAAAAZai4+AAABSUlEQVR42u3aQQ7DIAwF0dz/0um2UlUY22XR/GFVhQheFxjjcF243W/t/QnvvU40WbIexLqX7dvEa/RnL59LlqxkFhluHQ7InyFzyZIli7PWoWENlSVL1pzFN2M+jixZsnjSvB5oHSwO5vKyZD2Cxas6899H6luyZP056y626jjNWWTJCmPxBXyi1Lt5U5asMBZPbXm6XE2d0dlalqwA1qRgRA6uvRKVLFkJLL6Me1t4b/uXJSuZxa8UTNLl8sYsS1YAa54094pEheKvLFkxrB9cDsC9hfdlyYpk9ZZ97/1N0ixLlqzi4XMSIDYpuCxZMazJhQP+vBwmZMkKY/XuxfHJekm5LFmZrEnphxeeqp9CZcnKZM0LTL2gs8nlZcmShS/VHSn4ypIlC19HmBR8NwZZsiJZfGhyuK2GDFmyZPX2zYOTyZKVxXoBwS81/dZSH4UAAAAASUVORK5CYII=" alt="微信分享二维码">
-</div>
-
-
-
-
-    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script>
-var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
-
-
-</script>
-
-<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
-
-
-<div class="search-panel" id="search-panel">
-    <ul class="search-result" id="search-result"></ul>
-</div>
-<template id="search-tpl">
-<li class="item">
-    <a href="{path}" class="waves-block waves-effect">
-        <div class="title ellipsis" title="{title}">{title}</div>
-        <div class="flex-row flex-middle">
-            <div class="tags ellipsis">
-                {tags}
-            </div>
-            <time class="flex-col time">{date}</time>
-        </div>
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">MUFans's Blog</h1>
+      <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">生命是以时间为单位的，浪费别人的时间等于谋财害命，浪费自己的时间，等于慢性自杀。——鲁迅</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="MUFans"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">MUFans</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mufans" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;mufans" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:294045132@qq.com" title="E-Mail → mailto:294045132@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner index posts-expand">
+      
+
+      
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://mufans.github.io/2022/02/17/Hexo%E6%8C%87%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="MUFans">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MUFans's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/17/Hexo%E6%8C%87%E4%BB%A4/" class="post-title-link" itemprop="url">Hexo指令</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-02-17 01:11:06" itemprop="dateCreated datePublished" datetime="2022-02-17T01:11:06+08:00">2022-02-17</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-06-28 02:29:24" itemprop="dateModified" datetime="2022-06-28T02:29:24+08:00">2022-06-28</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>hexo提供了一些指令，方便我们快速搭建博客和发布文章</p>
+<ol>
+<li>初始化项目目</li>
+</ol>
+  <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init [folder]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>folder</strong> 为可选参数表示初始化目录，默认为当前目录</li>
+</ul>
+<ol start="2">
+<li>新建文章</li>
+</ol>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new [layout] <span class="built_in">title</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/02/17/Hexo%E6%8C%87%E4%BB%A4/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://mufans.github.io/2021/09/18/Flutter%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="MUFans">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MUFans's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/18/Flutter%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Flutter笔记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-09-18 09:37:18" itemprop="dateCreated datePublished" datetime="2021-09-18T09:37:18+08:00">2021-09-18</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-06-28 02:28:22" itemprop="dateModified" datetime="2022-06-28T02:28:22+08:00">2022-06-28</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Flutter/" itemprop="url" rel="index"><span itemprop="name">Flutter</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Flutter笔记"><a href="#Flutter笔记" class="headerlink" title="Flutter笔记"></a>Flutter笔记</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Flutter是谷歌开源的跨平台UI框架，支持移动端，web端，桌面以及嵌入式设备。</p>
+<p>Flutter是自带渲染引擎的，可以实现平台无关的页面展示。另外也提供了与平台通信的api，补足UI以外的能力。</p>
+<p>Flutter开发语言是Dart，是一种编译型语言。它提供了和js相似的语法糖。</p>
+<p>Flutter支持热重载，开发比原生要高效。</p>
+<h3 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h3><p><img src="/2021/09/18/Flutter%E7%AC%94%E8%AE%B0/flutter_arch.png" alt="Flutter 架构图"></p>
+<p>Flutter框架由Framework,Engine,Embedder三层组成：</p>
+<ol>
+<li><p><strong>Framework</strong> - 由Dart语言实现</p>
+<ul>
+<li>包含两种UI样式</li>
+<li>基础控件框架</li>
+<li>布局渲染层：负责布局渲染，布局大小位置计算以及UI的变化</li>
+<li>动画、画布绘图、手势支持</li>
+<li>底层基础接口</li>
+</ul>
 </li>
-</template>
+<li><p><strong>Engine</strong> - C/C++</p>
+<ul>
+<li>Skia渲染引擎</li>
+<li>Dart运行时</li>
+<li>Text文字排版引擎</li>
+<li>PlatformChannels 原生平台通信接口</li>
+</ul>
+</li>
+<li><p><strong>Embedder</strong></p>
+<p>嵌入层用来实现原生平台的扩展功能。</p>
+</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/09/18/Flutter%E7%AC%94%E8%AE%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
 
-<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://mufans.github.io/2021/09/16/Koin/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="MUFans">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MUFans's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/16/Koin/" class="post-title-link" itemprop="url">Koin</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-09-16 00:25:42" itemprop="dateCreated datePublished" datetime="2021-09-16T00:25:42+08:00">2021-09-16</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-06-28 02:28:35" itemprop="dateModified" datetime="2022-06-28T02:28:35+08:00">2022-06-28</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="Koin介绍"><a href="#Koin介绍" class="headerlink" title="Koin介绍"></a>Koin介绍</h2><p>Koin 是基于<code>kotlin</code> 实现的轻量级依赖注入框架，支持DSL语法调用。</p>
+<h4 id="Koin-对比-Dagger-Hilt"><a href="#Koin-对比-Dagger-Hilt" class="headerlink" title="Koin 对比 Dagger/Hilt"></a>Koin 对比 Dagger/Hilt</h4><p><strong>Koin:</strong></p>
+<ul>
+<li>利用Kotlin 语言特性(大量使用了扩展方法、属性代理等)实现依赖注入,不会影响编译速度。</li>
+<li>由Component、Module、Scope关键元素组成。</li>
+<li>支持DSL语法调用,代码结构更加清晰。通过属性代理进行对象注入，在kotlin代码里使用起来相对比较方便。</li>
+<li>没有使用到反射，基本无性能影响。</li>
+<li>支持kotlin和java</li>
+<li>只有运行时才会报错，会导致程序崩溃</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/09/16/Koin/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://mufans.github.io/2021/09/05/9%E6%9C%88%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="MUFans">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MUFans's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/05/9%E6%9C%88%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/" class="post-title-link" itemprop="url">9月学习计划</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-09-05 18:11:24 / 修改时间：18:52:28" itemprop="dateCreated datePublished" datetime="2021-09-05T18:11:24+08:00">2021-09-05</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="9月学习计划"><a href="#9月学习计划" class="headerlink" title="9月学习计划"></a>9月学习计划</h2><blockquote>
+<p>生命是以时间为单位的，浪费别人的时间等于谋财害命，浪费自己的时间，等于慢性自杀。——鲁迅</p>
+</blockquote>
+<h3 id="书籍"><a href="#书籍" class="headerlink" title="书籍"></a>书籍</h3><ol>
+<li><ul>
+<li><input disabled type="checkbox"> Flutter 开发实战详解</li>
+</ul>
+</li>
+<li><ul>
+<li><input disabled type="checkbox"> Vue.js 实战</li>
+</ul>
+</li>
+<li><ul>
+<li><input disabled type="checkbox"> Java 虚拟机规范</li>
+</ul>
+</li>
+<li><ul>
+<li><input disabled type="checkbox"> 深入理解Android java 虚拟机ART</li>
+</ul>
+</li>
+<li><ul>
+<li><input disabled type="checkbox"> C++ Premier</li>
+</ul>
+</li>
+<li><ul>
+<li><input disabled type="checkbox"> CSAPP</li>
+</ul>
+</li>
+</ol>
+<h3 id="课程"><a href="#课程" class="headerlink" title="课程"></a>课程</h3><ol>
+<li><ul>
+<li><input disabled type="checkbox"> Android高手开发课</li>
+</ul>
+</li>
+<li><ul>
+<li><input disabled type="checkbox"> 数据结构之美</li>
+</ul>
+</li>
+<li><ul>
+<li><input disabled type="checkbox"> 设计模式之美</li>
+</ul>
+</li>
+</ol>
+<h3 id="源码学习"><a href="#源码学习" class="headerlink" title="源码学习"></a>源码学习</h3><ol>
+<li><ul>
+<li><input disabled type="checkbox"> Koin 、Hilt – 依赖注入框架</li>
+</ul>
+</li>
+<li><ul>
+<li><input disabled type="checkbox"> LeakCanary、Matrix、Koom – 内存监控框架</li>
+</ul>
+</li>
+<li><ul>
+<li><input disabled type="checkbox"> Arouter、Brouter、Drouter – 路由框架</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://mufans.github.io/2021/09/05/State%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="MUFans">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MUFans's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/05/State%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" class="post-title-link" itemprop="url">State生命周期</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-09-05 15:49:59" itemprop="dateCreated datePublished" datetime="2021-09-05T15:49:59+08:00">2021-09-05</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-06-28 02:29:00" itemprop="dateModified" datetime="2022-06-28T02:29:00+08:00">2022-06-28</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Flutter/" itemprop="url" rel="index"><span itemprop="name">Flutter</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="Widget生命周期"><a href="#Widget生命周期" class="headerlink" title="Widget生命周期"></a>Widget生命周期</h3><p>State 是StatefulWidget代理，包含控件构建和生命周期。 State生命周期如下：</p>
+<div>
+
+</div>
+
+<div>
+  <img src="/2021/09/05/State%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/state_lifecycle.png" style="zoom:50%">
+</div>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/09/05/State%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 
-
-
-
-
+      
 
 <script>
-(function() {
-    var OriginTitile = document.title, titleTime;
-    document.addEventListener('visibilitychange', function() {
-        if (document.hidden) {
-            document.title = '';
-            clearTimeout(titleTime);
-        } else {
-            document.title = '(つェ⊂)咦!又好了!';
-            titleTime = setTimeout(function() {
-                document.title = OriginTitile;
-            },2000);
-        }
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
     });
-})();
+  }
 </script>
 
+    </div>
+  </main>
 
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MUFans</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
 
 </body>
 </html>
