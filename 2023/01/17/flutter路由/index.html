@@ -22,30 +22,34 @@
     var CONFIG = {"hostname":"mufans.github.io","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="MUFans&#39;s Blog">
-<meta property="og:url" content="https://mufans.github.io/index.html">
+  <meta name="description" content="flutter_routerhttps:&#x2F;&#x2F;github.com&#x2F;mufans&#x2F;flutter_router 项目地址 为了解决flutter多模块开发跨模块通信以及路由跳转代码耦合的问题，参考Arouter 和 annotation_route 原理，使用build_runner自动生成路由表，模块依赖协议的方式实现的一套轻量级路由框架。 功能 支持flutter原生页面路由传参 支持多模块路由">
+<meta property="og:type" content="article">
+<meta property="og:title" content="flutter路由">
+<meta property="og:url" content="https://mufans.github.io/2023/01/17/flutter%E8%B7%AF%E7%94%B1/index.html">
 <meta property="og:site_name" content="MUFans&#39;s Blog">
+<meta property="og:description" content="flutter_routerhttps:&#x2F;&#x2F;github.com&#x2F;mufans&#x2F;flutter_router 项目地址 为了解决flutter多模块开发跨模块通信以及路由跳转代码耦合的问题，参考Arouter 和 annotation_route 原理，使用build_runner自动生成路由表，模块依赖协议的方式实现的一套轻量级路由框架。 功能 支持flutter原生页面路由传参 支持多模块路由">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-01-17T08:34:55.000Z">
+<meta property="article:modified_time" content="2023-01-17T08:37:04.627Z">
 <meta property="article:author" content="MUFans">
-<meta property="article:tag" content="Android">
+<meta property="article:tag" content="路由">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://mufans.github.io/">
+<link rel="canonical" href="https://mufans.github.io/2023/01/17/flutter%E8%B7%AF%E7%94%B1/">
 
 
 <script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>MUFans's Blog</title>
+  <title>flutter路由 | MUFans's Blog</title>
   
 
 
@@ -134,7 +138,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -146,6 +150,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#flutter-router"><span class="nav-number">1.</span> <span class="nav-text">flutter_router</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#功能"><span class="nav-number">1.0.1.</span> <span class="nav-text">功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#架构"><span class="nav-number">1.0.2.</span> <span class="nav-text">架构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#说明"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">说明</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用方式"><span class="nav-number">1.0.3.</span> <span class="nav-text">使用方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考项目"><span class="nav-number">1.0.4.</span> <span class="nav-text">参考项目</span></a></li></ol></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -208,11 +213,12 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
       
 
       
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -231,10 +237,9 @@
     
     
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/01/17/flutter%E8%B7%AF%E7%94%B1/" class="post-title-link" itemprop="url">flutter路由</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          flutter路由
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -267,7 +272,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="flutter-router"><a href="#flutter-router" class="headerlink" title="flutter_router"></a>flutter_router</h1><p><a href="https://github.com/mufans/flutter_router" target="_blank" rel="noopener">https://github.com/mufans/flutter_router</a> 项目地址</p>
+        <h1 id="flutter-router"><a href="#flutter-router" class="headerlink" title="flutter_router"></a>flutter_router</h1><p><a href="https://github.com/mufans/flutter_router" target="_blank" rel="noopener">https://github.com/mufans/flutter_router</a> 项目地址</p>
 <p>为了解决flutter多模块开发跨模块通信以及路由跳转代码耦合的问题，参考<strong>Arouter</strong> 和 <strong>annotation_route</strong> 原理，使用<strong>build_runner</strong>自动生成路由表，模块依赖协议的方式实现的一套轻量级路由框架。</p>
 <h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><ul>
 <li>支持flutter原生页面路由传参</li>
@@ -348,7 +353,6 @@
 <li><a href="https://github.com/XianyuTech/annotation_route" target="_blank" rel="noopener">annotation_route</a> flutter路由</li>
 </ul>
 
-      
     </div>
 
     
@@ -356,436 +360,26 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/%E8%B7%AF%E7%94%B1/" rel="tag"># 路由</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://mufans.github.io/2022/02/17/Hexo%E6%8C%87%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="MUFans">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MUFans's Blog">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/17/Hexo%E6%8C%87%E4%BB%A4/" class="post-title-link" itemprop="url">Hexo指令</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-02-17 01:11:06" itemprop="dateCreated datePublished" datetime="2022-02-17T01:11:06+08:00">2022-02-17</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-06-28 02:29:24" itemprop="dateModified" datetime="2022-06-28T02:29:24+08:00">2022-06-28</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>hexo提供了一些指令，方便我们快速搭建博客和发布文章</p>
-<ol>
-<li>初始化项目目</li>
-</ol>
-  <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init [folder]</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>folder</strong> 为可选参数表示初始化目录，默认为当前目录</li>
-</ul>
-<ol start="2">
-<li>新建文章</li>
-</ol>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new [layout] <span class="built_in">title</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/02/17/Hexo%E6%8C%87%E4%BB%A4/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://mufans.github.io/2021/09/18/Flutter%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="MUFans">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MUFans's Blog">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/18/Flutter%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Flutter笔记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-09-18 09:37:18" itemprop="dateCreated datePublished" datetime="2021-09-18T09:37:18+08:00">2021-09-18</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-06-28 02:28:22" itemprop="dateModified" datetime="2022-06-28T02:28:22+08:00">2022-06-28</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Flutter/" itemprop="url" rel="index"><span itemprop="name">Flutter</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Flutter笔记"><a href="#Flutter笔记" class="headerlink" title="Flutter笔记"></a>Flutter笔记</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Flutter是谷歌开源的跨平台UI框架，支持移动端，web端，桌面以及嵌入式设备。</p>
-<p>Flutter是自带渲染引擎的，可以实现平台无关的页面展示。另外也提供了与平台通信的api，补足UI以外的能力。</p>
-<p>Flutter开发语言是Dart，是一种编译型语言。它提供了和js相似的语法糖。</p>
-<p>Flutter支持热重载，开发比原生要高效。</p>
-<h3 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h3><p><img src="/2021/09/18/Flutter%E7%AC%94%E8%AE%B0/flutter_arch.png" alt="Flutter 架构图"></p>
-<p>Flutter框架由Framework,Engine,Embedder三层组成：</p>
-<ol>
-<li><p><strong>Framework</strong> - 由Dart语言实现</p>
-<ul>
-<li>包含两种UI样式</li>
-<li>基础控件框架</li>
-<li>布局渲染层：负责布局渲染，布局大小位置计算以及UI的变化</li>
-<li>动画、画布绘图、手势支持</li>
-<li>底层基础接口</li>
-</ul>
-</li>
-<li><p><strong>Engine</strong> - C/C++</p>
-<ul>
-<li>Skia渲染引擎</li>
-<li>Dart运行时</li>
-<li>Text文字排版引擎</li>
-<li>PlatformChannels 原生平台通信接口</li>
-</ul>
-</li>
-<li><p><strong>Embedder</strong></p>
-<p>嵌入层用来实现原生平台的扩展功能。</p>
-</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/09/18/Flutter%E7%AC%94%E8%AE%B0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/02/17/Hexo%E6%8C%87%E4%BB%A4/" rel="prev" title="Hexo指令">
+                  <i class="fa fa-chevron-left"></i> Hexo指令
+                </a>
             </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://mufans.github.io/2021/09/16/Koin/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="MUFans">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MUFans's Blog">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/16/Koin/" class="post-title-link" itemprop="url">Koin</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-09-16 00:25:42" itemprop="dateCreated datePublished" datetime="2021-09-16T00:25:42+08:00">2021-09-16</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-06-28 02:28:35" itemprop="dateModified" datetime="2022-06-28T02:28:35+08:00">2022-06-28</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="Koin介绍"><a href="#Koin介绍" class="headerlink" title="Koin介绍"></a>Koin介绍</h2><p>Koin 是基于<code>kotlin</code> 实现的轻量级依赖注入框架，支持DSL语法调用。</p>
-<h4 id="Koin-对比-Dagger-Hilt"><a href="#Koin-对比-Dagger-Hilt" class="headerlink" title="Koin 对比 Dagger/Hilt"></a>Koin 对比 Dagger/Hilt</h4><p><strong>Koin:</strong></p>
-<ul>
-<li>利用Kotlin 语言特性(大量使用了扩展方法、属性代理等)实现依赖注入,不会影响编译速度。</li>
-<li>由Component、Module、Scope关键元素组成。</li>
-<li>支持DSL语法调用,代码结构更加清晰。通过属性代理进行对象注入，在kotlin代码里使用起来相对比较方便。</li>
-<li>没有使用到反射，基本无性能影响。</li>
-<li>支持kotlin和java</li>
-<li>只有运行时才会报错，会导致程序崩溃</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/09/16/Koin/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
+            <div class="post-nav-item">
             </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          </div>
     </footer>
   </article>
   
   
   
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://mufans.github.io/2021/09/05/9%E6%9C%88%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="MUFans">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MUFans's Blog">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/05/9%E6%9C%88%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/" class="post-title-link" itemprop="url">9月学习计划</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2021-09-05 18:11:24 / 修改时间：18:52:28" itemprop="dateCreated datePublished" datetime="2021-09-05T18:11:24+08:00">2021-09-05</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="9月学习计划"><a href="#9月学习计划" class="headerlink" title="9月学习计划"></a>9月学习计划</h2><blockquote>
-<p>生命是以时间为单位的，浪费别人的时间等于谋财害命，浪费自己的时间，等于慢性自杀。——鲁迅</p>
-</blockquote>
-<h3 id="书籍"><a href="#书籍" class="headerlink" title="书籍"></a>书籍</h3><ol>
-<li><ul>
-<li><input disabled type="checkbox"> Flutter 开发实战详解</li>
-</ul>
-</li>
-<li><ul>
-<li><input disabled type="checkbox"> Vue.js 实战</li>
-</ul>
-</li>
-<li><ul>
-<li><input disabled type="checkbox"> Java 虚拟机规范</li>
-</ul>
-</li>
-<li><ul>
-<li><input disabled type="checkbox"> 深入理解Android java 虚拟机ART</li>
-</ul>
-</li>
-<li><ul>
-<li><input disabled type="checkbox"> C++ Premier</li>
-</ul>
-</li>
-<li><ul>
-<li><input disabled type="checkbox"> CSAPP</li>
-</ul>
-</li>
-</ol>
-<h3 id="课程"><a href="#课程" class="headerlink" title="课程"></a>课程</h3><ol>
-<li><ul>
-<li><input disabled type="checkbox"> Android高手开发课</li>
-</ul>
-</li>
-<li><ul>
-<li><input disabled type="checkbox"> 数据结构之美</li>
-</ul>
-</li>
-<li><ul>
-<li><input disabled type="checkbox"> 设计模式之美</li>
-</ul>
-</li>
-</ol>
-<h3 id="源码学习"><a href="#源码学习" class="headerlink" title="源码学习"></a>源码学习</h3><ol>
-<li><ul>
-<li><input disabled type="checkbox"> Koin 、Hilt – 依赖注入框架</li>
-</ul>
-</li>
-<li><ul>
-<li><input disabled type="checkbox"> LeakCanary、Matrix、Koom – 内存监控框架</li>
-</ul>
-</li>
-<li><ul>
-<li><input disabled type="checkbox"> Arouter、Brouter、Drouter – 路由框架</li>
-</ul>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
 
 
 
