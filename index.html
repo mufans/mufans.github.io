@@ -160,7 +160,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -171,7 +171,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -212,6 +212,111 @@
       
 
       
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://mufans.github.io/2023/10/14/K-Redux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="MUFans">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MUFans's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/10/14/K-Redux/" class="post-title-link" itemprop="url">K-Redux</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-10-14 23:43:09" itemprop="dateCreated datePublished" datetime="2023-10-14T23:43:09+08:00">2023-10-14</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="K-Redux"><a href="#K-Redux" class="headerlink" title="K-Redux"></a>K-Redux</h1><p><a href="https://github.com/mufans/K-Redux" target="_blank" rel="noopener">Kotlin redux</a> 状态管理框架 </p>
+<p>参考前端 <strong>Redux</strong> 实现的 <strong>Kotlin</strong> 状态管理框架。</p>
+<p><strong>Redux</strong> 作为 <strong>MVI</strong> 架构原型基础 ，提供唯一可信数据源、单向数据流的状态更新以及订阅。</p>
+<h3 id="K-Redux-的几大角色："><a href="#K-Redux-的几大角色：" class="headerlink" title="K-Redux 的几大角色："></a>K-Redux 的几大角色：</h3><ul>
+<li><p><strong>Store</strong> 状态容器，可包含多种状态，可作为全局或者局部的状态容器</p>
+</li>
+<li><p><strong>State</strong> 代表状态，<strong>Store</strong> 对外提供 <strong>StateFlow</strong> 作为状态的聚合用来进行订阅</p>
+</li>
+<li><p><strong>Action</strong> 对应 <strong>Intent</strong> 代表意图</p>
+</li>
+<li><p><strong>Reducer</strong> 响应 <strong>Action</strong> 并更新状态</p>
+</li>
+<li><p><strong>Middleware</strong> 拦截<strong>Action</strong>, 实现切面逻辑</p>
+</li>
+<li><p><strong>SingleEvent</strong> 则是提供单次事件订阅</p>
+</li>
+</ul>
+<h4 id="Store-构建"><a href="#Store-构建" class="headerlink" title="Store 构建"></a>Store 构建</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Store</span><br><span class="line">.StoreBuilder(initState) <span class="comment">// 初始状态</span></span><br><span class="line">.addActionToReducer(createActionToReducer()) <span class="comment">// Action 和 Reducer的关系转换</span></span><br><span class="line">.addSingleEventReducer(::reducerToEvent) <span class="comment">// Reducer 和 单次Event的转换</span></span><br><span class="line">.addMiddleware(middleware) <span class="comment">// 中间件，处理切面逻辑</span></span><br><span class="line">.build()</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Action-To-Reducer"><a href="#Action-To-Reducer" class="headerlink" title="Action To Reducer"></a>Action To Reducer</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 处理登出</span></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> FlowAction.<span class="title">logoutAction</span><span class="params">()</span></span> = filterIsInstance&lt;LoginIntent.Logout&gt;().map &#123;</span><br><span class="line">    LoginReducer.Logout</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 处理登录</span></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> FlowAction.<span class="title">loginAction</span><span class="params">()</span></span> = filterIsInstance&lt;LoginIntent.RequestLogin&gt;().map &#123;</span><br><span class="line">    <span class="keyword">val</span> resp = MockUserRepository.login(it.name, it.pass)</span><br><span class="line">    <span class="keyword">if</span> (resp.success) &#123;</span><br><span class="line">        LoginReducer.Success(it.name, resp.token ?: <span class="string">""</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        LoginReducer.Failure(resp.message ?: <span class="string">""</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将Action 转换为Reducer</span></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">createActionToReducer</span><span class="params">()</span></span>: FlowAction.() -&gt; Flow&lt;Reducer&lt;LoginState&gt;&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">          <span class="comment">// 合并多个Action</span></span><br><span class="line">          merge(loginAction(), logoutAction())</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Reducer-to-SingleEvent"><a href="#Reducer-to-SingleEvent" class="headerlink" title="Reducer to SingleEvent"></a>Reducer to SingleEvent</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">reducerToEvent</span><span class="params">(reducer: <span class="type">Reducer</span>&lt;<span class="type">LoginState</span>&gt;)</span></span>: Event? &#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">when</span> (reducer) &#123;</span><br><span class="line">           <span class="keyword">is</span> LoginReducer.Success -&gt; LoginEvent.Success</span><br><span class="line">           <span class="keyword">is</span> LoginReducer.Failure -&gt; LoginEvent.Failure(reducer.message)</span><br><span class="line">           <span class="keyword">else</span> -&gt; <span class="literal">null</span></span><br><span class="line">       &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Middleware"><a href="#Middleware" class="headerlink" title="Middleware"></a>Middleware</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LoginMiddleware</span> : <span class="type">Middleware</span>&lt;<span class="type">LoginState</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">suspend</span> <span class="function"><span class="keyword">fun</span> <span class="title">handle</span><span class="params">(store: <span class="type">Store</span>&lt;<span class="type">LoginState</span>&gt;, action: <span class="type">Action</span>)</span></span>: Action &#123;</span><br><span class="line">        <span class="comment">// 拦截Action 处理相关逻辑</span></span><br><span class="line">        <span class="keyword">return</span> action</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="状态订阅"><a href="#状态订阅" class="headerlink" title="状态订阅"></a>状态订阅</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">store.stateFlow.collect() <span class="comment">// 订阅状态</span></span><br><span class="line"></span><br><span class="line">store.singleEvent.collect() <span class="comment">// 订阅事件</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="结合Android-ViewModel使用"><a href="#结合Android-ViewModel使用" class="headerlink" title="结合Android ViewModel使用"></a>结合Android ViewModel使用</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 继承MviViewModel</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LoginViewModel</span> : <span class="type">MviViewModel</span>&lt;<span class="type">LoginState, LoginIntent, LoginEvent</span>&gt;</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实现如下三个协议</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 意图</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">MviIntent</span> : <span class="type">Action</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 状态</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">MviState</span> : <span class="type">State</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 事件</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">MviEvent</span> : <span class="type">Event</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">viewModel.dispatch(intent) <span class="comment">// 发送意图</span></span><br><span class="line"></span><br><span class="line">viewModel.stateFlow.collect() <span class="comment">// 订阅状态</span></span><br><span class="line"></span><br><span class="line">viewModel.singleEvent.collect() <span class="comment">// 订阅事件</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过实现IRouterContract接口，可实现路由拦截</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IRouterContract</span>&lt;<span class="type">T : State</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> actionToReducer: Flow&lt;Action&gt;.() -&gt; Flow&lt;Reducer&lt;T&gt;&gt;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> middleware: Middleware&lt;T&gt;?</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> singleEventReducer: SingleEventReducer&lt;T&gt;?</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">StoreBuilder.addRouterContract(contract) <span class="comment">// 添加路由协议</span></span><br><span class="line"></span><br><span class="line">routeStore.dispatch(routeIntent) <span class="comment">// 发送路由请求</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -645,126 +750,6 @@
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://mufans.github.io/2021/09/05/9%E6%9C%88%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="MUFans">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MUFans's Blog">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/05/9%E6%9C%88%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/" class="post-title-link" itemprop="url">9月学习计划</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2021-09-05 18:11:24 / 修改时间：18:52:28" itemprop="dateCreated datePublished" datetime="2021-09-05T18:11:24+08:00">2021-09-05</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="9月学习计划"><a href="#9月学习计划" class="headerlink" title="9月学习计划"></a>9月学习计划</h2><blockquote>
-<p>生命是以时间为单位的，浪费别人的时间等于谋财害命，浪费自己的时间，等于慢性自杀。——鲁迅</p>
-</blockquote>
-<h3 id="书籍"><a href="#书籍" class="headerlink" title="书籍"></a>书籍</h3><ol>
-<li><ul>
-<li><input disabled type="checkbox"> Flutter 开发实战详解</li>
-</ul>
-</li>
-<li><ul>
-<li><input disabled type="checkbox"> Vue.js 实战</li>
-</ul>
-</li>
-<li><ul>
-<li><input disabled type="checkbox"> Java 虚拟机规范</li>
-</ul>
-</li>
-<li><ul>
-<li><input disabled type="checkbox"> 深入理解Android java 虚拟机ART</li>
-</ul>
-</li>
-<li><ul>
-<li><input disabled type="checkbox"> C++ Premier</li>
-</ul>
-</li>
-<li><ul>
-<li><input disabled type="checkbox"> CSAPP</li>
-</ul>
-</li>
-</ol>
-<h3 id="课程"><a href="#课程" class="headerlink" title="课程"></a>课程</h3><ol>
-<li><ul>
-<li><input disabled type="checkbox"> Android高手开发课</li>
-</ul>
-</li>
-<li><ul>
-<li><input disabled type="checkbox"> 数据结构之美</li>
-</ul>
-</li>
-<li><ul>
-<li><input disabled type="checkbox"> 设计模式之美</li>
-</ul>
-</li>
-</ol>
-<h3 id="源码学习"><a href="#源码学习" class="headerlink" title="源码学习"></a>源码学习</h3><ol>
-<li><ul>
-<li><input disabled type="checkbox"> Koin 、Hilt – 依赖注入框架</li>
-</ul>
-</li>
-<li><ul>
-<li><input disabled type="checkbox"> LeakCanary、Matrix、Koom – 内存监控框架</li>
-</ul>
-</li>
-<li><ul>
-<li><input disabled type="checkbox"> Arouter、Brouter、Drouter – 路由框架</li>
-</ul>
-</li>
-</ol>
-
       
     </div>
 
