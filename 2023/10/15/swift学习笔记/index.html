@@ -22,30 +22,34 @@
     var CONFIG = {"hostname":"mufans.github.io","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="MUFans&#39;s Blog">
-<meta property="og:url" content="https://mufans.github.io/index.html">
+  <meta name="description" content="Swift 简介Swift 是一种安全、快捷、简洁的现代化编程语言。编译器会负责底层的性能优化和实现，使用swift进行开发只要关注它的高级特性，这对开发者来说是十分友好的。 Swift 使用了现代化的编程模式，用来避免常见的编程错误：  变量使用前必须先初始化 数组会检查越界 整数会检查溢出 可选类型用来处理空类型 自动化内存管理 支持捕获异常  基础语法字符串和字符集合控制流函数Swift 函">
+<meta property="og:type" content="article">
+<meta property="og:title" content="swift学习笔记">
+<meta property="og:url" content="https://mufans.github.io/2023/10/15/swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="MUFans&#39;s Blog">
+<meta property="og:description" content="Swift 简介Swift 是一种安全、快捷、简洁的现代化编程语言。编译器会负责底层的性能优化和实现，使用swift进行开发只要关注它的高级特性，这对开发者来说是十分友好的。 Swift 使用了现代化的编程模式，用来避免常见的编程错误：  变量使用前必须先初始化 数组会检查越界 整数会检查溢出 可选类型用来处理空类型 自动化内存管理 支持捕获异常  基础语法字符串和字符集合控制流函数Swift 函">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-10-15T07:16:35.000Z">
+<meta property="article:modified_time" content="2023-10-15T07:16:35.186Z">
 <meta property="article:author" content="MUFans">
 <meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://mufans.github.io/">
+<link rel="canonical" href="https://mufans.github.io/2023/10/15/swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
 
 
 <script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>MUFans's Blog</title>
+  <title>swift学习笔记 | MUFans's Blog</title>
   
 
 
@@ -134,7 +138,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -146,6 +150,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Swift-简介"><span class="nav-number">1.</span> <span class="nav-text">Swift 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础语法"><span class="nav-number">2.</span> <span class="nav-text">基础语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串和字符"><span class="nav-number">3.</span> <span class="nav-text">字符串和字符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集合"><span class="nav-number">4.</span> <span class="nav-text">集合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#控制流"><span class="nav-number">5.</span> <span class="nav-text">控制流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">6.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数定义和调用"><span class="nav-number">6.1.</span> <span class="nav-text">函数定义和调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数的参数和返回值"><span class="nav-number">6.2.</span> <span class="nav-text">函数的参数和返回值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数参数标签和参数名称"><span class="nav-number">6.3.</span> <span class="nav-text">函数参数标签和参数名称</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数类型"><span class="nav-number">6.4.</span> <span class="nav-text">函数类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内嵌函数"><span class="nav-number">6.5.</span> <span class="nav-text">内嵌函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包-Closure"><span class="nav-number">7.</span> <span class="nav-text">闭包(Closure)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包表达式语法"><span class="nav-number">7.1.</span> <span class="nav-text">闭包表达式语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型推断"><span class="nav-number">7.2.</span> <span class="nav-text">类型推断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单行表达式隐式返回值"><span class="nav-number">7.3.</span> <span class="nav-text">单行表达式隐式返回值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数名称简写"><span class="nav-number">7.4.</span> <span class="nav-text">参数名称简写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运算符方法"><span class="nav-number">7.5.</span> <span class="nav-text">运算符方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#尾端闭包"><span class="nav-number">7.6.</span> <span class="nav-text">尾端闭包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数值捕获"><span class="nav-number">7.7.</span> <span class="nav-text">数值捕获</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包是引用类型"><span class="nav-number">7.8.</span> <span class="nav-text">闭包是引用类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逃逸闭包-Escaping-closure"><span class="nav-number">7.9.</span> <span class="nav-text">逃逸闭包(Escaping closure)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动闭包（Autoclosures"><span class="nav-number">7.10.</span> <span class="nav-text">自动闭包（Autoclosures)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#枚举"><span class="nav-number">8.</span> <span class="nav-text">枚举</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#枚举递归"><span class="nav-number">8.1.</span> <span class="nav-text">枚举递归</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#值类型和引用类型"><span class="nav-number">9.</span> <span class="nav-text">值类型和引用类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#COW-写时拷贝"><span class="nav-number">9.1.</span> <span class="nav-text">COW(写时拷贝)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Initialization"><span class="nav-number">10.</span> <span class="nav-text">Initialization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Initializers-构造器"><span class="nav-number">10.1.</span> <span class="nav-text">Initializers 构造器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性默认值"><span class="nav-number">10.2.</span> <span class="nav-text">属性默认值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义初始化"><span class="nav-number">10.3.</span> <span class="nav-text">自定义初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#参数初始化"><span class="nav-number">10.3.1.</span> <span class="nav-text">参数初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参数名称和参数标签"><span class="nav-number">10.3.2.</span> <span class="nav-text">参数名称和参数标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#无参数标签"><span class="nav-number">10.3.3.</span> <span class="nav-text">无参数标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可选属性类型"><span class="nav-number">10.3.4.</span> <span class="nav-text">可选属性类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常量属性赋值"><span class="nav-number">10.3.5.</span> <span class="nav-text">常量属性赋值</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#默认构造器"><span class="nav-number">10.4.</span> <span class="nav-text">默认构造器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结构体成员变量构造器"><span class="nav-number">10.5.</span> <span class="nav-text">结构体成员变量构造器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造器委托"><span class="nav-number">10.6.</span> <span class="nav-text">构造器委托</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类继承和初始化"><span class="nav-number">10.7.</span> <span class="nav-text">类继承和初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#指定构造器"><span class="nav-number">10.7.1.</span> <span class="nav-text">指定构造器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#便利构造器"><span class="nav-number">10.8.</span> <span class="nav-text">便利构造器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#初始化两个阶段"><span class="nav-number">10.8.1.</span> <span class="nav-text">初始化两个阶段</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造器继承和复写"><span class="nav-number">10.9.</span> <span class="nav-text">构造器继承和复写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动构造器继承"><span class="nav-number">10.10.</span> <span class="nav-text">自动构造器继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Failable-Initializers-（可失败的构造器）"><span class="nav-number">10.11.</span> <span class="nav-text">Failable Initializers （可失败的构造器）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#枚举的Failable构造器"><span class="nav-number">10.11.1.</span> <span class="nav-text">枚举的Failable构造器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Failable-构造器的传播"><span class="nav-number">10.11.2.</span> <span class="nav-text">Failable 构造器的传播</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Failable-构造器复写"><span class="nav-number">10.11.3.</span> <span class="nav-text">Failable 构造器复写</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Required-构造器"><span class="nav-number">10.12.</span> <span class="nav-text">Required 构造器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过闭包或者函数设置属性的默认值"><span class="nav-number">10.13.</span> <span class="nav-text">通过闭包或者函数设置属性的默认值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deinitialization"><span class="nav-number">11.</span> <span class="nav-text">Deinitialization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#析构是如何工作的"><span class="nav-number">11.1.</span> <span class="nav-text">析构是如何工作的?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optional-Chaining"><span class="nav-number">12.</span> <span class="nav-text">Optional Chaining</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ARC"><span class="nav-number">13.</span> <span class="nav-text">ARC</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ARC-如何工作？"><span class="nav-number">13.1.</span> <span class="nav-text">ARC 如何工作？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ACR-例子"><span class="nav-number">13.2.</span> <span class="nav-text">ACR 例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类实例之间的循环强引用"><span class="nav-number">13.3.</span> <span class="nav-text">类实例之间的循环强引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决强引用循环问题"><span class="nav-number">13.4.</span> <span class="nav-text">解决强引用循环问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Weak-References"><span class="nav-number">13.4.1.</span> <span class="nav-text">Weak References</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Unowned-references"><span class="nav-number">13.4.2.</span> <span class="nav-text">Unowned references</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包的强引用循环"><span class="nav-number">13.5.</span> <span class="nav-text">闭包的强引用循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决闭包强引用循环"><span class="nav-number">13.6.</span> <span class="nav-text">解决闭包强引用循环</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#weak-和-unowned-使用"><span class="nav-number">13.6.1.</span> <span class="nav-text">weak 和 unowned 使用</span></a></li></ol></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -208,11 +213,12 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
       
 
       
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -231,10 +237,9 @@
     
     
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/10/15/swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">swift学习笔记</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          swift学习笔记
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -257,7 +262,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="Swift-简介"><a href="#Swift-简介" class="headerlink" title="Swift 简介"></a>Swift 简介</h2><p>Swift 是一种安全、快捷、简洁的现代化编程语言。编译器会负责底层的性能优化和实现，使用swift进行开发只要关注它的高级特性，这对开发者来说是十分友好的。</p>
+        <h2 id="Swift-简介"><a href="#Swift-简介" class="headerlink" title="Swift 简介"></a>Swift 简介</h2><p>Swift 是一种安全、快捷、简洁的现代化编程语言。编译器会负责底层的性能优化和实现，使用swift进行开发只要关注它的高级特性，这对开发者来说是十分友好的。</p>
 <p>Swift 使用了现代化的编程模式，用来避免常见的编程错误：</p>
 <ul>
 <li>变量使用前必须先初始化</li>
@@ -655,7 +660,6 @@
 <li>weak ：闭包捕获的引用对象可能在运行时被ARC回收自动置为nil , 在闭包中是作为可选类型使用。</li>
 </ul>
 
-      
     </div>
 
     
@@ -663,478 +667,23 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://mufans.github.io/2023/10/14/K-Redux/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="MUFans">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MUFans's Blog">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/10/14/K-Redux/" class="post-title-link" itemprop="url">K-Redux</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-10-14 23:43:09" itemprop="dateCreated datePublished" datetime="2023-10-14T23:43:09+08:00">2023-10-14</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="K-Redux"><a href="#K-Redux" class="headerlink" title="K-Redux"></a>K-Redux</h1><p><a href="https://github.com/mufans/K-Redux" target="_blank" rel="noopener">Kotlin redux</a> 状态管理框架 </p>
-<p>参考前端 <strong>Redux</strong> 实现的 <strong>Kotlin</strong> 状态管理框架。</p>
-<p><strong>Redux</strong> 作为 <strong>MVI</strong> 架构原型基础 ，提供唯一可信数据源、单向数据流的状态更新以及订阅。</p>
-<h3 id="K-Redux-的几大角色："><a href="#K-Redux-的几大角色：" class="headerlink" title="K-Redux 的几大角色："></a>K-Redux 的几大角色：</h3><ul>
-<li><p><strong>Store</strong> 状态容器，可包含多种状态，可作为全局或者局部的状态容器</p>
-</li>
-<li><p><strong>State</strong> 代表状态，<strong>Store</strong> 对外提供 <strong>StateFlow</strong> 作为状态的聚合用来进行订阅</p>
-</li>
-<li><p><strong>Action</strong> 对应 <strong>Intent</strong> 代表意图</p>
-</li>
-<li><p><strong>Reducer</strong> 响应 <strong>Action</strong> 并更新状态</p>
-</li>
-<li><p><strong>Middleware</strong> 拦截<strong>Action</strong>, 实现切面逻辑</p>
-</li>
-<li><p><strong>SingleEvent</strong> 则是提供单次事件订阅</p>
-</li>
-</ul>
-<h4 id="Store-构建"><a href="#Store-构建" class="headerlink" title="Store 构建"></a>Store 构建</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Store</span><br><span class="line">.StoreBuilder(initState) <span class="comment">// 初始状态</span></span><br><span class="line">.addActionToReducer(createActionToReducer()) <span class="comment">// Action 和 Reducer的关系转换</span></span><br><span class="line">.addSingleEventReducer(::reducerToEvent) <span class="comment">// Reducer 和 单次Event的转换</span></span><br><span class="line">.addMiddleware(middleware) <span class="comment">// 中间件，处理切面逻辑</span></span><br><span class="line">.build()</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="Action-To-Reducer"><a href="#Action-To-Reducer" class="headerlink" title="Action To Reducer"></a>Action To Reducer</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 处理登出</span></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> FlowAction.<span class="title">logoutAction</span><span class="params">()</span></span> = filterIsInstance&lt;LoginIntent.Logout&gt;().map &#123;</span><br><span class="line">    LoginReducer.Logout</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 处理登录</span></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> FlowAction.<span class="title">loginAction</span><span class="params">()</span></span> = filterIsInstance&lt;LoginIntent.RequestLogin&gt;().map &#123;</span><br><span class="line">    <span class="keyword">val</span> resp = MockUserRepository.login(it.name, it.pass)</span><br><span class="line">    <span class="keyword">if</span> (resp.success) &#123;</span><br><span class="line">        LoginReducer.Success(it.name, resp.token ?: <span class="string">""</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        LoginReducer.Failure(resp.message ?: <span class="string">""</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将Action 转换为Reducer</span></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">createActionToReducer</span><span class="params">()</span></span>: FlowAction.() -&gt; Flow&lt;Reducer&lt;LoginState&gt;&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">          <span class="comment">// 合并多个Action</span></span><br><span class="line">          merge(loginAction(), logoutAction())</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="Reducer-to-SingleEvent"><a href="#Reducer-to-SingleEvent" class="headerlink" title="Reducer to SingleEvent"></a>Reducer to SingleEvent</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">reducerToEvent</span><span class="params">(reducer: <span class="type">Reducer</span>&lt;<span class="type">LoginState</span>&gt;)</span></span>: Event? &#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">when</span> (reducer) &#123;</span><br><span class="line">           <span class="keyword">is</span> LoginReducer.Success -&gt; LoginEvent.Success</span><br><span class="line">           <span class="keyword">is</span> LoginReducer.Failure -&gt; LoginEvent.Failure(reducer.message)</span><br><span class="line">           <span class="keyword">else</span> -&gt; <span class="literal">null</span></span><br><span class="line">       &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="Middleware"><a href="#Middleware" class="headerlink" title="Middleware"></a>Middleware</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LoginMiddleware</span> : <span class="type">Middleware</span>&lt;<span class="type">LoginState</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">suspend</span> <span class="function"><span class="keyword">fun</span> <span class="title">handle</span><span class="params">(store: <span class="type">Store</span>&lt;<span class="type">LoginState</span>&gt;, action: <span class="type">Action</span>)</span></span>: Action &#123;</span><br><span class="line">        <span class="comment">// 拦截Action 处理相关逻辑</span></span><br><span class="line">        <span class="keyword">return</span> action</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="状态订阅"><a href="#状态订阅" class="headerlink" title="状态订阅"></a>状态订阅</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">store.stateFlow.collect() <span class="comment">// 订阅状态</span></span><br><span class="line"></span><br><span class="line">store.singleEvent.collect() <span class="comment">// 订阅事件</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="结合Android-ViewModel使用"><a href="#结合Android-ViewModel使用" class="headerlink" title="结合Android ViewModel使用"></a>结合Android ViewModel使用</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 继承MviViewModel</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LoginViewModel</span> : <span class="type">MviViewModel</span>&lt;<span class="type">LoginState, LoginIntent, LoginEvent</span>&gt;</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实现如下三个协议</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 意图</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">MviIntent</span> : <span class="type">Action</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 状态</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">MviState</span> : <span class="type">State</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 事件</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">MviEvent</span> : <span class="type">Event</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">viewModel.dispatch(intent) <span class="comment">// 发送意图</span></span><br><span class="line"></span><br><span class="line">viewModel.stateFlow.collect() <span class="comment">// 订阅状态</span></span><br><span class="line"></span><br><span class="line">viewModel.singleEvent.collect() <span class="comment">// 订阅事件</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过实现IRouterContract接口，可实现路由拦截</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IRouterContract</span>&lt;<span class="type">T : State</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> actionToReducer: Flow&lt;Action&gt;.() -&gt; Flow&lt;Reducer&lt;T&gt;&gt;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> middleware: Middleware&lt;T&gt;?</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> singleEventReducer: SingleEventReducer&lt;T&gt;?</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">StoreBuilder.addRouterContract(contract) <span class="comment">// 添加路由协议</span></span><br><span class="line"></span><br><span class="line">routeStore.dispatch(routeIntent) <span class="comment">// 发送路由请求</span></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://mufans.github.io/2023/01/17/flutter%E8%B7%AF%E7%94%B1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="MUFans">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MUFans's Blog">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/01/17/flutter%E8%B7%AF%E7%94%B1/" class="post-title-link" itemprop="url">flutter路由</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2023-01-17 16:34:55 / 修改时间：16:37:04" itemprop="dateCreated datePublished" datetime="2023-01-17T16:34:55+08:00">2023-01-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Flutter/" itemprop="url" rel="index"><span itemprop="name">Flutter</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="flutter-router"><a href="#flutter-router" class="headerlink" title="flutter_router"></a>flutter_router</h1><p><a href="https://github.com/mufans/flutter_router" target="_blank" rel="noopener">https://github.com/mufans/flutter_router</a> 项目地址</p>
-<p>为了解决flutter多模块开发跨模块通信以及路由跳转代码耦合的问题，参考<strong>Arouter</strong> 和 <strong>annotation_route</strong> 原理，使用<strong>build_runner</strong>自动生成路由表，模块依赖协议的方式实现的一套轻量级路由框架。</p>
-<h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><ul>
-<li>支持flutter原生页面路由传参</li>
-<li>支持多模块路由通信</li>
-<li>支持自定义路由拦截器</li>
-<li>支持简单的依赖注入</li>
-</ul>
-<h3 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h3><p>包含三个模块</p>
-<ul>
-<li><strong>jrouter_core</strong>                         路由核心库</li>
-<li><strong>router_generator</strong>               路由apt库,解析dart注解生成模板代码</li>
-<li><strong>flutter_router_support</strong>     扩展路由支持flutter。</li>
-</ul>
-<h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><p>三个模块依赖关系 </p>
-<ul>
-<li>runtime:<br>flutter_router_support-&gt;jrouter_core   </li>
-<li>dev:<br>router_generator-&gt;jrouter_core</li>
-</ul>
-<p><strong>为什么需要flutter_router_support?</strong></p>
-<p>由于dart注解解析使用了反射，并且flutter不支持反射，所以jrouter_core没有依赖flutter sdk. 为了支持flutter路由跳转,单独封装了flutter路由的转换逻辑，因此在初始化时需要配置路由扩展.</p>
-<h3 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h3><ol>
-<li>首先在所有需要路由的package中添加依赖</li>
-</ol>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">dependencies:</span></span><br><span class="line">  <span class="attr">jrouter_core:</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">../jrouter_core</span></span><br><span class="line"></span><br><span class="line"><span class="attr">dev_dependencies:</span></span><br><span class="line">  <span class="attr">route_generator:</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">../route_generator</span></span><br><span class="line">  <span class="attr">build_runner:</span> <span class="string">^2.1.11</span></span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="2">
-<li>在路由相关的类中添加对应的注解</li>
-</ol>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// <span class="markdown">页面路由</span></span></span><br><span class="line"><span class="meta">@JRoute</span>(path: BaseRoute.secondPage)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SecondPage</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> SecondPage(&#123;Key? key&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  State&lt;SecondPage&gt; createState() =&gt; _SecondPageState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// <span class="markdown">协议路由 Protocol实现了IProvider接口（参考Arouter设计，用于区分协议路由和页面路由)</span></span></span><br><span class="line"><span class="meta">@JRoute</span>(path: BaseRoute.protocol)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BizModule1Protocol</span> <span class="keyword">extends</span> <span class="title">Protocol</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="built_in">String</span> getName() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"biz_module1"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// <span class="markdown">拦截器</span></span></span><br><span class="line"><span class="meta">@JRouteInterceptor</span>(priority: <span class="number">100</span>)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AppInterceptor</span> <span class="keyword">implements</span> <span class="title">JInterceptor</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> process(RouteOp op, InterceptorHandler handler) &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">'jrouter=======<span class="subst">$&#123;op.path&#125;</span>'</span>);</span><br><span class="line">    handler.onNext(op);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>由于dart apt 只作用于单个package，所以需要为每个package生成一个独立的路由容器来收集该package 内部的路由信息，提供给外部统一调用。</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// <span class="markdown">main 模块的路由容器</span></span></span><br><span class="line"><span class="meta">@JRouteRoot</span>()</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainRouteHolder</span> <span class="keyword">extends</span> <span class="title">IRouteHolder</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  IInterceptorGroup <span class="keyword">get</span> interceptor =&gt; JRouter$MainRouteHolderInterceptorGroup();</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  IRouteRoot <span class="keyword">get</span> root =&gt; JRoute$MainRouteHolderRoot();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>然后需要在每个package中执行以下指令（ <strong>gen.sh</strong>)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flutter packages pub run build_runner clean &amp;&amp;  flutter packages pub run build_runner build --delete-conflicting-outputs</span><br></pre></td></tr></table></figure>
-
-
-
-<p>执行完毕后，build_runner 会为我们自动生成.g.dart文件</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">JRouter</span>$<span class="title">BizModule2RouteHolderInterceptorGroup</span></span></span><br><span class="line"><span class="class">    <span class="keyword">implements</span> <span class="title">IInterceptorGroup</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> loadInto(<span class="built_in">Map</span>&lt;<span class="built_in">int</span>, IRouteFactory&lt;JInterceptor&gt;&gt; interceptorMap) &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">JRoute</span>$<span class="title">BizModule2RouteHolderRoot</span> <span class="keyword">implements</span> <span class="title">IRouteRoot</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> loadInto(<span class="built_in">Map</span>&lt;<span class="built_in">String</span>, IRouteGroup&gt; groupMap) &#123;</span><br><span class="line">    groupMap[<span class="string">'biz'</span>] = _JRouter$bizGroup();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_JRouter</span>$<span class="title">bizGroup</span> <span class="keyword">implements</span> <span class="title">IRouteGroup</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> loadInto(<span class="built_in">Map</span>&lt;<span class="built_in">String</span>, RouteMeta&gt; atlas) &#123;</span><br><span class="line">    atlas[<span class="string">'/biz/secondPage'</span>] = RouteMeta(</span><br><span class="line">        type: RouteType.nameRoute,</span><br><span class="line">        path: <span class="string">'/biz/secondPage'</span>,</span><br><span class="line">        group: <span class="string">'biz'</span>,</span><br><span class="line">        routerFactory: (p) =&gt; SecondPage());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>然后需要把IInterceptorGroup 和 IRouteRoot 实现类添加到对应的 IRouteHolder中</p>
-<ol start="3">
-<li>路由初始化</li>
-</ol>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// <span class="markdown">注册各个模块的路由表</span></span></span><br><span class="line">JRouter.init([MainRouteHolder(), BizModule1RouteHolder(), BizModule2RouteHolder()]);</span><br><span class="line"></span><br><span class="line"><span class="comment">/// <span class="markdown">添加flutter路由扩展</span></span></span><br><span class="line">JRouter.setHook(flutterRouterHook);</span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="4">
-<li>注册页面路由表</li>
-</ol>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">/// <span class="markdown">初始化时可动态注册本地路由</span></span></span><br><span class="line">JRouter.register(&#123;<span class="string">"/"</span>: (_) =&gt; MyHomePage(title: <span class="string">'Flutter Demo Home Page'</span>)&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/// <span class="markdown">注册命名路由</span></span></span><br><span class="line">MaterialApp(</span><br><span class="line">    title: <span class="string">'Flutter Demo'</span>,</span><br><span class="line">    theme: ThemeData(</span><br><span class="line">      primarySwatch: Colors.blue,</span><br><span class="line">    ),</span><br><span class="line">    routes: buildRouteMap(), <span class="comment">/// <span class="markdown">添加路由表</span></span></span><br><span class="line">    initialRoute: <span class="string">"/"</span>,</span><br><span class="line">  );</span><br></pre></td></tr></table></figure>
-
-
-
-<p>至此所有准备工作都完成了。</p>
-<ol start="5">
-<li>路由使用方式</li>
-</ol>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// <span class="markdown">获取协议接口</span></span></span><br><span class="line">Protocol? protocol = <span class="keyword">await</span> JRouter.navigation(BaseRoute.protocol);</span><br><span class="line"></span><br><span class="line"><span class="comment">/// <span class="markdown">flutter页面跳转,支持传参</span></span></span><br><span class="line">JRouter.navigation(<span class="string">"/biz/secondPage"</span>, context: context);</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-<h3 id="参考项目"><a href="#参考项目" class="headerlink" title="参考项目"></a>参考项目</h3><hr>
-<ul>
-<li><a href="https://github.com/alibaba/ARouter" target="_blank" rel="noopener">Arouter</a>  阿里路由</li>
-<li><a href="https://github.com/XianyuTech/annotation_route" target="_blank" rel="noopener">annotation_route</a> flutter路由</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://mufans.github.io/2022/02/17/Hexo%E6%8C%87%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="MUFans">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MUFans's Blog">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/17/Hexo%E6%8C%87%E4%BB%A4/" class="post-title-link" itemprop="url">Hexo指令</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-02-17 01:11:06" itemprop="dateCreated datePublished" datetime="2022-02-17T01:11:06+08:00">2022-02-17</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2023-10-14 23:49:59" itemprop="dateModified" datetime="2023-10-14T23:49:59+08:00">2023-10-14</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>hexo提供了一些指令，方便我们快速搭建博客和发布文章</p>
-<ol>
-<li>初始化项目目</li>
-</ol>
-  <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init [folder]</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>folder</strong> 为可选参数表示初始化目录，默认为当前目录</li>
-</ul>
-<ol start="2">
-<li>新建文章</li>
-</ol>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new [layout] <span class="built_in">title</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/02/17/Hexo%E6%8C%87%E4%BB%A4/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://mufans.github.io/2021/09/18/Flutter%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="MUFans">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MUFans's Blog">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/18/Flutter%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Flutter笔记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-09-18 09:37:18" itemprop="dateCreated datePublished" datetime="2021-09-18T09:37:18+08:00">2021-09-18</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-06-28 02:28:22" itemprop="dateModified" datetime="2022-06-28T02:28:22+08:00">2022-06-28</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Flutter/" itemprop="url" rel="index"><span itemprop="name">Flutter</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Flutter笔记"><a href="#Flutter笔记" class="headerlink" title="Flutter笔记"></a>Flutter笔记</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Flutter是谷歌开源的跨平台UI框架，支持移动端，web端，桌面以及嵌入式设备。</p>
-<p>Flutter是自带渲染引擎的，可以实现平台无关的页面展示。另外也提供了与平台通信的api，补足UI以外的能力。</p>
-<p>Flutter开发语言是Dart，是一种编译型语言。它提供了和js相似的语法糖。</p>
-<p>Flutter支持热重载，开发比原生要高效。</p>
-<h3 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h3><p><img src="/2021/09/18/Flutter%E7%AC%94%E8%AE%B0/flutter_arch.png" alt="Flutter 架构图"></p>
-<p>Flutter框架由Framework,Engine,Embedder三层组成：</p>
-<ol>
-<li><p><strong>Framework</strong> - 由Dart语言实现</p>
-<ul>
-<li>包含两种UI样式</li>
-<li>基础控件框架</li>
-<li>布局渲染层：负责布局渲染，布局大小位置计算以及UI的变化</li>
-<li>动画、画布绘图、手势支持</li>
-<li>底层基础接口</li>
-</ul>
-</li>
-<li><p><strong>Engine</strong> - C/C++</p>
-<ul>
-<li>Skia渲染引擎</li>
-<li>Dart运行时</li>
-<li>Text文字排版引擎</li>
-<li>PlatformChannels 原生平台通信接口</li>
-</ul>
-</li>
-<li><p><strong>Embedder</strong></p>
-<p>嵌入层用来实现原生平台的扩展功能。</p>
-</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/09/18/Flutter%E7%AC%94%E8%AE%B0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/10/14/K-Redux/" rel="prev" title="K-Redux">
+                  <i class="fa fa-chevron-left"></i> K-Redux
+                </a>
             </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+            <div class="post-nav-item">
+            </div>
+          </div>
     </footer>
   </article>
   
   
   
-
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
 
 
 
