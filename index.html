@@ -272,7 +272,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2023-11-19 16:04:24 / 修改时间：16:13:28" itemprop="dateCreated datePublished" datetime="2023-11-19T16:04:24+08:00">2023-11-19</time>
+      <time title="创建时间：2023-11-19 16:04:24 / 修改时间：16:15:36" itemprop="dateCreated datePublished" datetime="2023-11-19T16:04:24+08:00">2023-11-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -295,34 +295,14 @@
     
     <div class="post-body" itemprop="articleBody">
           <h3 id="指令集体系结构"><a href="#指令集体系结构" class="headerlink" title="指令集体系结构"></a>指令集体系结构</h3><p>一个处理器支持的指令和指令的字节集编码成为它的<strong>指令集体系结构（Instruction-Set Architecture, ISA）</strong>。</p>
-<h3 id="处理器顺序实现"><a href="#处理器顺序实现" class="headerlink" title="处理器顺序实现"></a>处理器顺序实现</h3><p>每个时钟周期，<strong>SEQ</strong>执行处理一条完整指令所需的所有步骤。这种实现需要很长的时钟周期事件，性能很差。现代的处理器都是流水线化的，更加高效。</p>
-<h4 id="处理指令的几个组成阶段"><a href="#处理指令的几个组成阶段" class="headerlink" title="处理指令的几个组成阶段"></a>处理指令的几个组成阶段</h4><p>通常，一条指令包括很多操作。它们被组织成某个特定的阶段序列，所有指令遵循统一的序列。</p>
-<ul>
-<li><strong>取指</strong>：从内存读取指令字节，地址为pc的值。从指令中抽取指令指示符的两个部分，一般为指令代码和指令功能。</li>
-<li><strong>译码</strong>：从寄存器文件读入操作数。</li>
-<li><strong>执行</strong>：算数逻辑单元(ALU)要么执行指令指明的操作，计算内存引用的有效地址，要么增加或减少栈指针。</li>
-<li><strong>访存</strong>：从内存读写数据。</li>
-<li><strong>写回</strong>：将结果写到寄存器文件。</li>
-<li><strong>更新PC</strong>：将Pc设置到下一条指令的地址。</li>
-</ul>
-<h4 id="SEQ小结"><a href="#SEQ小结" class="headerlink" title="SEQ小结"></a>SEQ小结</h4><p>SEQ的问题是效率低。为了使信号能在一个周期内传播所有阶段，时钟必须非常慢。</p>
-<p>这种实现方法不能充分利用硬件单元，因为每个单元只在整个时钟周期的一部分时间内才被使用。</p>
-<h3 id="流水线的通用原理"><a href="#流水线的通用原理" class="headerlink" title="流水线的通用原理"></a>流水线的通用原理</h3><p>流水线化的系统中，待执行的任务被划分成若干独立的阶段。通常允许多任务同时经过系统，而不是等到一个任务完成了所有阶段后才开始。</p>
-<p>流水线化的一个重要的特性就是提高系统的<strong>吞吐量</strong>,也就是单位时间内的执行的任务数量, 同时带来的弊端就是会轻微的增加延迟，也就是一个任务所需要的时间。</p>
-<h4 id="三级流水线"><a href="#三级流水线" class="headerlink" title="三级流水线"></a>三级流水线</h4><p>三级流水线分为三个阶段：</p>
-<ul>
-<li>取指 从存储器中读取指令</li>
-<li>译码 识别指令</li>
-<li>执行 执行指令并将结果回写到存储器</li>
-</ul>
-<h4 id="PIPE各阶段实现"><a href="#PIPE各阶段实现" class="headerlink" title="PIPE各阶段实现"></a>PIPE各阶段实现</h4><ul>
-<li>PC选择和取指阶段</li>
-</ul>
-<p>整个阶段必须选择pc的当前值，并且预测下一个PC值。</p>
-<p>Pc选择逻辑从三个程序计数器源中进行选择。当一条预测错误的分支进入访存阶段时，会从流水线寄存器A中读取下一条指令地址。当ret指令进入写回阶段时，会从流水线寄存器B中读取返回地址。</p>
-<p>其他情况会从流水线寄存器C中获取PC的预测值。</p>
-<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><p>流水线设计通过让不同阶段的任务并行操作，改进了系统的吞吐量性能。在任意一个给定的时刻，多条指令被不同的阶段处理。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/11/19/csapp-note-%E5%A4%84%E7%90%86%E5%99%A8%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
