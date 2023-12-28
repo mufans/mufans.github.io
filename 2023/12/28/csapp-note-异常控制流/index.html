@@ -22,30 +22,34 @@
     var CONFIG = {"hostname":"mufans.github.io","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"removeß","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="MUFans&#39;s Blog">
-<meta property="og:url" content="https://mufans.github.io/index.html">
+  <meta name="description" content="什么是控制流处理器从多个指令间过度称为控制转移 ，控制转移的序列叫做处理器的控制流。 现代系统通过使控制流发生突变来对系统状态的变化做出反应。一般而言，把这些突变称为异常控制流（Exceptional Control Flow ，ECF） 。异常控制流发生 在系统的各个层次。比如硬件层，硬件检测到事件会出发控制突然转移到异常处理程序。在操作系统层，内核通过上下文切换将控制从一个用户进程转移到另一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="csapp-note-异常控制流">
+<meta property="og:url" content="https://mufans.github.io/2023/12/28/csapp-note-%E5%BC%82%E5%B8%B8%E6%8E%A7%E5%88%B6%E6%B5%81/index.html">
 <meta property="og:site_name" content="MUFans&#39;s Blog">
+<meta property="og:description" content="什么是控制流处理器从多个指令间过度称为控制转移 ，控制转移的序列叫做处理器的控制流。 现代系统通过使控制流发生突变来对系统状态的变化做出反应。一般而言，把这些突变称为异常控制流（Exceptional Control Flow ，ECF） 。异常控制流发生 在系统的各个层次。比如硬件层，硬件检测到事件会出发控制突然转移到异常处理程序。在操作系统层，内核通过上下文切换将控制从一个用户进程转移到另一个">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-12-28T13:41:50.000Z">
+<meta property="article:modified_time" content="2023-12-28T13:41:50.129Z">
 <meta property="article:author" content="MUFans">
 <meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://mufans.github.io/">
+<link rel="canonical" href="https://mufans.github.io/2023/12/28/csapp-note-%E5%BC%82%E5%B8%B8%E6%8E%A7%E5%88%B6%E6%B5%81/">
 
 
 <script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>MUFans's Blog</title>
+  <title>csapp-note-异常控制流 | MUFans's Blog</title>
   
 
 
@@ -160,7 +164,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -172,6 +176,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是控制流"><span class="nav-number">1.</span> <span class="nav-text">什么是控制流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#理解ECF"><span class="nav-number">2.</span> <span class="nav-text">理解ECF</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异常"><span class="nav-number"></span> <span class="nav-text">异常</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#异常处理"><span class="nav-number">1.</span> <span class="nav-text">异常处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异常的类别"><span class="nav-number">2.</span> <span class="nav-text">异常的类别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程"><span class="nav-number"></span> <span class="nav-text">进程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#逻辑控制流"><span class="nav-number">1.</span> <span class="nav-text">逻辑控制流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#并发流"><span class="nav-number">2.</span> <span class="nav-text">并发流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#私有地址空间"><span class="nav-number">3.</span> <span class="nav-text">私有地址空间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用户模式和内核模式"><span class="nav-number">4.</span> <span class="nav-text">用户模式和内核模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#上下文切换"><span class="nav-number">5.</span> <span class="nav-text">上下文切换</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程控制"><span class="nav-number"></span> <span class="nav-text">进程控制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取进程ID"><span class="nav-number">1.</span> <span class="nav-text">获取进程ID</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建和终止进程"><span class="nav-number">2.</span> <span class="nav-text">创建和终止进程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#回收子进程"><span class="nav-number">3.</span> <span class="nav-text">回收子进程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进程休眠"><span class="nav-number">4.</span> <span class="nav-text">进程休眠</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#加载并运行程序"><span class="nav-number">5.</span> <span class="nav-text">加载并运行程序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信号"><span class="nav-number"></span> <span class="nav-text">信号</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#信号术语"><span class="nav-number">1.</span> <span class="nav-text">信号术语</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#发送信号"><span class="nav-number">2.</span> <span class="nav-text">发送信号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#接收信号"><span class="nav-number">3.</span> <span class="nav-text">接收信号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#阻塞和接触阻塞信号"><span class="nav-number">4.</span> <span class="nav-text">阻塞和接触阻塞信号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可移植的信号处理"><span class="nav-number">5.</span> <span class="nav-text">可移植的信号处理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非本地跳转"><span class="nav-number"></span> <span class="nav-text">非本地跳转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作进程的工具"><span class="nav-number"></span> <span class="nav-text">操作进程的工具</span></a></div>
       </section>
       <!--/noindex-->
 
@@ -235,11 +240,12 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
       
 
       
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -258,10 +264,9 @@
     
     
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/12/28/csapp-note-%E5%BC%82%E5%B8%B8%E6%8E%A7%E5%88%B6%E6%B5%81/" class="post-title-link" itemprop="url">csapp-note-异常控制流</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          csapp-note-异常控制流
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -284,7 +289,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h4 id="什么是控制流"><a href="#什么是控制流" class="headerlink" title="什么是控制流"></a>什么是控制流</h4><p>处理器从多个指令间过度称为<strong>控制转移</strong> ，控制转移的序列叫做处理器的<strong>控制流</strong>。</p>
+        <h4 id="什么是控制流"><a href="#什么是控制流" class="headerlink" title="什么是控制流"></a>什么是控制流</h4><p>处理器从多个指令间过度称为<strong>控制转移</strong> ，控制转移的序列叫做处理器的<strong>控制流</strong>。</p>
 <p>现代系统通过使控制流发生突变来对系统状态的变化做出反应。一般而言，把这些突变称为<strong>异常控制流（Exceptional Control Flow ，ECF）</strong> 。异常控制流发生</p>
 <p>在系统的各个层次。比如硬件层，硬件检测到事件会出发控制突然转移到异常处理程序。在操作系统层，内核通过上下文切换将控制从一个用户进程转移到另一个</p>
 <p>用户进程。在应用层，一个进程可以发送<strong>信号</strong>到另一个进程，接受者会将控制突然转移到他的一个信号处理程序(SigActionHandler)。一个程序可以回避栈规则，</p>
@@ -470,7 +475,6 @@
 <li>/proc: 虚拟文件系统，输出内核数据结构的内容，用户程序可以通过文件节点读取相关内容。</li>
 </ul>
 
-      
     </div>
 
     
@@ -478,392 +482,23 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://mufans.github.io/2023/12/28/csapp-note-%E9%93%BE%E6%8E%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="MUFans">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MUFans's Blog">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/12/28/csapp-note-%E9%93%BE%E6%8E%A5/" class="post-title-link" itemprop="url">csapp-note-链接</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-12-28 14:30:11" itemprop="dateCreated datePublished" datetime="2023-12-28T14:30:11+08:00">2023-12-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/note/" itemprop="url" rel="index"><span itemprop="name">note</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p>​    <strong>链接</strong> 是将各种代码和数据片段手机并组合成一个单一文件的过程，这个文件可被加载(复制)到内存并执行。 </p>
-<p>链接执行的三个阶段：</p>
-<ul>
-<li>编译时 - 源代码被翻译成机器码时</li>
-<li>加载时 - 程序被加载器加载到内存并执行时</li>
-<li>运行时 - 由应用程序执行。</li>
-</ul>
-<p>现代系统中，链接是由<strong>链接器</strong> (linker) 的程序自动执行的。链接器使得<strong>分离编译</strong> 成为可能，可以将大型的应用程序分解为更小、更好管理的模块，这些模块可以独</p>
-<p>立的修改和编译。当对某个模块进行修改时，只需简单的重新编译，并重新链接应用，而不用重新编译其他文件。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/12/28/csapp-note-%E9%93%BE%E6%8E%A5/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://mufans.github.io/2023/11/19/csapp-note-%E5%A4%84%E7%90%86%E5%99%A8%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="MUFans">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MUFans's Blog">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/11/19/csapp-note-%E5%A4%84%E7%90%86%E5%99%A8%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">csapp-note-处理器体系结构</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2023-11-19 16:04:24 / 修改时间：16:24:21" itemprop="dateCreated datePublished" datetime="2023-11-19T16:04:24+08:00">2023-11-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/note/" itemprop="url" rel="index"><span itemprop="name">note</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="指令集体系结构"><a href="#指令集体系结构" class="headerlink" title="指令集体系结构"></a>指令集体系结构</h3><p>一个处理器支持的指令和指令的字节集编码成为它的<strong>指令集体系结构（Instruction-Set Architecture, ISA）</strong>。</p>
-<h3 id="时钟周期"><a href="#时钟周期" class="headerlink" title="时钟周期"></a>时钟周期</h3><p>时钟周期也称为振荡周期，定义为时钟频率的倒数。时钟周期是计算机中最基本的、最小的时间单位。在一个时钟周期内，CPU仅完成一个最基本的动作。时钟周期是一个时间的量。</p>
-<p>时钟周期与主频的关系：</p>
-<p>cpu主频(HZ) = 1/cpu时钟周期(s)</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/11/19/csapp-note-%E5%A4%84%E7%90%86%E5%99%A8%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/12/28/csapp-note-%E9%93%BE%E6%8E%A5/" rel="prev" title="csapp-note-链接">
+                  <i class="fa fa-chevron-left"></i> csapp-note-链接
+                </a>
             </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://mufans.github.io/2023/10/24/AndroidPerf/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="MUFans">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MUFans's Blog">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/10/24/AndroidPerf/" class="post-title-link" itemprop="url">Android性能优化总结</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-10-24 00:47:58" itemprop="dateCreated datePublished" datetime="2023-10-24T00:47:58+08:00">2023-10-24</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="Android性能优化"><a href="#Android性能优化" class="headerlink" title="Android性能优化"></a>Android性能优化</h2><p>Android性能优化分为以下几个大类：</p>
-<ul>
-<li><p>启动速度</p>
-</li>
-<li><p>内存占用</p>
-</li>
-<li><p>流畅度</p>
-</li>
-<li><p>网络</p>
-</li>
-<li><p>包体积</p>
-</li>
-<li><p>稳定性治理</p>
-</li>
-</ul>
-<h3 id="启动速度优化"><a href="#启动速度优化" class="headerlink" title="启动速度优化"></a>启动速度优化</h3><ul>
-<li><p>启动速度测量</p>
-</li>
-<li><p>任务调度优化</p>
-</li>
-<li><p>虚拟机优化</p>
-</li>
-<li><p>启动页合并</p>
-</li>
-</ul>
-<h3 id="内存优化"><a href="#内存优化" class="headerlink" title="内存优化"></a>内存优化</h3><ul>
-<li>内存泄漏</li>
-<li>内存抖动</li>
-<li>OOM问题</li>
-<li>大图检测</li>
-</ul>
-<h3 id="流畅度优化"><a href="#流畅度优化" class="headerlink" title="流畅度优化"></a>流畅度优化</h3><ul>
-<li>卡顿检测</li>
-<li>布局优化</li>
-<li>绘制优化</li>
-<li>锁优化</li>
-<li>对象池</li>
-<li>消息治理</li>
-</ul>
-<h3 id="包体积优化"><a href="#包体积优化" class="headerlink" title="包体积优化"></a>包体积优化</h3><ul>
-<li>资源缩减、R文件内联、图片压缩</li>
-<li>代码混淆、无用代码移除、字节码指令优化</li>
-<li>So 动态化、模块插件化</li>
-</ul>
-<h3 id="网络优化"><a href="#网络优化" class="headerlink" title="网络优化"></a>网络优化</h3><ul>
-<li>Okhttp复用、Gson解析优化</li>
-<li>缓存策略</li>
-<li>HttpDNS</li>
-<li>流量监控</li>
-</ul>
-<h3 id="稳定性治理"><a href="#稳定性治理" class="headerlink" title="稳定性治理"></a>稳定性治理</h3><ul>
-<li>Java Crash</li>
-<li>Native Crash</li>
-<li>ANR </li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://mufans.github.io/2023/10/15/swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="MUFans">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MUFans's Blog">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/10/15/swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">swift学习笔记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-10-15 15:16:35" itemprop="dateCreated datePublished" datetime="2023-10-15T15:16:35+08:00">2023-10-15</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2023-10-16 21:43:53" itemprop="dateModified" datetime="2023-10-16T21:43:53+08:00">2023-10-16</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="Swift-简介"><a href="#Swift-简介" class="headerlink" title="Swift 简介"></a>Swift 简介</h2><p>Swift 是一种安全、快捷、简洁的现代化编程语言。编译器会负责底层的性能优化和实现，使用swift进行开发只要关注它的高级特性，这对开发者来说是十分友好的。</p>
-<p>Swift 使用了现代化的编程模式，用来避免常见的编程错误：</p>
-<ul>
-<li>变量使用前必须先初始化</li>
-<li>数组会检查越界</li>
-<li>整数会检查溢出</li>
-<li>可选类型用来处理空类型</li>
-<li>自动化内存管理</li>
-<li>支持捕获异常</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/10/15/swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
+            <div class="post-nav-item">
             </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          </div>
     </footer>
   </article>
   
   
   
-
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
 
 
 
