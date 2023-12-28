@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mufans.github.io","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"removeß","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="链接​    链接 是将各种代码和数据片段手机并组合成一个单一文件的过程，这个文件可被加载(复制)到内存并执行。  链接执行的三个阶段：  编译时 - 源代码被翻译成机器码时 加载时 - 程序被加载器加载到内存并执行时 运行时 - 由应用程序执行。  现代系统中，链接是由链接器 (linker) 的程序自动执行的。链接器使得分离编译 成为可能，可以将大型的应用程序分解为更小、更好管理的模块，这些模">
+<meta property="og:type" content="article">
+<meta property="og:title" content="csapp-note-链接">
+<meta property="og:url" content="https://mufans.github.io/2023/12/28/csapp-note-%E9%93%BE%E6%8E%A5/index.html">
+<meta property="og:site_name" content="MUFans&#39;s Blog">
+<meta property="og:description" content="链接​    链接 是将各种代码和数据片段手机并组合成一个单一文件的过程，这个文件可被加载(复制)到内存并执行。  链接执行的三个阶段：  编译时 - 源代码被翻译成机器码时 加载时 - 程序被加载器加载到内存并执行时 运行时 - 由应用程序执行。  现代系统中，链接是由链接器 (linker) 的程序自动执行的。链接器使得分离编译 成为可能，可以将大型的应用程序分解为更小、更好管理的模块，这些模">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-12-28T06:30:11.000Z">
+<meta property="article:modified_time" content="2023-12-28T06:30:11.603Z">
+<meta property="article:author" content="MUFans">
+<meta property="article:tag" content="csapp">
+<meta property="article:tag" content="操作系统">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://mufans.github.io/2023/12/28/csapp-note-%E9%93%BE%E6%8E%A5/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>csapp-note-链接 | MUFans's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">MUFans's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#链接"><span class="nav-number">1.</span> <span class="nav-text">链接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编译器驱动程序"><span class="nav-number">1.1.</span> <span class="nav-text">编译器驱动程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态链接"><span class="nav-number">1.2.</span> <span class="nav-text">静态链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目标文件"><span class="nav-number">1.3.</span> <span class="nav-text">目标文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可重定位目标文件"><span class="nav-number">1.4.</span> <span class="nav-text">可重定位目标文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#符号和符号表"><span class="nav-number">1.5.</span> <span class="nav-text">符号和符号表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#符号解析"><span class="nav-number">1.6.</span> <span class="nav-text">符号解析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#C-和java中链接器符号的重整-mangling"><span class="nav-number">1.6.1.</span> <span class="nav-text">C++和java中链接器符号的重整(mangling)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#链接器如何解析多重定义的全局符号"><span class="nav-number">1.6.2.</span> <span class="nav-text">链接器如何解析多重定义的全局符号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#与静态库链接"><span class="nav-number">1.6.3.</span> <span class="nav-text">与静态库链接</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重定位"><span class="nav-number">1.7.</span> <span class="nav-text">重定位</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#重定位条目"><span class="nav-number">1.7.1.</span> <span class="nav-text">重定位条目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重定位符号引用"><span class="nav-number">1.7.2.</span> <span class="nav-text">重定位符号引用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可执行目标文件"><span class="nav-number">1.8.</span> <span class="nav-text">可执行目标文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加载可执行目标文件"><span class="nav-number">1.9.</span> <span class="nav-text">加载可执行目标文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态链接共享库"><span class="nav-number">1.10.</span> <span class="nav-text">动态链接共享库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从应用程序中加载和链接共享库"><span class="nav-number">1.11.</span> <span class="nav-text">从应用程序中加载和链接共享库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#共享库和java-JNI"><span class="nav-number">1.11.1.</span> <span class="nav-text">共享库和java JNI</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#位置无关代码（PIC"><span class="nav-number">1.12.</span> <span class="nav-text">位置无关代码（PIC)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#PIC数据引用"><span class="nav-number">1.12.1.</span> <span class="nav-text">PIC数据引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PIC函数调用"><span class="nav-number">1.12.2.</span> <span class="nav-text">PIC函数调用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#共享库hook"><span class="nav-number">1.13.</span> <span class="nav-text">共享库hook</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#处理目标文件的工具"><span class="nav-number">1.14.</span> <span class="nav-text">处理目标文件的工具</span></a></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="MUFans"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">MUFans</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mufans" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;mufans" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:294045132@qq.com" title="E-Mail → mailto:294045132@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://mufans.github.io/2023/12/28/csapp-note-%E9%93%BE%E6%8E%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="MUFans">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MUFans's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          csapp-note-链接
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-12-28 14:30:11" itemprop="dateCreated datePublished" datetime="2023-12-28T14:30:11+08:00">2023-12-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/note/" itemprop="url" rel="index"><span itemprop="name">note</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p>​    <strong>链接</strong> 是将各种代码和数据片段手机并组合成一个单一文件的过程，这个文件可被加载(复制)到内存并执行。 </p>
+<p>链接执行的三个阶段：</p>
+<ul>
+<li>编译时 - 源代码被翻译成机器码时</li>
+<li>加载时 - 程序被加载器加载到内存并执行时</li>
+<li>运行时 - 由应用程序执行。</li>
+</ul>
+<p>现代系统中，链接是由<strong>链接器</strong> (linker) 的程序自动执行的。链接器使得<strong>分离编译</strong> 成为可能，可以将大型的应用程序分解为更小、更好管理的模块，这些模块可以独</p>
+<p>立的修改和编译。当对某个模块进行修改时，只需简单的重新编译，并重新链接应用，而不用重新编译其他文件。</p>
+<a id="more"></a>
+
+<h3 id="编译器驱动程序"><a href="#编译器驱动程序" class="headerlink" title="编译器驱动程序"></a>编译器驱动程序</h3><p>​        大多数编译系统提供 <strong>编译器驱动程序</strong> ,包含语言预处理器、编译器、汇编器和链接器。比如，GNU编译系统，需要通过输入下列命令调用 GCC驱动程序:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -o prog main.c sum.c</span><br></pre></td></tr></table></figure>
+
+<p>以上命令，可以添加**-v**选项 查看编译步骤。 </p>
+<p>驱动程序首先运行C预处理器(cpp), 它将源程序main.c翻译成一个ASCII码的中间文件main.i ;</p>
+<p>运行C编译器(cc1), 它将 main.i 翻译成一个ASCII汇编语言文件 main.s ;</p>
+<p>然后运行汇编器(as), 它将 main.s 翻译成一个<strong>可重定位目标文件</strong> main.o;</p>
+<p>最后，运行链接器程序(ld) , 将main.o 和 sum.o 以及一些必要的系统目标文件组合起来，创建一个<strong>可执行目标文件</strong> </p>
+<h3 id="静态链接"><a href="#静态链接" class="headerlink" title="静态链接"></a>静态链接</h3><p><strong>静态链接器</strong> 以一组可重定位目标文件和命令行参数作为输入，生成一个完全连接、可加载运行的可执行目标文件作为输出。输入的可重定位目标文件由各种不同</p>
+<p>的代码和数据节(section)组成，每一个section都是一个连续的字节序列。指令、初始化的全局变量、未初始化的变量分别存储在不同的section中。</p>
+<p>​    为了构造可执行文件，链接器必须完成两个主要任务：</p>
+<ul>
+<li><p>符号解析   目标文件定义和引用 <strong>符号</strong> , 每个符号对应于一个函数、全局变量或一个静态变量。 符号解析的目的就是将每个符号<strong>引用</strong>和符号<strong>定义</strong>关联起来。</p>
+</li>
+<li><p>重定位  编译器和汇编器生成从地址0开始的代码和数据节。链接器通过把每个符号定义于一个内存地址关联起来，从而<strong>重定位</strong>这些节，然后修改所有对这些符</p>
+<p>号的引用，使得它们指向这个内存位置。链接器使用汇编器产生的<strong>重定位条目(relocation entry)</strong> 的详细 指令，执行重定位。</p>
+</li>
+</ul>
+<h3 id="目标文件"><a href="#目标文件" class="headerlink" title="目标文件"></a>目标文件</h3><p>目标文件的三种形式：</p>
+<ul>
+<li>可重定位目标文件： 宝行二进制代码和数据，在编译时与其他可重定位文件合并起来，创建可执行目标文件。</li>
+<li>可执行目标文件：包含二进制代码和数据，可以被直接复制到内存并执行。</li>
+<li>共享目标文件： 一种特殊的可重定位目标文件，可以在加载或者运行时被动态的加载进内存并链接。</li>
+</ul>
+<h3 id="可重定位目标文件"><a href="#可重定位目标文件" class="headerlink" title="可重定位目标文件"></a>可重定位目标文件</h3><p>一个典型的ELF可重定位目标文件包含下面几个section:</p>
+<ul>
+<li>.text: 已编译的机器代码</li>
+<li>.rodata: 只读数据</li>
+<li>.data: 已初始化的全局和静态变量。局部变量在运行时保存在栈中</li>
+<li>.bss: 未初始化的全局和静态变量，以及所有被初始化为0的全局或静态变量。在目标文件中这个section不占据实际的空间，仅仅是一个占位符。</li>
+<li>.symtab: 符号表，存放程序中定义和引用的函数和全局变量的信息。</li>
+<li>.rel.text: .text节中代码位置的列表，当链接器把目标文件和其他文件组合时，需要修改这些位置。一般而言，任何调用外部函数或者引用全局变量的指令都需要修改。</li>
+<li>.rel.data: 被模块引用或者定义的所有全局变量的重定位信息。任何已初始化的全局变量，如果他的初始值是一个全局变量地址或者外部定义函数的地址，都需要被修改。</li>
+<li>.debug: 调试符号表</li>
+<li>.line: 原始程序中的行号和.text中机器指令间的映射。</li>
+<li>.strtab: 字符串表，内容包含.symtab和.debug中的符号表以及section Head中的节名称。</li>
+</ul>
+<h3 id="符号和符号表"><a href="#符号和符号表" class="headerlink" title="符号和符号表"></a>符号和符号表</h3><p>每个可重定位目标模块都有一个符号表，包含模块定义和引用的符号信息。对于链接器有三种不同符号：</p>
+<ul>
+<li>由该模块定义并能被其他模块引用的<strong>全局符号</strong>。 对应于<strong>非静态的函数和全局变量</strong> 。</li>
+<li>由其他模块定义被该模块引用的全局符号。这些符号被称为<strong>外部符号</strong>，对应于其他模块重定义的<strong>非静态的函数和全局变量</strong> 。</li>
+<li>只被该模块定义和引用的局部符号。对应于带static属性的函数和全局变量。不能被其他模块引用。</li>
+</ul>
+<p>.symtab中的符号表不包含对应于本地非静态变量的任何符号，这些符号在运行时在栈中被管理。然而带有static属性的局部变量不是在栈中管理的，编译器</p>
+<p>在.data或者.bss中为其分配空间。</p>
+<h3 id="符号解析"><a href="#符号解析" class="headerlink" title="符号解析"></a>符号解析</h3><p>链接器解析符号引用的方法是将每个引用与他输入的可重定位目标文件的符号表中的一个确定符号定义关联起来。</p>
+<h4 id="C-和java中链接器符号的重整-mangling"><a href="#C-和java中链接器符号的重整-mangling" class="headerlink" title="C++和java中链接器符号的重整(mangling)"></a>C++和java中链接器符号的重整(mangling)</h4><p>c++和java允许重载方法，这些方法在源代码中有相同的名字，却有不同的参数列表。编译器将每个唯一的方法和参数列表组合编码成一个对连接器来说唯一的名</p>
+<p>字。这种编码过程叫做重整(mangling),相反的过程叫做恢复(demangling)。</p>
+<p>c++和java使用兼容的重整策略。一个被重整的类名字由名字中字符的证书数量，后面跟原始名字组成。比如，类Foo被编码成3Foo。方法被编码为原始方法名称</p>
+<p>+_ +重整类名+参数的单字母编码。比如， Foo::bar(int,long) 被编码为bar__3Fooil。</p>
+<h4 id="链接器如何解析多重定义的全局符号"><a href="#链接器如何解析多重定义的全局符号" class="headerlink" title="链接器如何解析多重定义的全局符号"></a>链接器如何解析多重定义的全局符号</h4><p>在编译时，编译器想汇编器输出每个全局符号，分别为强符号或者弱符号，汇编器把这个信息编码在可重定位目标文件的符号表里。 函数和已初始化的全局变量</p>
+<p>是强符号，未初始化的全局变量是弱符号。</p>
+<p>链接器使用下面的规则处理多重定义的符号名：</p>
+<ol>
+<li>不允许有多个同名的强符号</li>
+<li>如果有一个强符号和多个弱符号同名，选择强符号</li>
+<li>多个若符号同名，任意选择一个符号</li>
+</ol>
+<h4 id="与静态库链接"><a href="#与静态库链接" class="headerlink" title="与静态库链接"></a>与静态库链接</h4><p>将所有相关的目标模块打包成一个独立的文件，成为静态库，他可以做链接器的输入。当链接器构造一个输出的可执行文件时，它只复制静态库里被引用的目标模块。</p>
+<p>执行以下命令进行链接静态库,  c编译器驱动程序默认传送libc.a给链接器</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -static -o prog main.o ./xx.a</span><br></pre></td></tr></table></figure>
+
+<p>当链接器执行时，会根据目标文件引用的符号，复制相关的模块到可执行文件</p>
+<h3 id="重定位"><a href="#重定位" class="headerlink" title="重定位"></a>重定位</h3><p>链接器完成了符号解析后，代码中每个符号引用和符号定义都进行了关联。此时，链接器就知道输入的目标模块的代码和数据section的确切大小。现在开始重定位步骤，合并输入模块，为每个符号分配运行时地址。</p>
+<ul>
+<li>重定位节和符号定义   合并同一类型的section, 将运行时内存地址赋给新的section, 此时每条指令和全局变量都有唯一的运行时内存地址</li>
+<li>重定位节中的符号引用  链接器修改代码和数据section中每个符号的引用，指向正确的运行时地址。这一步骤依赖于 可重定位目标模块的重定位条目的数据结构</li>
+</ul>
+<h4 id="重定位条目"><a href="#重定位条目" class="headerlink" title="重定位条目"></a>重定位条目</h4><p>汇编器遇到对最终位置未知的目标引用，会生成一个重定位条目，告诉链接器将目标文件合并成可执行文件时如何修改这个引用。代码重定位条目放在.rel.text中， 已初始化数据的重定位条目放在.rel.data中</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">  <span class="keyword">long</span> offset; <span class="comment">// 需要被修改的引用的节偏移量</span></span><br><span class="line">  <span class="keyword">long</span> type:<span class="number">32</span>, <span class="comment">// 表示如何修改引用</span></span><br><span class="line">  		 symbol:<span class="number">32</span>; <span class="comment">// 表示被修改引用应该指向的符号</span></span><br><span class="line">  <span class="keyword">long</span> addend ； <span class="comment">// 重定位偏移量调整</span></span><br><span class="line">&#125;Elf64_Rela</span><br></pre></td></tr></table></figure>
+
+<h4 id="重定位符号引用"><a href="#重定位符号引用" class="headerlink" title="重定位符号引用"></a>重定位符号引用</h4><ol>
+<li>重定位PC相对引用</li>
+</ol>
+<p>汇编器生成相应的重定位条目r 包含: offset symbol  type addend</p>
+<p>链接器首先确定</p>
+<p>代码段地址</p>
+<p>ADDR(s) = ADDR(.text)  </p>
+<p>符号地址</p>
+<p>ADDR(symbol)</p>
+<p>然后计算引用代码的运行时地址</p>
+<p>refadder = ADDR(s) + r.offset</p>
+<p>然后更新引用使它指向目标代码</p>
+<p>*refptr = (unsigned)(ADDR(r.symbol) + r.addend -refaddr)  // 此可以理解为符号地址和引用地址的差值</p>
+<p>当执行call指令时，pc指向下一条指令的地址，为了执行目标指令，cpu执行以下步骤：</p>
+<ul>
+<li>将Pc压入栈</li>
+<li>Pc = pc+ *refptr   </li>
+</ul>
+<ol start="2">
+<li>重定位绝对引用</li>
+</ol>
+<h3 id="可执行目标文件"><a href="#可执行目标文件" class="headerlink" title="可执行目标文件"></a>可执行目标文件</h3><p>典型的ELF可执行目标文件结构：</p>
+<ul>
+<li><p>只读内存段（代码段)</p>
+<ol>
+<li><p>elf头</p>
+</li>
+<li><p>段头部表(segment)</p>
+</li>
+<li><p>.init</p>
+</li>
+<li><p>.text</p>
+</li>
+<li><p>.rodata</p>
+</li>
+</ol>
+</li>
+<li><p>读/写内存段(数据段)</p>
+<ol>
+<li>.data</li>
+<li>.bss</li>
+</ol>
+</li>
+<li><p>不加载到内存的符号表和调试信息</p>
+<ol>
+<li>.symtab</li>
+<li>.debug</li>
+<li>.line</li>
+<li>.strtab</li>
+<li>节头部表 （描述目标文件的节section)</li>
+</ol>
+</li>
+</ul>
+<p>​    可执行目标文件的格式和可重定位目标文件类似。它还包括程序的入口点(entry point),也就是程序运行时执行的第一条指令的地址。.init节定义了一个小函数</p>
+<p>_init, 程序的初始化代码会调用它。由于可执行文件时<strong>完全链接的（已重定位)</strong> , 所以没有 <strong>rel</strong> 节。</p>
+<p>​    Elf可执行文件连续的片(chunk)被映射到连续的内存段。<strong>程序头部表( program header table )</strong> 描述了这种映射关系。</p>
+<h3 id="加载可执行目标文件"><a href="#加载可执行目标文件" class="headerlink" title="加载可执行目标文件"></a>加载可执行目标文件</h3><p>​    执行shell命令 <strong>./prog</strong> ，shell通过调用驻留在存储器中成为加载器(loader)的操作系统代码来运行它。<strong>加载器</strong>将可执行目标文件代码和数据从磁盘复制到内存中，</p>
+<p>然后通过跳转到程序的第一条指令或者(entry point)来运行程序。这个将程序复制到内存并运行的过程叫做<strong>加载</strong>。</p>
+<p>Linux 运行时内存映像（高地址-&gt;低地址) </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">| 内核内存   <span class="comment">// 用户代码不可见的内存</span></span><br><span class="line">————————————</span><br><span class="line">| 用户栈（运行时创建)</span><br><span class="line">————————————  ← %rsp(栈指针) ↓</span><br><span class="line">| </span><br><span class="line">————————————</span><br><span class="line">| 共享库内存映射区域 </span><br><span class="line">————————————</span><br><span class="line">| </span><br><span class="line">———————————— ← brk ↑</span><br><span class="line">| 运行时堆(由malloc创建)</span><br><span class="line">____________</span><br><span class="line">| 读写段 (.data, .bss)</span><br><span class="line">————————————</span><br><span class="line">| 只读代码段(.init, .text, .rodata)</span><br><span class="line">_____________</span><br></pre></td></tr></table></figure>
+
+<p>其中读写段和只读代码段从可执行文件加载。由于.data段由对其要求，所以代码和数据段之间有间隙。在分配栈、共享库和堆段运行时地址的时候，链接器还会</p>
+<p>使用地址空间布局随机化(ASLR)。虽然每次程序运行时浙西区域的地址都会改变，它们的相对位置不会变化。</p>
+<p><strong>加载器如何工作</strong></p>
+<p>Linux系统中每个程序都允许在一个进程上下文中，有自己的虚拟地址空间。当shell运行一个程序时，父shell进程fork一个子进程，它是父进程的一个复制。子进程</p>
+<p>通过execve系统调用启动加载器。加载器删除子进程现有的虚拟内存段，并创建一组新代码、数据、堆和栈段。新的栈和堆段被初始化为0。通过将虚拟地址空间</p>
+<p>中的页映射到可执行文件的页大小的片(chunk), 新的代码和数据段被初始化为可执行文件的内容。最后加载器跳转到_start地址，最终会调用程序的main函数。除</p>
+<p>了一些头部信息，在加载过程中没有任何从磁盘到内存的数据复制。直到cpu引用了一个被映射的虚拟页时才会进行复制（COW写时复制) 。</p>
+<h3 id="动态链接共享库"><a href="#动态链接共享库" class="headerlink" title="动态链接共享库"></a>动态链接共享库</h3><p>​    静态库需要定期维护和更新，每次更新都需要显示的将程序与静态库重新连接。另外一个问题就是，每个C程序都会使用标准函数，在运行时这些代码会复制到</p>
+<p>每个进程的代码段中，这是对内存资源的极大浪费。**共享库(shared library)**是解决静态库这些缺陷的产物。共享库是一个目标模块，在运行或加载时，可以加载到</p>
+<p>任意的内存地址，并和一个在内存中的程序链接起来，这个过程叫<strong>动态链接（dynamic linking)</strong> , 是由一个叫做**动态链接器(dynamic linker)**的程序来运行。共享库</p>
+<p>也叫共享目标(shared object), 在linux系统中通常使用.so后缀来表示。</p>
+<p>​    共享库共享代码的方式：</p>
+<p>在文件系统中，一个库只有一个.so文件。所有引用该库的可执行目标文件共享这个文件中的代码和数据，而不是像静态库的内容那样呗复制和嵌入到引用它们的</p>
+<p>可执行文件中。在内存中一个共享库的.text节的副本可以被不同的进程共享。</p>
+<p>​    <strong>编译共享库的指令</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -shared -fpic -o libshared.so xx.c xxx.c</span><br></pre></td></tr></table></figure>
+
+<p>​    -fpic 选项指示编译器生成与位置无关的代码， -shared表示创建一个共享目标文件。创建完后，将它链接到程序中：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -o prog xx.c ./libshared.so</span><br></pre></td></tr></table></figure>
+
+<p>这样就创建了一个可执行目标文件。在创建可执行文件时，静态执行一些链接，然后在程序加载时，动态完成链接过程。此时没有任何共享库的代码和数据被复制</p>
+<p>到可执行文件中。链接器复制了一些重定位和符号表信息，使得在运行时可以解析对共享库代码和数据的引用。</p>
+<p>​    当加载器加载运行可执行文件时，只加载部分链接的可执行文件。该文件包含.interp节，这一节包含动态链接器的路径名，动态链接器本身是一个共享目标</p>
+<p>(Linux 上为ld-linux.so)。 加载器加载动态链接器，然后通过执行下面的重定位完成链接任务：</p>
+<ul>
+<li>重定位libc.so的文本和数据段到某个内存段</li>
+<li>重定位共享库的文本和数据到另一个内存段</li>
+<li>重定位可执行文件的所有共享库定义的符号和引用</li>
+</ul>
+<h3 id="从应用程序中加载和链接共享库"><a href="#从应用程序中加载和链接共享库" class="headerlink" title="从应用程序中加载和链接共享库"></a>从应用程序中加载和链接共享库</h3><p>上面提到的是应用程序被加载后执行前时，动态链接器加载和链接共享库的情景。然后应用程序还能在运行时要求动态链接器加载和链接某个共享库，无需在编译</p>
+<p>时将库链接到应用中。</p>
+<p>动态链接是一项强大的技术，常用的例子</p>
+<ol>
+<li>分发软件：利用下发共享库实现动态更新。</li>
+<li>构建高性能的web 服务器。</li>
+</ol>
+<p>其思路是将每个生成动态内容的函数打包在共享库中。</p>
+<p>Linux系统为动态链接器提供了一个简单的接口，允许应用程序在运行时加载和链接共享库</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;dlfcn.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">dlopen</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *filename,<span class="keyword">int</span> flag)</span></span>;  <span class="comment">// 如若成功则返回指向句柄的指针</span></span><br></pre></td></tr></table></figure>
+
+<p>​    <strong>dlopen</strong>加载和链接共享库filename。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;dlfcn.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">dlsym</span><span class="params">(<span class="keyword">void</span> *handle,<span class="keyword">char</span> *symbol)</span></span>;  <span class="comment">//成功返回指向符号的指针</span></span><br></pre></td></tr></table></figure>
+
+<pre><code> **dlsym**函数输入前面打开共享库的句柄和symbol名字，如果该符号存在，返回符号地址。
+</code></pre>
+<p>​    <strong>dlclose</strong>关闭共享库。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;dlfcn.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">const</span> <span class="keyword">char</span> *<span class="title">dlerror</span><span class="params">(<span class="keyword">void</span>)</span></span>; <span class="comment">// dlopen 、 dlsym 、 dlclose调用失败，返回错误信息</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="共享库和java-JNI"><a href="#共享库和java-JNI" class="headerlink" title="共享库和java JNI"></a>共享库和java JNI</h4><p>​    java定义了一个标准调用规则，叫Java本地接口(JNI),允许java调用本地的C和c++函数。jni的基本思想是将 C函数编译到一个共享库中，当一个java程序调用c</p>
+<p>函数时，java 解释器调用<strong>dlopen</strong>接口欧动态链接和加载共享库.so, 然后再调用函数。</p>
+<h3 id="位置无关代码（PIC"><a href="#位置无关代码（PIC" class="headerlink" title="位置无关代码（PIC)"></a>位置无关代码（PIC)</h3><p>​    可以加载而无需重定位的代码称为**位置无关代码(pic)**。 使用-fpic选项生成PIC代码，共享库编译必须使用这个选项。</p>
+<h4 id="PIC数据引用"><a href="#PIC数据引用" class="headerlink" title="PIC数据引用"></a>PIC数据引用</h4><p>无论内存中在何处加载一个目标模块，数据和代码段的相对位置是保持不变的，因此，代码段中任何指令和数据段中任何变量之间的距离都是一个运行时常量，</p>
+<p>与代码段和数据段的绝对位置无关。</p>
+<p>编译器为了生成对全局变量PIC的引用，在<strong>数据段</strong>开始的地方创建了一个表，叫做<strong>全局偏移量表（GOT)</strong> 。在GOT中，每个被这个目标模块引用的全局数据目标</p>
+<p>（过程或者全局变量)都有一个8字节的条目。 编译器还为每个条目生成一个重定位记录。在加载时，动态链接器会重定位GOT中的每个条目，使它包含目标的</p>
+<p>绝对地址。每个引用全局目标的目标模块都有独立的GOT。</p>
+<p>编译器利用代码段和数据段之间不变的相对偏移量，产生对全局数据目标的直接PC相对引用，并增加一个重定位，让链接器在构造这个共享模块时解析它。由于</p>
+<p>这个全局目标数据是由另一个共享模块提供的，所以需要通过GOT进行间接访问。编译器采用通用的解决方案，为所有的引用使用GOT。</p>
+<h4 id="PIC函数调用"><a href="#PIC函数调用" class="headerlink" title="PIC函数调用"></a>PIC函数调用</h4><p>程序调用一个共享库中的函数，编译器没法获取这个函数的运行时地址，因为共享模块可以被加载到任意为止。正常方法是为该引用生成一条重定位记录，然后</p>
+<p>动态链接器在程序加载的时候解析它。不过这种方式不是PIC,因为它需要链接器修改调用模块的代码段。GNU编译系统使用了<strong>延迟绑定</strong>技术来解决这个问题，</p>
+<p>将过程地址的绑定延迟到第一次调用时。</p>
+<p>​    使用延迟绑定的另一个目的是避免动态链接器在加载时对共享库其他函数进行重定位，造成不必要的开销。</p>
+<p>​    <strong>延迟绑定</strong>是通过两个数据结构之间的交互来实现的，这两个数据结构是：<strong>GOT</strong>和**过程链接表（PLT)**。 如果一个目标模块调用在共享库中的任何函数，那么他就</p>
+<p>由自己的GOT和PLT。 GOT 保存在数据段，PLT在代码段。</p>
+<ul>
+<li><p>PLT 。 PLT是一个数组，其中每个条目时16字节代码。PLT[0]是一个特殊条目，负责跳转到动态链接器中。每个条目负责调用一个具体的函数。</p>
+</li>
+<li><p>GOT。 GOT也是一个数组，其中每个条目是8字节的地址。GOT[0]和GOT[1]包含动态链接器在解析函数地址是会使用的信息。GOT[2]是动态链接器的入口点</p>
+<p>其余的每个条目对应一个被调用的函数，器地址需要在运行时被解析。每个条目都有一个相匹配的PLT条目。初始时，每个GOT条目都指向对应PLT条目的第</p>
+<p>二条指令。当第一次调用执行完函数重定位后，该条目被动态链接器重写为函数的绝对地址，之后对该函数的调用都会通过GOT条目间接跳转到指定位置。</p>
+</li>
+</ul>
+<h3 id="共享库hook"><a href="#共享库hook" class="headerlink" title="共享库hook"></a>共享库hook</h3><p>hook 共享库的函数由几种方式：</p>
+<ul>
+<li>函数包装：首先定义代理函数，然后通过dlsym获取原函数的地址，使用代理函数调用原函数。</li>
+<li>PLT hook:  这种方式只适用于外部调用，通过修改目标文件的GOT条目，替换成代理函数地址，hook外部调用。（xhook、bhook)</li>
+<li>Inline hook: 遍历进程地址空间，查询原函数的代码地址，通过替换函数指令的方式，使其跳转到一个新的函数地址。(shadowhook)</li>
+</ul>
+<h3 id="处理目标文件的工具"><a href="#处理目标文件的工具" class="headerlink" title="处理目标文件的工具"></a>处理目标文件的工具</h3><ul>
+<li>AR: 穿件静态库，插入、删除列出和提取成员</li>
+<li>STRINGS: 列出目标文件中的字符串</li>
+<li>STRIP: 删除符号表信息</li>
+<li>NM：列出目标文件的符号表定义的符号</li>
+<li>SIZE: 列出目标文件中节中的名字和大小</li>
+<li>READELF: 显示目标文件的完整结构，包括elf头编码的所有信息。包含size和nm的功能。</li>
+<li>OBJDUMP: 反汇编工具</li>
+</ul>
+<p>对于Android平台可以使用NDK下的对应工具分析so文件。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/csapp/" rel="tag"># csapp</a>
+              <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag"># 操作系统</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/11/19/csapp-note-%E5%A4%84%E7%90%86%E5%99%A8%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" rel="prev" title="csapp-note-处理器体系结构">
+                  <i class="fa fa-chevron-left"></i> csapp-note-处理器体系结构
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MUFans</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
